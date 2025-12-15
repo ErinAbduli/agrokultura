@@ -367,7 +367,7 @@ input[type="number"] {
 }
 
 .main {
-	padding: 50px 5%;
+	margin: 50px 5%;
 }
 
 .product-container {
@@ -529,4 +529,264 @@ button {
 
 .qty-btn:hover {
 	background: #e5e7eb;
+}
+
+.rating {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin: 8px 0 16px;
+}
+
+.stars {
+	display: flex;
+	gap: 2px;
+}
+
+.stars i {
+	color: #22a561; /* gold */
+	font-size: 16px;
+}
+
+.rating-text {
+	font-size: 14px;
+	color: #6b7280;
+}
+
+.reviews-card {
+	margin-top: 40px;
+	padding: 28px;
+	background: #fff;
+	border-radius: 16px;
+	border: 1px solid #ccc;
+	display: flex;
+	flex-direction: column;
+}
+
+.reviews-card h3 {
+	font-size: 22px;
+	margin-bottom: 20px;
+}
+
+.review {
+	padding: 18px 0;
+	border-bottom: 1px solid #e5e7eb;
+}
+
+.review:last-of-type {
+	border-bottom: none;
+}
+
+.review-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.review-header strong {
+	font-size: 15px;
+}
+
+.review-date {
+	font-size: 13px;
+	color: #6b7280;
+	margin: 4px 0 10px;
+}
+
+.review-text {
+	font-size: 15px;
+	line-height: 1.6;
+	color: #374151;
+}
+
+.stars i {
+	color: #22a561;
+	font-size: 14px;
+}
+
+.load-more {
+	margin-top: 20px;
+	width: 300px;
+	align-self: center;
+	padding: 12px;
+	border-radius: 12px;
+	border: 1px solid #22a561;
+	color: #22a561;
+	background-color: white;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.load-more:hover {
+	background: #def1e7;
+}
+
+.reviews-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.leave-review {
+	flex: none;
+	padding: 10px 16px;
+	border-radius: 10px;
+	background-color: white;
+	border: 1px solid #22a561;
+	color: #22a561;
+}
+
+.leave-review:hover {
+	background: #def1e7;
+}
+
+.similar-products {
+	margin-top: 60px;
+}
+
+.products-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	justify-content: center;
+	padding: 20px;
+}
+
+.products-container:last-child {
+	justify-content: flex-start;
+}
+
+.product-card {
+	border-radius: 12px;
+	padding: 20px;
+	width: 200px;
+	transition: transform 0.2s, box-shadow 0.2s;
+	border: 1px solid #ccc;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
+}
+
+.product-card:hover {
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+}
+
+.product-card img {
+	width: 100px;
+	height: 150px;
+	object-fit: contain;
+	margin-bottom: 15px;
+	align-self: center;
+}
+
+.product-card h3 {
+	font-size: 18px;
+	font-weight: 400;
+	color: black;
+}
+
+.product-card .price {
+	font-size: 16px;
+	font-weight: 700;
+	color: black;
+	margin-bottom: 0;
+}
+
+.add-to-cart-btn {
+	color: #22a561;
+	background-color: white;
+	border-radius: 8px;
+	padding: 10px 15px;
+	cursor: pointer;
+	font-weight: 500;
+	transition: background-color 0.2s, transform 0.2s;
+	font-size: 14px;
+	margin-top: 10px;
+	border: 1px solid #22a561;
+}
+
+.add-to-cart-btn:hover {
+	background-color: #22a561;
+	color: white;
+}
+
+.product-card-description {
+	font-size: 14px;
+	margin-top: 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+.product-card-description p {
+	margin-bottom: 5px;
+	font-size: 10px;
+	font-weight: 600;
+	color: #757575;
+}
+
+@media (max-width: 992px) {
+	.footer-section-1 {
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+	.logo-links-containter {
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 50px;
+	}
+	.footer-item p {
+		align-self: center;
+	}
+	.footer-item {
+		display: flex;
+		flex-direction: row;
+		gap: 10px;
+	}
+	.input-container {
+		display: flex;
+		margin-top: 50px;
+		align-items: center;
+		justify-content: center;
+	}
+	.input-wrapper {
+		width: 100%;
+	}
+	.footer-section-2 {
+		flex-direction: column;
+		gap: 20px;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+	.product-container {
+		flex-direction: column;
+	}
+}
+@media (max-width: 992px) {
+	.products-container {
+		align-items: center;
+		justify-content: center;
+	}
+}
+
+@media (max-width: 768px) {
+	.nav-links {
+		display: none;
+	}
+	#hamburger {
+		display: contents;
+	}
+	.hamburger-menu {
+		display: contents;
+	}
+}
+@media (max-width: 576px) {
+	.product-card {
+		width: 150px;
+		padding: 18px;
+	}
 }
