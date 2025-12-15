@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../assets/css/productCategory.css">
+    <link rel="stylesheet" href="../../assets/css/cart.css">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css">
 </head>
@@ -278,145 +278,97 @@
             </nav>
         </div>
     </nav>
-    <div class="main">
-        <div class="search-container">
-            <i class="bi bi-search"></i>
-            <form action="">
-                <input type="text" class="search-bar" placeholder="Kërko për produkte...">
-            </form>
-        </div>
-        <div class="container">
-            <div class="sidebar">
-                <div>
-                    <h3>Filtro</h3>
-                    <h4>Sipas Çmimit</h4>
-                    <div class="filtro-sipas-cmimit">
-                        <div class="cmimi-range">
-                            <input type="number" id="cmimiMin" name="cmimiMin" placeholder="1">
-                        </div>
-                        <span class="sipas-cmimit-text">deri</span>
-                        <div class="cmimi-range">
-                            <input type="number" id="cmimiMax" name="cmimiMax" placeholder="1000">
-                        </div>
+    <div class="cart-page">
+        <h1>Shporta</h1>
+
+        <div class="cart-layout">
+            <section class="cart-items">
+                <div class="cart-item">
+                    <img src="../../assets/images/bosch-saw.png" alt="Product">
+
+                    <div class="item-info">
+                        <p class="brand">Bosch</p>
+                        <h3>Bosch Saw</h3>
+                        <p class="price">€120.00</p>
                     </div>
-                    <div class="sipas-cmimit-desc">Filtrimi mund të bëhet nga
-                        1 Euro
-                        deri në
-                        11100 Euro</div>
-                    <button class="apliko-filtro">Apliko</button>
+
+                    <div class="qty-control">
+                        <button class="qty-btn decrease">−</button>
+                        <input class="qty" type="number" value="1" min="1" max="100">
+                        <button class="qty-btn increase">+</button>
+                    </div>
+
+                    <p class="item-total">€120.00</p>
+
+                    <button class="remove-item">
+                        <i class="bi bi-trash"></i>
+                    </button>
                 </div>
-                <div class="sipas-prodhuesit">
-                    <h4>Sipas Prodhuesit</h4>
-                    <div class="prodhuesit">
-                        <label>
-                            <input type="checkbox" name="producers[]" value="dewalt"> DeWalt
-                        </label>
+                <div class="cart-item">
+                    <img src="../../assets/images/bosch-saw.png" alt="Product">
 
-                        <label>
-                            <input type="checkbox" name="producers[]" value="makita"> Makita
-                        </label>
-
-                        <label>
-                            <input type="checkbox" name="producers[]" value="milwaukee"> Milwaukee
-                        </label>
-
-                        <label>
-                            <input type="checkbox" name="producers[]" value="stanley"> Stanley
-                        </label>
+                    <div class="item-info">
+                        <p class="brand">Bosch</p>
+                        <h3>Bosch Saw</h3>
+                        <p class="price">€120.00</p>
                     </div>
 
+                    <div class="qty-control">
+                        <button class="qty-btn decrease">−</button>
+                        <input class="qty" type="number" value="1" min="1" max="100">
+                        <button class="qty-btn increase">+</button>
+                    </div>
+
+                    <p class="item-total">€120.00</p>
+
+                    <button class="remove-item">
+                        <i class="bi bi-trash"></i>
+                    </button>
                 </div>
-            </div>
-            <div class="products">
-                <div class="subcategories">
-                    <a href="./productSubcategory.html">Fara Perimesh</a>
-                    <a href="#">Fara Frutash</a>
-                    <a href="#">Fara Lulesh</a>
-                    <a href="#">Fara Drithërash</a>
-                    <a href="#">Fidane / Bime</a>
-                    <a href="#">Fare Patatesh</a>
-                </div>
-                <div class="order-by-section">
-                    <p class="gjith-produktet">Të gjithë produktet</p>
-                    <div class="custom-select" id="order-products">
-                        <div class="selected">
-                            <span class="selected-text">Rendit sipas</span>
-                            <i class="bi bi-chevron-down"></i>
-                        </div>
+                <div class="cart-item">
+                    <img src="../../assets/images/bosch-saw.png" alt="Product">
 
-                        <ul class="options">
-                            <li data-value="price-asc">Çmimi: Nga i ulëti në të lartë</li>
-                            <li data-value="price-desc">Çmimi: Nga i larti në të ulët</li>
-                            <li data-value="name-asc">Emri: A deri në Z</li>
-                            <li data-value="name-desc">Emri: Z deri në A</li>
-                        </ul>
+                    <div class="item-info">
+                        <p class="brand">Bosch</p>
+                        <h3>Bosch Saw</h3>
+                        <p class="price">€120.00</p>
+                    </div>
 
-                        <input type="hidden" name="order" value="default">
+                    <div class="qty-control">
+                        <button class="qty-btn decrease">−</button>
+                        <input class="qty" type="number" value="1" min="1" max="100">
+                        <button class="qty-btn increase">+</button>
                     </div>
-                    <div>
-                        <button class="filter-btn"><i class="bi bi-funnel"></i> Filtro</button>
-                    </div>
+
+                    <p class="item-total">€120.00</p>
+
+                    <button class="remove-item">
+                        <i class="bi bi-trash"></i>
+                    </button>
                 </div>
-                <div class="products-container">
-                    <div class="product-card">
-                        <img src="../../assets/images/snow-shovel.png" alt="Product Image" width="50px">
-                        <div class="product-card-description">
-                            <h3>Power Drill</h3>
-                            <p class="producer">IngCo</p>
-                            <p class="price">100 &euro;</p>
-                            <button onclick="window.location.href='./product.html'" class="add-to-cart-btn">Shiko
-                                Detajet</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="../../assets/images/bosch-saw.png" alt="Product Image" width="50px">
-                        <div class="product-card-description">
-                            <h3>Power Drill</h3>
-                            <p class="producer">IngCo</p>
-                            <p class="price">100 &euro;</p>
-                            <button class="add-to-cart-btn">Shiko Detajet</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://png.pngtree.com/png-vector/20250320/ourmid/pngtree-yellow-cordless-power-drill-isolated-on-transparent-background-png-image_15775261.png"
-                            alt="Product Image" width="50px">
-                        <div class="product-card-description">
-                            <h3>Power Drill</h3>
-                            <p class="producer">IngCo</p>
-                            <p class="price">100 &euro;</p>
-                            <button class="add-to-cart-btn">Shiko Detajet</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="../../assets/images/snow-shovel.png" alt="Product Image" width="50px">
-                        <div class="product-card-description">
-                            <h3>Power Drill</h3>
-                            <p class="producer">IngCo</p>
-                            <p class="price">100 &euro;</p>
-                            <button class="add-to-cart-btn">Shiko Detajet</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="../../assets/images/bosch-saw.png" alt="Product Image" width="50px">
-                        <div class="product-card-description">
-                            <h3>Power Drill</h3>
-                            <p class="producer">IngCo</p>
-                            <p class="price">100 &euro;</p>
-                            <button class="add-to-cart-btn">Shiko Detajet</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://png.pngtree.com/png-vector/20250320/ourmid/pngtree-yellow-cordless-power-drill-isolated-on-transparent-background-png-image_15775261.png"
-                            alt="Product Image" width="50px">
-                        <div class="product-card-description">
-                            <h3>Power Drill</h3>
-                            <p class="producer">IngCo</p>
-                            <p class="price">100 &euro;</p>
-                            <button class="add-to-cart-btn">Shiko Detajet</button>
-                        </div>
-                    </div>
+
+            </section>
+
+            <aside class="cart-summary">
+                <h3>Përmbledhje</h3>
+
+                <div class="summary-row">
+                    <span>Nëntotali</span>
+                    <span>€120.00</span>
                 </div>
-            </div>
+
+                <div class="summary-row">
+                    <span>Transport</span>
+                    <span>€5.00</span>
+                </div>
+
+                <div class="summary-row total">
+                    <span>Totali</span>
+                    <span>€125.00</span>
+                </div>
+
+                <button class="checkout-btn">Vazhdo në Pagesë</button>
+            </aside>
         </div>
     </div>
     <footer class="footer">
@@ -460,7 +412,7 @@
     </footer>
 
     <script src="../../assets/js/hamburgerMenuToggler.js"></script>
-    <script src="../../assets/js/customOrderByDropdown.js"></script>
+    <script src="../../assets/js/cartControlQty.js"></script>
 </body>
 
 </html>
