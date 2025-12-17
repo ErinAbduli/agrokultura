@@ -280,11 +280,14 @@
         </div>
     </nav>
     <div class="main">
-        <div class="search-container">
-            <i class="bi bi-search"></i>
-            <form action="">
-                <input type="text" class="search-bar" placeholder="Kërko për produkte...">
-            </form>
+        <div class="search">
+            <div class="search-container">
+                <i class="bi bi-search"></i>
+                <form action="" id="searchForm">
+                    <input type="text" class="search-bar" id="search-bar" placeholder="Kërko për produkte...">
+                </form>
+            </div>
+            <div id="errorMsg"></div>
         </div>
         <div class="container">
             <div class="sidebar">
@@ -459,6 +462,7 @@
 
     <script src="../../assets/js/hamburgerMenuToggler.js"></script>
     <script src="../../assets/js/customOrderByDropdown.js"></script>
+    <script src="../../assets/js/productSearchValidation.js"></script>
 </body>
 
 </html>

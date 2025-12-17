@@ -673,7 +673,6 @@ input[type="number"] {
 	padding: 5px 10px;
 	width: 70%;
 	align-self: center;
-	margin-bottom: 40px;
 }
 
 .search-bar {
@@ -692,6 +691,21 @@ form {
 
 .search-bar:focus {
 	outline: none;
+}
+
+.search {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin-bottom: 40px;
+}
+
+#errorMsg {
+	color: red;
+	font-size: 12px;
+	margin-top: 5px;
+	align-self: center;
 }
 
 /* 
