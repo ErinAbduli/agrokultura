@@ -66,3 +66,12 @@ Ky është një projekt statik i frontend-it dhe nuk kërkon një proces komplek
     Thjesht hapni `index.html` ne web brower-in tuaj për të përdorur aplikacionin.
 
    Për përvojën më të mirë të zhvillimit, rekomandohet të përdorni një zgjerim të serverit live (si "Live Server" për Visual Studio Code) për të trajtuar ringarkimin automatik dhe për të shmangur problemet e mundshme të CORS me shtigjet lokale të skedarëve.
+
+## Autorët dhe Qëllimi Akademik
+
+Ky projekt është ndërtuar nga [Erin Abduli](https://github.com/erinabduli) & [Edin Kamberi](https://github.com/Edin-Edin), student të Shkencave Kompjuterike dhe Inxhinierisë.
+
+**Agrokultura** është zhvilluar si pjesë e një projekti universitar në lëndën:
+- Dizajn dhe Zhvillim i Web-it
+
+Qëllimi i projektit është të demonstrojë aftësi praktike në ndërtimin e një platforme funksionale e-commerce duke përdorur teknologji web të pastra (HTML, CSS, JavaScript), pa u mbështetur në framework-e të jashtme, me fokus në logjikë, organizim dhe përvojë përdoruesi.
