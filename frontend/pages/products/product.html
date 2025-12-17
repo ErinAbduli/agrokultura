@@ -333,7 +333,7 @@
         <div class="reviews-card">
             <div class="reviews-header">
                 <h3>Vlerësimet e Klientëve</h3>
-                <button class="leave-review">Lëre një vlerësim</button>
+                <button class="leave-review" id="leave-review">Lëre një vlerësim</button>
             </div>
 
             <div class="review">
@@ -475,8 +475,42 @@
         </div>
     </footer>
 
+    <div class="modal" id="reviewModal">
+        <div class="modal-content">
+            <span class="close" id="closeReview">&times;</span>
+
+            <h2>Lëre një vlerësim</h2>
+
+            <form id="reviewForm" novalidate>
+                <div class="rating">
+                    <input type="radio" name="rating" id="star5" value="5" />
+                    <label for="star5"><i class="bi bi-star-fill"></i></label>
+
+                    <input type="radio" name="rating" id="star4" value="4" />
+                    <label for="star4"><i class="bi bi-star-fill"></i></label>
+
+                    <input type="radio" name="rating" id="star3" value="3" />
+                    <label for="star3"><i class="bi bi-star-fill"></i></label>
+
+                    <input type="radio" name="rating" id="star2" value="2" />
+                    <label for="star2"><i class="bi bi-star-fill"></i></label>
+
+                    <input type="radio" name="rating" id="star1" value="1" required />
+                    <label for="star1"><i class="bi bi-star-fill"></i></label>
+                </div>
+
+                <textarea name="review" placeholder="Shkruaj vlerësimin tënd..." id="textarea-review"
+                    required></textarea>
+
+                <button type="submit">Shto vlerësimin</button>
+            </form>
+        </div>
+    </div>
+
     <script src="../../assets/js/controlQty.js"></script>
     <script src="../../assets/js/hamburgerMenuToggler.js"></script>
+    <script src="../../assets/js/modal.js"></script>
+    <script src="../../assets/js/modalValidate.js"></script>
 </body>
 
 </html>
