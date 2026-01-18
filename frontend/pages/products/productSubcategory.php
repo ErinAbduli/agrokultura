@@ -2,33 +2,33 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="./frontend/assets/css/index.css" />
-    <link rel="icon" type="image/x-icon" href="./frontend/assets/images/favicon.ico">
-    <title>Ballina - Agrokultura</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Subcategory - Agrokultura</title>
+    <link rel="stylesheet" href="../../assets/css/productCategory.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css">
+    <link rel="icon" type="image/x-icon" href="../../assets/images/favicon.ico">
 </head>
 
 <body>
     <nav class="navbar">
         <div class="logo">
-            <a href="./index.html"><img src="./frontend/assets/images/logo-2.png" width="120px" alt="logo" /></a>
+            <a href="../../../index.html"><img src="../../assets/images/logo-2.png" width="120px" alt="logo" /></a>
         </div>
 
         <ul class="nav-links">
-            <li><a href="#" class="active">Ballina</a></li>
+            <li><a href="../../../index.html" class="active">Ballina</a></li>
 
             <li class="dropdown">
                 <a href="#" id="produktet">Produktet <i class="bi bi-chevron-down" style="font-size: 1rem;"></i></a>
                 <ul class="dropdown-menu">
 
                     <li>
-                        <a href="./frontend/pages/products/productCategory.html">Fara & Bime &nbsp;&nbsp;<i
-                                class="bi bi-chevron-right"></i></a>
+                        <a href="./productCategory.html">Fara & Bime &nbsp;&nbsp;<i class="bi bi-chevron-right"></i></a>
                         <ul>
-                            <li><a href="./frontend/pages/products/productSubcategory.html">Fara Perimesh</a></li>
-                            <li><a href="./frontend/pages/products/productSubcategory.html">Fara Frutash</a></li>
+                            <li><a href="./productSubcategory.html">Fara Perimesh</a></li>
+                            <li><a href="#">Fara Frutash</a></li>
                             <li><a href="#">Fara Lulesh</a></li>
                             <li><a href="#">Fara Drithërash</a></li>
                             <li><a href="#">Fidane / Bime</a></li>
@@ -135,14 +135,14 @@
                 </ul>
             </li>
 
-            <li><a href="./frontend/pages/aboutUs/mbiNe.html">Mbi Ne</a></li>
-            <li><a href="./frontend/pages/contactUs/naKontaktoni.html">Na Kontaktoni</a></li>
+            <li><a href="../aboutUs/mbiNe.html">Mbi Ne</a></li>
+            <li><a href="../contactUs/naKontaktoni.html">Na Kontaktoni</a></li>
         </ul>
 
         <div class="cart-section nav-links">
-            <a href="./frontend/pages/cart/cart.html"><i class="bi bi-cart" style="font-size: 1.3rem;"></i></a>
+            <a href="../cart/cart.html"><i class="bi bi-cart" style="font-size: 1.3rem;"></i></a>
             <ul class="nav-links">
-                <li><a href="./frontend/pages/forms/login.html">Log in</a></li>
+                <li><a href="../forms/login.html">Log in</a></li>
             </ul>
         </div>
 
@@ -151,14 +151,15 @@
 
             <nav class="mobile-menu" id="mobileMenu">
                 <ul class="menu-items">
-                    <li><a href="#" class="active">Ballina</a></li>
+                    <li><a href="../../../index.html" class="active">Ballina</a></li>
                     <li class="dropdown-h">
-                        <a href="#" id="produktet-h">Produktet <i class="bi bi-chevron-down"></i></a>
+                        <a href="" id="produktet-h">Produktet <i class="bi bi-chevron-down"></i></a>
                         <ul class="dropdown-menu-h">
                             <li>
-                                <a href="#">Fara & Bime &nbsp;&nbsp;<i class="bi bi-chevron-right"></i></a>
+                                <a href="../products/productCategory.html">Fara & Bime &nbsp;&nbsp;<i
+                                        class="bi bi-chevron-right"></i></a>
                                 <ul>
-                                    <li><a href="#">Fara Perimesh</a></li>
+                                    <li><a href="../products/productSubcategory.html">Fara Perimesh</a></li>
                                     <li><a href="#">Fara Frutash</a></li>
                                     <li><a href="#">Fara Lulesh</a></li>
                                     <li><a href="#">Fara Drithërash</a></li>
@@ -267,9 +268,9 @@
 
                         </ul>
                     </li>
-                    <li><a href="#">Mbi Ne</a></li>
-                    <li><a href="#">Na Kontaktoni</a></li>
-                    <li><a href="#"><i class="bi bi-cart" style="font-size: 1.3rem;"></i> My
+                    <li><a href="../aboutUs/mbiNe.html">Mbi Ne</a></li>
+                    <li><a href="../contactUs/naKontaktoni.html">Na Kontaktoni</a></li>
+                    <li><a href="../cart/cart.html"><i class="bi bi-cart" style="font-size: 1.3rem;"></i> My
                             cart</a></li>
                     <li style="padding: 0px 20px; background-color: #22a561; width: 50px; border-radius: 10px;">
                         <a style="color: white;" href="../forms/login.html">Log in</a>
@@ -279,197 +280,141 @@
         </div>
     </nav>
     <div class="main">
-        <div class="hero">
-            <div class="hero-text">
-                <h1 class="hero-title">Ëndërroje. Ndërtoje.</h1>
-                <p class="hero-desc">Gjithçka që të duhet për projektin tënd të radhës.</p>
-                <button onclick="window.location.href = './frontend/pages/products/productCategory.html'"
-                    class="hero-btn">Blej Tani</button>
+        <div class="search">
+            <div class="search-container">
+                <i class="bi bi-search"></i>
+                <form action="" id="searchForm">
+                    <input type="text" class="search-bar" id="search-bar" placeholder="Kërko për produkte...">
+                </form>
             </div>
+            <div id="errorMsg"></div>
         </div>
-        <div class="features">
-            <div class="feature-item">
-                <i class="bi bi-truck" style="font-size: 2.9rem; color: #22a561;"></i>
-                <div class="feature-text">
-                    <h4>Transport Falas</h4>
-                    <p>Ne ofrojmë transport falas për të gjitha porositë mbi 50 Euro.</p>
+        <div class="container">
+            <div class="sidebar">
+                <div>
+                    <h3>Filtro</h3>
+                    <h4>Sipas Çmimit</h4>
+                    <div class="filtro-sipas-cmimit">
+                        <div class="cmimi-range">
+                            <input type="number" id="cmimiMin" name="cmimiMin" placeholder="1">
+                        </div>
+                        <span class="sipas-cmimit-text">deri</span>
+                        <div class="cmimi-range">
+                            <input type="number" id="cmimiMax" name="cmimiMax" placeholder="1000">
+                        </div>
+                    </div>
+                    <div class="sipas-cmimit-desc">Filtrimi mund të bëhet nga
+                        1 Euro
+                        deri në
+                        11100 Euro</div>
+                    <button class="apliko-filtro">Apliko</button>
+                </div>
+                <div class="sipas-prodhuesit">
+                    <h4>Sipas Prodhuesit</h4>
+                    <div class="prodhuesit">
+                        <label>
+                            <input type="checkbox" name="producers[]" value="dewalt"> DeWalt
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="producers[]" value="makita"> Makita
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="producers[]" value="milwaukee"> Milwaukee
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="producers[]" value="stanley"> Stanley
+                        </label>
+                    </div>
+
                 </div>
             </div>
-            <div class="feature-item">
-                <i class="bi bi-shield-check" style="font-size: 2.9rem; color: #22a561;"></i>
-                <div class="feature-text">
-                    <h4>Garancion Premium</h4>
-                    <p>Kualitet i lartë dhe besueshmëri për çdo produkt.</p>
-                </div>
-            </div>
-            <div class="feature-item">
-                <i class="bi bi-box-seam" style="font-size: 2.9rem; color: #22a561;"></i>
-                <div class="feature-text">
-                    <h4>Kthime të Lehta</h4>
-                    <p>Proces i thjeshtë dhe i shpejtë për kthimin e produkteve.</p>
-                </div>
-            </div>
-            <div class="feature-item">
-                <i class="bi bi-headset" style="font-size: 2.9rem; color: #22a561;"></i>
-                <div class="feature-text">
-                    <h4>24/7 Mbështetje</h4>
-                    <p>Jemi gjithmonë këtu për të ndihmuar me çdo pyetje ose problem.</p>
-                </div>
-            </div>
-        </div>
-        <div class="categories">
-            <h2>Kategori të Njohura</h2>
-            <div class="categories-cards-container">
-                <div class="categories-cards">
-                    <div class="category-card">
-                        <div class="categories-img-wrapper">
-                            <img src="./frontend/assets/images/electrical.jpg" alt="Elektrike">
-                            <button onclick="window.location.href = './frontend/pages/products/productCategory.html'"
-                                class="hover-btn">Shiko më Shumë <i class="bi bi-chevron-right"></i></button>
+            <div class="products">
+                <div class="order-by-section">
+                    <p class="gjith-produktet">Të gjithë produktet</p>
+                    <div class="custom-select" id="order-products">
+                        <div class="selected">
+                            <span class="selected-text">Rendit sipas</span>
+                            <i class="bi bi-chevron-down"></i>
                         </div>
-                        <p>Elektrike</p>
+
+                        <ul class="options">
+                            <li data-value="price-asc">Çmimi: Nga i ulëti në të lartë</li>
+                            <li data-value="price-desc">Çmimi: Nga i larti në të ulët</li>
+                            <li data-value="name-asc">Emri: A deri në Z</li>
+                            <li data-value="name-desc">Emri: Z deri në A</li>
+                        </ul>
+
+                        <input type="hidden" name="order" value="default">
                     </div>
-                    <div class="category-card">
-                        <div class="categories-img-wrapper">
-                            <img src="./frontend/assets/images/power-tools.jpg" alt="Mjete Pune">
-                            <button class="hover-btn"
-                                onclick="window.location.href = './frontend/pages/products/productCategory.html'">Shiko
-                                më Shumë
-                                <i class="bi bi-chevron-right"></i></button>
-                        </div>
-                        <p>Makineri & Pjesë</p>
-                    </div>
-                    <div class="category-card">
-                        <div class="categories-img-wrapper">
-                            <img src="./frontend/assets/images/color.png" alt="Ngjyra">
-                            <button onclick="window.location.href = './frontend/pages/products/productCategory.html'"
-                                class="hover-btn">Shiko më Shumë <i class="bi bi-chevron-right"></i></button>
-                        </div>
-                        <p>Ngjyra</p>
-                    </div>
-                    <div class="category-card">
-                        <div class="categories-img-wrapper">
-                            <img src="./frontend/assets/images/gypa.png" alt="">
-                            <button onclick="window.location.href = './frontend/pages/products/productCategory.html'"
-                                class="hover-btn">Shiko më Shumë <i class="bi bi-chevron-right"></i></button>
-                        </div>
-                        <p>Tuba</p>
-                    </div>
-                    <div class="category-card">
-                        <div class="categories-img-wrapper">
-                            <img src="./frontend/assets/images/hidraulik.jpg" alt="">
-                            <button onclick="window.location.href = './frontend/pages/products/productCategory.html'"
-                                class="hover-btn">Shiko më Shumë <i class="bi bi-chevron-right"></i></button>
-                        </div>
-                        <p>Hidraulike</p>
-                    </div>
-                    <div class="category-card">
-                        <div class="categories-img-wrapper">
-                            <img src="./frontend/assets/images/kopesht.png" alt="">
-                            <button onclick="window.location.href = './frontend/pages/products/productCategory.html'"
-                                class="hover-btn">Shiko më Shumë <i class="bi bi-chevron-right"></i></button>
-                        </div>
-                        <p>Mjete & Pajisje Kopshti</p>
+                    <div>
+                        <button class="filter-btn"><i class="bi bi-funnel"></i> Filtro</button>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="logo-slider">
-            <h2>Partnerët Tanë</h2>
-            <div class="logo-track">
-                <img src="./frontend/assets/images/bosch.png" alt="Bosch" />
-                <img src="./frontend/assets/images/dewalt.png" alt="DeWalt" />
-                <img src="./frontend/assets/images/ingco.png" alt="IngCo" />
-                <img src="./frontend/assets/images/milwaukee.png" alt="Milwaukee" />
-                <img src="./frontend/assets/images/wurth.svg" alt="Wurth" />
-                <img src="./frontend/assets/images/makita.png" alt="Makita" />
-                <img src="./frontend/assets/images/hilti.svg" alt="Node.js" />
-                <img src="./frontend/assets/images/parkside.png" alt="Parkside" />
-            </div>
-        </div>
-        <div class="deals">
-            <h2>Ofertat Javore</h2>
-            <div class="deals-container">
-                <div class="deals-card">
-                    <div class="deals-img-box">
+                <div class="products-container">
+                    <div class="product-card">
+                        <img src="../../assets/images/snow-shovel.png" alt="Product Image" width="50px">
+                        <div class="product-card-description">
+                            <h3>Power Drill</h3>
+                            <p class="producer">IngCo</p>
+                            <p class="price">100 &euro;</p>
+                            <button onclick="window.location.href = './product.html'" class="add-to-cart-btn">Shiko
+                                Detajet</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="../../assets/images/bosch-saw.png" alt="Product Image" width="50px">
+                        <div class="product-card-description">
+                            <h3>Power Drill</h3>
+                            <p class="producer">IngCo</p>
+                            <p class="price">100 &euro;</p>
+                            <button onclick="window.location.href = './product.html'" class="add-to-cart-btn">Shiko
+                                Detajet</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
                         <img src="https://png.pngtree.com/png-vector/20250320/ourmid/pngtree-yellow-cordless-power-drill-isolated-on-transparent-background-png-image_15775261.png"
-                            alt="IngCo Drill" class="mouse" width="100px">
+                            alt="Product Image" width="50px">
+                        <div class="product-card-description">
+                            <h3>Power Drill</h3>
+                            <p class="producer">IngCo</p>
+                            <p class="price">100 &euro;</p>
+                            <button onclick="window.location.href = './product.html'" class="add-to-cart-btn">Shiko
+                                Detajet</button>
+                        </div>
                     </div>
-                    <div class="deals-info">
-                        <h3>IngCo Drill CDLI20012</h3>
-                        <h2 class="deals-price"><small class="discount-price">89.98</small> 61.<small>98</small> €</h2>
-                        <a href="./frontend/pages/products/product.html" class="deals-buy">Blej Tani</a>
+                    <div class="product-card">
+                        <img src="../../assets/images/snow-shovel.png" alt="Product Image" width="50px">
+                        <div class="product-card-description">
+                            <h3>Power Drill</h3>
+                            <p class="producer">IngCo</p>
+                            <p class="price">100 &euro;</p>
+                            <button onclick="window.location.href = './product.html'" class="add-to-cart-btn">Shiko
+                                Detajet</button>
+                        </div>
                     </div>
-                </div>
-                <div class="deals-card">
-                    <div class="deals-img-box">
-                        <img src="./frontend/assets/images/snow-shovel.png" alt="Snow Shovel" class="mouse"
-                            width="100px">
+                    <div class="product-card">
+                        <img src="../../assets/images/bosch-saw.png" alt="Product Image" width="50px">
+                        <div class="product-card-description">
+                            <h3>Power Drill</h3>
+                            <p class="producer">IngCo</p>
+                            <p class="price">100 &euro;</p>
+                            <button onclick="window.location.href = './product.html'" class="add-to-cart-btn">Shiko
+                                Detajet</button>
+                        </div>
                     </div>
-                    <div class="deals-info">
-                        <h3>Lopatë Bore</h3>
-                        <h2 class="deals-price"><small class="discount-price">15.99</small> 9.<small>99</small> €</h2>
-                        <a href="./frontend/pages/products/product.html" class="deals-buy">Blej Tani</a>
-                    </div>
-                </div>
-                <div class="deals-card">
-                    <div class="deals-img-box">
-                        <img src="https://www.bosch-professional.com/za/en/ocsmedia/304054-54/application-image/1434x828/hand-held-circular-saw-gks-140-06016b30k1.png"
-                            alt="mouse corsair" class="bosch-saw" width="100px">
-                    </div>
-                    <div class="deals-info">
-                        <h3>Bosch GKS-140 Turbo</h3>
-                        <h2 class="deals-price"><small class="discount-price">155.99</small> 99.<small>98</small> €</h2>
-                        <a href="./frontend/pages/products/product.html" class="deals-buy">Blej Tani</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="faq">
-            <h2>Pyetje të Bëra Shpesh</h2>
-            <div class="faq-section">
-                <div class="faq-item-wrapper">
-                    <div class="faq-summary">Cila është politika juaj e kthimit? <span class="icon">+</span></div>
-                    <div class="faq-content">
-                        <p>Ne pranojmë kthime brenda 30 ditëve nga blerja. Produktet duhet të jenë në gjendjen e tyre
-                            origjinale. Për më shumë informata klikoni <a
-                                href="./frontend/assets/html/refundPolicy.html"
-                                style="text-decoration: none; color: #22a561;">këtu.</a>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="faq-item-wrapper">
-                    <div class="faq-summary">Sa kohë zgjat dërgesa? <span class="icon">+</span></div>
-                    <div class="faq-content">
-                        <p>Dërgesa zakonisht zgjat 5–7 ditë pune, varësisht nga lokacioni juaj.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item-wrapper">
-                    <div class="faq-summary">A ofroni dërgesa ndërkombëtare? <span class="icon">+</span></div>
-                    <div class="faq-content">
-                        <p>Po, ne dërgojmë edhe ndërkombëtarisht. Tarifat dhe koha e dorëzimit ndryshojnë sipas shtetit.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="faq-item-wrapper">
-                    <div class="faq-summary">Si mund të kontaktoj mbështetjen e klientit? <span class="icon">+</span>
-                    </div>
-                    <div class="faq-content">
-                        <p>Mund të na kontaktoni përmes email-it në support@agrokultura.com ose të na telefononi në
-                            (123)
-                            456-7890.</p>
-                    </div>
-                </div>
-                <div class="faq-item-wrapper">
-                    <div class="faq-summary">Çfarë mënyrash pagesash pranoni? <span class="icon">+</span></div>
-                    <div class="faq-content">
-                        <p> Ne ofrojmë një gamë të gjerë mënyrash pagesash për të përshtatur nevojat e klientëve tanë,
-                            duke përfshirë kartat e kreditit dhe debitit, pagesën në dorëzim, dhe transferet bankare. Të
-                            gjitha transaksionet kryhen përmes sistemeve të enkriptuara dhe të sigurta, në mënyrë që të
-                            dhënat tuaja të jenë të mbrojtura nga çdo përdorim i paautorizuar.</p>
+                    <div class="product-card">
+                        <img src="https://png.pngtree.com/png-vector/20250320/ourmid/pngtree-yellow-cordless-power-drill-isolated-on-transparent-background-png-image_15775261.png"
+                            alt="Product Image" width="50px">
+                        <div class="product-card-description">
+                            <h3>Power Drill</h3>
+                            <p class="producer">IngCo</p>
+                            <p class="price">100 &euro;</p>
+                            <button onclick="window.location.href = './product.html'" class="add-to-cart-btn">Shiko
+                                Detajet</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -479,15 +424,15 @@
         <div class="footer-section-1">
             <div class="logo-links-containter">
                 <div class="footer-item">
-                    <img src="./frontend/assets/images/logo-white.png" alt=""><br>
+                    <img src="../../assets/images/logo-white.png" alt=""><br>
                     <p>Ëndërroje. Ndërtoje.<br>Gjithçka që të duhet për projektin tënd të radhës.</p>
                 </div>
                 <div class="footer-item">
                     <h5>Quick Links</h5>
-                    <a href="./index.html">Ballina</a>
-                    <a href="./frontend/pages/products/productCategory.html">Produktet</a>
-                    <a href="./frontend/pages/contactUs/naKontaktoni.html">Na kontaktoni</a>
-                    <a href="./frontend/pages/aboutUs/mbiNe.html">Mbi Ne</a>
+                    <a href="../../../index.html">Ballina</a>
+                    <a href="./productCategory.html">Produktet</a>
+                    <a href="../contactUs/naKontaktoni.html">Na kontaktoni</a>
+                    <a href="../aboutUs/mbiNe.html">Mbi Ne</a>
                 </div>
             </div>
             <div class="input-container">
@@ -500,11 +445,11 @@
         <div class="footer-section-2">
             <div class="copyright">
                 <p>&copy; Agrokultura D.O.O</p>
-                <a href="./frontend/pages/policies/refundPolicy.html">Refund Policy</a>
-                <a href="./frontend/pages/policies/policy.html">Privacy Policy</a>
-                <a href="./frontend/pages/policies/terms-conditions.html">Terms of Service</a>
-                <a href="./frontend/pages/policies/cookie.html">Cookie Policy</a>
-                <a href="./frontend/pages/policies/contactInfo.html">Contact Information</a>
+                <a href="../policies/refundPolicy.html">Refund Policy</a>
+                <a href="../policies/policy.html">Privacy Policy</a>
+                <a href="../policies/terms-conditions.html">Terms of Service</a>
+                <a href="../policies/cookie.html">Cookie Policy</a>
+                <a href="../policies/contactInfo.html">Contact Information</a>
             </div>
             <div class=" socials">
                 <a href=""><i class="bi bi-instagram"></i></a>
@@ -515,9 +460,9 @@
         </div>
     </footer>
 
-    <script src="./frontend/assets/js/slider.js"></script>
-    <script src="./frontend/assets/js/faq.js"></script>
-    <script src="./frontend/assets/js/hamburgerMenuToggler.js"></script>
+    <script src="../../assets/js/hamburgerMenuToggler.js"></script>
+    <script src="../../assets/js/customOrderByDropdown.js"></script>
+    <script src="../../assets/js/productSearchValidation.js"></script>
 </body>
 
 </html>

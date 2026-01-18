@@ -1,35 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../../assets/css/cart.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css">
-    <link rel="icon" type="image/x-icon" href="../../assets/images/favicon.ico">
-</head>
-
-<body>
-    <nav class="navbar">
+<nav class="navbar">
         <div class="logo">
-            <a href="../../../index.html"><img src="../../assets/images/logo-2.png" width="120px" alt="logo" /></a>
+            <a href="/agrokultura/index.php"><img src="/agrokultura/frontend/assets/images/logo-2.png" width="120px" alt="logo" /></a>
         </div>
 
         <ul class="nav-links">
-            <li><a href="../../../index.html" class="active">Ballina</a></li>
+            <li><a href="/agrokultura/index.php" class="active">Ballina</a></li>
 
             <li class="dropdown">
                 <a href="#" id="produktet">Produktet <i class="bi bi-chevron-down" style="font-size: 1rem;"></i></a>
                 <ul class="dropdown-menu">
 
                     <li>
-                        <a href="../products/productCategory.html">Fara & Bime &nbsp;&nbsp;<i
+                        <a href="/agrokultura/frontend/pages/products/productCategory.php">Fara & Bime &nbsp;&nbsp;<i
                                 class="bi bi-chevron-right"></i></a>
                         <ul>
-                            <li><a href="../products/productSubcategory.html">Fara Perimesh</a></li>
-                            <li><a href="#">Fara Frutash</a></li>
+                            <li><a href="/agrokultura/frontend/pages/products/productSubcategory.php">Fara Perimesh</a></li>
+                            <li><a href="/agrokultura/frontend/pages/products/productSubcategory.php">Fara Frutash</a></li>
                             <li><a href="#">Fara Lulesh</a></li>
                             <li><a href="#">Fara Drithërash</a></li>
                             <li><a href="#">Fidane / Bime</a></li>
@@ -136,14 +122,14 @@
                 </ul>
             </li>
 
-            <li><a href="../aboutUs/mbiNe.html">Mbi Ne</a></li>
-            <li><a href="../contactUs/naKontaktoni.html">Na Kontaktoni</a></li>
+            <li><a href="/agrokultura/frontend/pages/aboutUs/mbiNe.php">Mbi Ne</a></li>
+            <li><a href="/agrokultura/frontend/pages/contactUs/naKontaktoni.php">Na Kontaktoni</a></li>
         </ul>
 
         <div class="cart-section nav-links">
-            <a href="./cart.html"><i class="bi bi-cart" style="font-size: 1.3rem;"></i></a>
+            <a href="/agrokultura/frontend/pages/cart/cart.php"><i class="bi bi-cart" style="font-size: 1.3rem;"></i></a>
             <ul class="nav-links">
-                <li><a href="../forms/login.html">Log in</a></li>
+                <li><a href="/agrokultura/frontend/pages/forms/login.php">Log in</a></li>
             </ul>
         </div>
 
@@ -152,15 +138,14 @@
 
             <nav class="mobile-menu" id="mobileMenu">
                 <ul class="menu-items">
-                    <li><a href="../../../index.html" class="active">Ballina</a></li>
+                    <li><a href="#" class="active">Ballina</a></li>
                     <li class="dropdown-h">
                         <a href="#" id="produktet-h">Produktet <i class="bi bi-chevron-down"></i></a>
                         <ul class="dropdown-menu-h">
                             <li>
-                                <a href="../products/productCategory.html">Fara & Bime &nbsp;&nbsp;<i
-                                        class="bi bi-chevron-right"></i></a>
+                                <a href="#">Fara & Bime &nbsp;&nbsp;<i class="bi bi-chevron-right"></i></a>
                                 <ul>
-                                    <li><a href="../products/productSubcategory.html">Fara Perimesh</a></li>
+                                    <li><a href="#">Fara Perimesh</a></li>
                                     <li><a href="#">Fara Frutash</a></li>
                                     <li><a href="#">Fara Lulesh</a></li>
                                     <li><a href="#">Fara Drithërash</a></li>
@@ -269,152 +254,14 @@
 
                         </ul>
                     </li>
-                    <li><a href="../aboutUs/mbiNe.html">Mbi Ne</a></li>
-                    <li><a href="../contactUs/naKontaktoni.html">Na Kontaktoni</a></li>
-                    <li><a href="./cart.html"><i class="bi bi-cart" style="font-size: 1.3rem;"></i> My
+                    <li><a href="/agrokultura/frontend/pages/aboutUs/mbiNe.php">Mbi Ne</a></li>
+                    <li><a href="/agrokultura/frontend/pages/contactUs/naKontaktoni.php">Na Kontaktoni</a></li>
+                    <li><a href="/agrokultura/frontend/pages/cart/cart.php"><i class="bi bi-cart" style="font-size: 1.3rem;"></i> My
                             cart</a></li>
                     <li style="padding: 0px 20px; background-color: #22a561; width: 50px; border-radius: 10px;">
-                        <a style="color: white;" href="../forms/login.html">Log in</a>
+                        <a style="color: white;" href="/agrokultura/frontend/pages/forms/login.php">Log in</a>
                     </li>
                 </ul>
             </nav>
         </div>
     </nav>
-    <div class="cart-page">
-        <h1>Shporta</h1>
-
-        <div class="cart-layout">
-            <section class="cart-items">
-                <div class="cart-item">
-                    <img src="../../assets/images/bosch-saw.png" alt="Product">
-
-                    <div class="item-info">
-                        <p class="brand">Bosch</p>
-                        <h3>Bosch Saw</h3>
-                        <p class="price">€120.00</p>
-                    </div>
-
-                    <div class="qty-control">
-                        <button class="qty-btn decrease">−</button>
-                        <input class="qty" type="number" value="1" min="1" max="100">
-                        <button class="qty-btn increase">+</button>
-                    </div>
-
-                    <p class="item-total">€120.00</p>
-
-                    <button class="remove-item">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                </div>
-                <div class="cart-item">
-                    <img src="../../assets/images/bosch-saw.png" alt="Product">
-
-                    <div class="item-info">
-                        <p class="brand">Bosch</p>
-                        <h3>Bosch Saw</h3>
-                        <p class="price">€120.00</p>
-                    </div>
-
-                    <div class="qty-control">
-                        <button class="qty-btn decrease">−</button>
-                        <input class="qty" type="number" value="1" min="1" max="100">
-                        <button class="qty-btn increase">+</button>
-                    </div>
-
-                    <p class="item-total">€120.00</p>
-
-                    <button class="remove-item">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                </div>
-                <div class="cart-item">
-                    <img src="../../assets/images/bosch-saw.png" alt="Product">
-
-                    <div class="item-info">
-                        <p class="brand">Bosch</p>
-                        <h3>Bosch Saw</h3>
-                        <p class="price">€120.00</p>
-                    </div>
-
-                    <div class="qty-control">
-                        <button class="qty-btn decrease">−</button>
-                        <input class="qty" type="number" value="1" min="1" max="100">
-                        <button class="qty-btn increase">+</button>
-                    </div>
-
-                    <p class="item-total">€120.00</p>
-
-                    <button class="remove-item">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                </div>
-
-            </section>
-
-            <aside class="cart-summary">
-                <h3>Përmbledhje</h3>
-
-                <div class="summary-row">
-                    <span>Nëntotali</span>
-                    <span>€120.00</span>
-                </div>
-
-                <div class="summary-row">
-                    <span>Transport</span>
-                    <span>€5.00</span>
-                </div>
-
-                <div class="summary-row total">
-                    <span>Totali</span>
-                    <span>€125.00</span>
-                </div>
-
-                <button class="checkout-btn">Vazhdo në Pagesë</button>
-            </aside>
-        </div>
-    </div>
-    <footer class="footer">
-        <div class="footer-section-1">
-            <div class="logo-links-containter">
-                <div class="footer-item">
-                    <img src="../../assets/images/logo-white.png" alt=""><br>
-                    <p>Ëndërroje. Ndërtoje.<br>Gjithçka që të duhet për projektin tënd të radhës.</p>
-                </div>
-                <div class="footer-item">
-                    <h5>Quick Links</h5>
-                    <a href="../../../index.html">Ballina</a>
-                    <a href="../products/productCategory.html">Produktet</a>
-                    <a href="../contactUs/naKontaktoni.html">Na kontaktoni</a>
-                    <a href="../aboutUs/mbiNe.html">Mbi Ne</a>
-                </div>
-            </div>
-            <div class="input-container">
-                <div class="input-wrapper">
-                    <input type="email" name="email" id="email" class="email-footer" placeholder="Email adresa">
-                    <button class="input-btn"><i class="bi bi-arrow-right"></i></button>
-                </div>
-            </div>
-        </div>
-        <div class="footer-section-2">
-            <div class="copyright">
-                <p>&copy; Agrokultura D.O.O</p>
-                <a href="../policies/refundPolicy.html">Refund Policy</a>
-                <a href="../policies/policy.html">Privacy Policy</a>
-                <a href="../policies/terms-conditions.html">Terms of Service</a>
-                <a href="../policies/cookie.html">Cookie Policy</a>
-                <a href="../policies/contactInfo.html">Contact Information</a>
-            </div>
-            <div class=" socials">
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-twitter-x"></i></a>
-                <a href=""><i class="bi bi-tiktok"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <script src="../../assets/js/hamburgerMenuToggler.js"></script>
-    <script src="../../assets/js/cartControlQty.js"></script>
-</body>
-
-</html>
