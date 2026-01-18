@@ -12,273 +12,7 @@
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="logo">
-            <a href="../../../index.html"><img src="../../assets/images/logo-2.png" width="120px" alt="logo" /></a>
-        </div>
-
-        <ul class="nav-links">
-            <li><a href="../../../index.html" class="active">Ballina</a></li>
-
-            <li class="dropdown">
-                <a href="#" id="produktet">Produktet <i class="bi bi-chevron-down" style="font-size: 1rem;"></i></a>
-                <ul class="dropdown-menu">
-
-                    <li>
-                        <a href="./productCategory.html">Fara & Bime &nbsp;&nbsp;<i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li><a href="./productSubcategory.html">Fara Perimesh</a></li>
-                            <li><a href="#">Fara Frutash</a></li>
-                            <li><a href="#">Fara Lulesh</a></li>
-                            <li><a href="#">Fara Drithërash</a></li>
-                            <li><a href="#">Fidane / Bime</a></li>
-                            <li><a href="#">Fare Patatesh</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="#">Ushqim & Mbrojtje Bimore &nbsp;&nbsp;<i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li><a href="#">Plehra Organike</a></li>
-                            <li><a href="#">Plehra NPK</a></li>
-                            <li><a href="#">Plehra të Lëngshme</a></li>
-                            <li><a href="#">Vitamina për Bimë</a></li>
-                            <li><a href="#">Pesticide</a></li>
-                            <li><a href="#">Herbicide</a></li>
-                            <li><a href="#">Fungicide</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="#">Ujitje &nbsp;&nbsp;<i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li><a href="#">Sisteme Ujitjeje</a></li>
-                            <li><a href="#">Pikezim</a></li>
-                            <li><a href="#">Sisteme Spërkatëse</a></li>
-                            <li><a href="#">Tuba (PVC / HDPE)</a></li>
-                            <li><a href="#">Mjete Spërkatjeje</a></li>
-                            <li><a href="#">Pompa Uji</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="#">Mjete & Pajisje Kopshti &nbsp;&nbsp;<i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li><a href="#">Mjete Dore</a></li>
-                            <li><a href="#">Mjete Elektrike</a></li>
-                            <li><a href="#">Vazo & Aksesore</a></li>
-                            <li><a href="#">Doreza & Lidhëse</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="#">Makineri & Pjesë &nbsp;&nbsp;<i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li><a href="#">Makineri të Rënda</a></li>
-                            <li><a href="#">Pajisje Spërkatjeje</a></li>
-                            <li><a href="#">Pjesë Motori</a></li>
-                            <li><a href="#">Pjesë Hidraulike</a></li>
-                            <li><a href="#">Goma & Rrota</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="#">Kafshë & Produkte Veterinare &nbsp;&nbsp;<i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li><a href="#">Ushqim për Shpendë</a></li>
-                            <li><a href="#">Ushqim për Bagëti</a></li>
-                            <li><a href="#">Ushqim për Kafshë Shtëpie</a></li>
-                            <li><a href="#">Vitamina & Suplemente</a></li>
-                            <li><a href="#">Produkte Veterinare</a></li>
-                            <li><a href="#">Pajisje për Kafshë</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="#">Furnizime Bujqësore & Ndërtim &nbsp;&nbsp;<i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li><a href="#">Pajisje për Serra</a></li>
-                            <li><a href="#">Rrjeta & Mbulesa</a></li>
-                            <li><a href="#">Fletë Plastike</a></li>
-                            <li><a href="#">Gardhe & Rrethime</a></li>
-                            <li><a href="#">Enë Ruajtjeje</a></li>
-                            <li><a href="#">Veshje Sigurie</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="#">Vajra & Lubrifikantë &nbsp;&nbsp;<i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li><a href="#">Vaj Motorri</a></li>
-                            <li><a href="#">Vaj Hidraulik</a></li>
-                            <li><a href="#">Lubrifikantë</a></li>
-                            <li><a href="#">Konteinerë Karburanti</a></li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a href="#">Aksesorë, Bulona & Vida &nbsp;&nbsp;<i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li><a href="#">Bulona</a></li>
-                            <li><a href="#">Vida</a></li>
-                            <li><a href="#">Dado</a></li>
-                            <li><a href="#">Rondela</a></li>
-                            <li><a href="#">Kushineta</a></li>
-                            <li><a href="#">Rripa</a></li>
-                            <li><a href="#">Filtra</a></li>
-                            <li><a href="#">Bateri</a></li>
-                            <li><a href="#">Llampa & Drita</a></li>
-                            <li><a href="#">Komponentë Elektrike</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </li>
-
-            <li><a href="../../pages/aboutUs/mbiNe.html">Mbi Ne</a></li>
-            <li><a href="../../pages/contactUs/naKontaktoni.html">Na Kontaktoni</a></li>
-        </ul>
-
-        <div class="cart-section nav-links">
-            <a href="../../pages/cart/cart.html"><i class="bi bi-cart" style="font-size: 1.3rem;"></i></a>
-            <ul class="nav-links">
-                <li><a href="../forms/login.html">Log in</a></li>
-            </ul>
-        </div>
-
-        <div class="hamburger-menu">
-            <i class="bi-list" id="hamburger"></i>
-
-            <nav class="mobile-menu" id="mobileMenu">
-                <ul class="menu-items">
-                    <li><a href="../../../index.html" class="active">Ballina</a></li>
-                    <li class="dropdown-h">
-                        <a href="#" id="produktet-h">Produktet <i class="bi bi-chevron-down"></i></a>
-                        <ul class="dropdown-menu-h">
-                            <li>
-                                <a href="./productCategory.html">Fara & Bime &nbsp;&nbsp;<i
-                                        class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="./productSubcategory.html">Fara Perimesh</a></li>
-                                    <li><a href="#">Fara Frutash</a></li>
-                                    <li><a href="#">Fara Lulesh</a></li>
-                                    <li><a href="#">Fara Drithërash</a></li>
-                                    <li><a href="#">Fidane / Bime</a></li>
-                                    <li><a href="#">Fare Patatesh</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="#">Ushqim & Mbrojtje Bimore &nbsp;&nbsp;<i class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Plehra Organike</a></li>
-                                    <li><a href="#">Plehra NPK</a></li>
-                                    <li><a href="#">Plehra të Lëngshme</a></li>
-                                    <li><a href="#">Vitamina për Bimë</a></li>
-                                    <li><a href="#">Pesticide</a></li>
-                                    <li><a href="#">Herbicide</a></li>
-                                    <li><a href="#">Fungicide</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="#">Ujitje &nbsp;&nbsp;<i class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Sisteme Ujitjeje</a></li>
-                                    <li><a href="#">Pikezim</a></li>
-                                    <li><a href="#">Sisteme Spërkatëse</a></li>
-                                    <li><a href="#">Tuba (PVC / HDPE)</a></li>
-                                    <li><a href="#">Mjete Spërkatjeje</a></li>
-                                    <li><a href="#">Pompa Uji</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="#">Mjete & Pajisje Kopshti &nbsp;&nbsp;<i class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Mjete Dore</a></li>
-                                    <li><a href="#">Mjete Elektrike</a></li>
-                                    <li><a href="#">Vazo & Aksesore</a></li>
-                                    <li><a href="#">Doreza & Lidhëse</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="#">Makineri & Pjesë &nbsp;&nbsp;<i class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Makineri të Rënda</a></li>
-                                    <li><a href="#">Pajisje Spërkatjeje</a></li>
-                                    <li><a href="#">Pjesë Motori</a></li>
-                                    <li><a href="#">Pjesë Hidraulike</a></li>
-                                    <li><a href="#">Goma & Rrota</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="#">Kafshë & Produkte Veterinare &nbsp;&nbsp;<i
-                                        class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Ushqim për Shpendë</a></li>
-                                    <li><a href="#">Ushqim për Bagëti</a></li>
-                                    <li><a href="#">Ushqim për Kafshë Shtëpie</a></li>
-                                    <li><a href="#">Vitamina & Suplemente</a></li>
-                                    <li><a href="#">Produkte Veterinare</a></li>
-                                    <li><a href="#">Pajisje për Kafshë</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="#">Furnizime Bujqësore & Ndërtim &nbsp;&nbsp;<i
-                                        class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Pajisje për Serra</a></li>
-                                    <li><a href="#">Rrjeta & Mbulesa</a></li>
-                                    <li><a href="#">Fletë Plastike</a></li>
-                                    <li><a href="#">Gardhe & Rrethime</a></li>
-                                    <li><a href="#">Enë Ruajtjeje</a></li>
-                                    <li><a href="#">Veshje Sigurie</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="#">Vajra & Lubrifikantë &nbsp;&nbsp;<i class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Vaj Motorri</a></li>
-                                    <li><a href="#">Vaj Hidraulik</a></li>
-                                    <li><a href="#">Lubrifikantë</a></li>
-                                    <li><a href="#">Konteinerë Karburanti</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="#">Aksesorë, Bulona & Vida &nbsp;&nbsp;<i class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Bulona</a></li>
-                                    <li><a href="#">Vida</a></li>
-                                    <li><a href="#">Dado</a></li>
-                                    <li><a href="#">Rondela</a></li>
-                                    <li><a href="#">Kushineta</a></li>
-                                    <li><a href="#">Rripa</a></li>
-                                    <li><a href="#">Filtra</a></li>
-                                    <li><a href="#">Bateri</a></li>
-                                    <li><a href="#">Llampa & Drita</a></li>
-                                    <li><a href="#">Komponentë Elektrike</a></li>
-                                </ul>
-                            </li>
-
-                        </ul>
-                    </li>
-                    <li><a href="../../pages/aboutUs/mbiNe.html">Mbi Ne</a></li>
-                    <li><a href="../../pages/contactUs/naKontaktoni.html">Na Kontaktoni</a></li>
-                    <li><a href="../../pages/cart/cart.html"><i class="bi bi-cart" style="font-size: 1.3rem;"></i> My
-                            cart</a></li>
-                    <li style="padding: 0px 20px; background-color: #22a561; width: 50px; border-radius: 10px;">
-                        <a style="color: white;" href="../forms/login.html">Log in</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </nav>
+    <?php include '../../includes/header.php' ?>
     <div class="main">
         <div class="search">
             <div class="search-container">
@@ -333,12 +67,12 @@
             </div>
             <div class="products">
                 <div class="subcategories">
-                    <a href="./productSubcategory.html">Fara Perimesh</a>
-                    <a href="./productSubcategory.html">Fara Frutash</a>
-                    <a href="./productSubcategory.html">Fara Lulesh</a>
-                    <a href="./productSubcategory.html">Fara Drithërash</a>
-                    <a href="./productSubcategory.html">Fidane / Bime</a>
-                    <a href="./productSubcategory.html">Fare Patatesh</a>
+                    <a href="./productSubcategory.php">Fara Perimesh</a>
+                    <a href="./productSubcategory.php">Fara Frutash</a>
+                    <a href="./productSubcategory.php">Fara Lulesh</a>
+                    <a href="./productSubcategory.php">Fara Drithërash</a>
+                    <a href="./productSubcategory.php">Fidane / Bime</a>
+                    <a href="./productSubcategory.php">Fare Patatesh</a>
                 </div>
                 <div class="order-by-section">
                     <p class="gjith-produktet">Të gjithë produktet</p>
@@ -368,7 +102,7 @@
                             <h3>Power Drill</h3>
                             <p class="producer">IngCo</p>
                             <p class="price">100 &euro;</p>
-                            <button onclick="window.location.href='./product.html'" class="add-to-cart-btn">Shiko
+                            <button onclick="window.location.href='./product.php'" class="add-to-cart-btn">Shiko
                                 Detajet</button>
                         </div>
                     </div>
@@ -378,7 +112,7 @@
                             <h3>Power Drill</h3>
                             <p class="producer">IngCo</p>
                             <p class="price">100 &euro;</p>
-                            <button onclick="window.location.href='./product.html'" class="add-to-cart-btn">Shiko
+                            <button onclick="window.location.href='./product.php'" class="add-to-cart-btn">Shiko
                                 Detajet</button>
                         </div>
                     </div>
@@ -389,7 +123,7 @@
                             <h3>Power Drill</h3>
                             <p class="producer">IngCo</p>
                             <p class="price">100 &euro;</p>
-                            <button onclick="window.location.href='./product.html'" class="add-to-cart-btn">Shiko
+                            <button onclick="window.location.href='./product.php'" class="add-to-cart-btn">Shiko
                                 Detajet</button>
                         </div>
                     </div>
@@ -399,7 +133,7 @@
                             <h3>Power Drill</h3>
                             <p class="producer">IngCo</p>
                             <p class="price">100 &euro;</p>
-                            <button onclick="window.location.href='./product.html'" class="add-to-cart-btn">Shiko
+                            <button onclick="window.location.href='./product.php'" class="add-to-cart-btn">Shiko
                                 Detajet</button>
                         </div>
                     </div>
@@ -409,7 +143,7 @@
                             <h3>Power Drill</h3>
                             <p class="producer">IngCo</p>
                             <p class="price">100 &euro;</p>
-                            <button onclick="window.location.href='./product.html'" class="add-to-cart-btn">Shiko
+                            <button onclick="window.location.href='./product.php'" class="add-to-cart-btn">Shiko
                                 Detajet</button>
                         </div>
                     </div>
@@ -420,7 +154,7 @@
                             <h3>Power Drill</h3>
                             <p class="producer">IngCo</p>
                             <p class="price">100 &euro;</p>
-                            <button onclick="window.location.href='./product.html'" class="add-to-cart-btn">Shiko
+                            <button onclick="window.location.href='./product.php'" class="add-to-cart-btn">Shiko
                                 Detajet</button>
                         </div>
                     </div>
@@ -428,45 +162,7 @@
             </div>
         </div>
     </div>
-    <footer class="footer">
-        <div class="footer-section-1">
-            <div class="logo-links-containter">
-                <div class="footer-item">
-                    <img src="../../assets/images/logo-white.png" alt=""><br>
-                    <p>Ëndërroje. Ndërtoje.<br>Gjithçka që të duhet për projektin tënd të radhës.</p>
-                </div>
-                <div class="footer-item">
-                    <h5>Quick Links</h5>
-                    <a href="../../../index.html">Ballina</a>
-                    <a href="../products/productCategory.html">Produktet</a>
-                    <a href="../contactUs/naKontaktoni.html">Na kontaktoni</a>
-                    <a href="../aboutUs/mbiNe.html">Mbi Ne</a>
-                </div>
-            </div>
-            <div class="input-container">
-                <div class="input-wrapper">
-                    <input type="email" name="email" id="email" class="email-footer" placeholder="Email adresa">
-                    <button class="input-btn"><i class="bi bi-arrow-right"></i></button>
-                </div>
-            </div>
-        </div>
-        <div class="footer-section-2">
-            <div class="copyright">
-                <p>&copy; Agrokultura D.O.O</p>
-                <a href="../policies/refundPolicy.html">Refund Policy</a>
-                <a href="../policies/policy.html">Privacy Policy</a>
-                <a href="../policies/terms-conditions.html">Terms of Service</a>
-                <a href="../policies/cookie.html">Cookie Policy</a>
-                <a href="../policies/contactInfo.html">Contact Information</a>
-            </div>
-            <div class=" socials">
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-twitter-x"></i></a>
-                <a href=""><i class="bi bi-tiktok"></i></a>
-            </div>
-        </div>
-    </footer>
+    <?php include '../../includes/footer.php' ?>
 
     <script src="../../assets/js/hamburgerMenuToggler.js"></script>
     <script src="../../assets/js/customOrderByDropdown.js"></script>

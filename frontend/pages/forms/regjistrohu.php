@@ -22,7 +22,7 @@ if (isset($_SERVER['HTTP_REFERER'])) {
 
 <body>
 	<div class="wrapper">
-		<a href="../../../index.html" class="back-btn"><i class="bi bi-chevron-left"></i>&nbsp; Back</a>
+		<a href="<?php echo $prevPage; ?>" class="back-btn"><i class="bi bi-chevron-left"></i>&nbsp; Back</a>
 		<div class="form-box">
 			<div class="header">
 				<h2>Krijo një llogari</h2>
@@ -81,8 +81,8 @@ if (isset($_SERVER['HTTP_REFERER'])) {
 				<div class="terms">
 					<div>
 						<input type="checkbox" id="terms" required />
-						<label for="terms">Pranoj <a href="../policies/terms-conditions.html">kushtet</a> dhe <a
-								href="../policies/policy.html">politikat e
+						<label for="terms">Pranoj <a href="../policies/terms-conditions.php">kushtet</a> dhe <a
+								href="../policies/policy.php">politikat e
 								privatësisë</a></label>
 					</div>
 					<div class="error-msg" id="termsErrorMsg"></div>
@@ -91,7 +91,7 @@ if (isset($_SERVER['HTTP_REFERER'])) {
 				<button type="submit" class="sign-up">Regjistrohu</button>
 
 				<p class="login">
-					Ke një llogari? <a href="./login.html">Kyçu!</a>
+					Ke një llogari? <a href="./login.php">Kyçu!</a>
 				</p>
 			</form>
 

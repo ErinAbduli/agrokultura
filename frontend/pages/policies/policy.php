@@ -79,7 +79,7 @@
 					dhe për të analizuar trafikun në mënyrë anonime. Kjo ndihmon që të
 					shfaqim përmbajtje më të përshtatur dhe të bëjmë faqen më efikase.
 					Ju mund të kontrolloni cookie-t direkt nga shfletuesi juaj dhe të
-					vendosni çfarë të ruhet dhe çfarë jo.<a href="Cookie.html"><strong>Kliko për më shumë</strong></a>
+					vendosni çfarë të ruhet dhe çfarë jo.<a href="cookie.php"><strong>Kliko për më shumë</strong></a>
 				</p>
 			</section>
 
