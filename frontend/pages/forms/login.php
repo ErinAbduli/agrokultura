@@ -1,3 +1,11 @@
+<?php
+if (isset($_SERVER['HTTP_REFERER'])) {
+    $prevPage = $_SERVER['HTTP_REFERER'];
+} else {
+    $prevPage = '../../../index.php';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="sq">
 
@@ -13,7 +21,7 @@
 
 <body>
 	<div class="wrapper">
-		<a href="../../../index.html" class="back-btn"><i class="bi bi-chevron-left"></i>&nbsp; Back</a>
+		<a href="<?php echo $prevPage; ?>" class="back-btn"><i class="bi bi-chevron-left"></i>&nbsp; Back</a>
 		<div class="login-box">
 			<h2>Kyçu në llogarinë tënde</h2>
 			<p class="subtitle">Kyçu përmes rrjeteve sociale</p>

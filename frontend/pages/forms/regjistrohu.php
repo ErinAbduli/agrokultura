@@ -1,3 +1,11 @@
+<?php
+if (isset($_SERVER['HTTP_REFERER'])) {
+    $prevPage = $_SERVER['HTTP_REFERER'];
+} else {
+    $prevPage = '../../../index.php';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="sq">
 
