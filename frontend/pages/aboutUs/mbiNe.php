@@ -14,13 +14,11 @@
 	<?php include '../../includes/header.php' ?>
 
 	<main class="content">
-		<!-- Hero Section -->
 		<section class="page-header">
 			<h1>Mbi Ne</h1>
 			<p>Kush jemi dhe pse ekzistojmë</p>
 		</section>
 
-		<!-- Stats Section -->
 		<section class="stats-section">
 			<div class="stat-card">
 				<span class="stat-number">20+</span>
@@ -40,7 +38,6 @@
 			</div>
 		</section>
 
-		<!-- Info Grid -->
 		<div class="info-grid">
 			<section class="info">
 				<h2>AgroKultura</h2>
@@ -89,8 +86,6 @@
 				</p>
 			</section>
 		</div>
-
-		<!-- Values Section -->
 		<section class="values-container">
 			<h2>Vlerat Tona</h2>
 			<ul class="values">
@@ -103,7 +98,6 @@
 			</ul>
 		</section>
 
-		<!-- Timeline Section -->
 		<section class="timeline-section">
 			<h2>Rrugëtimi Ynë</h2>
 			<div class="timeline">
