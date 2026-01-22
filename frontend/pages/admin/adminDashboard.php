@@ -12,20 +12,20 @@
 
 <body>
     <div class="sidebar">
-        <a href="../../../index.html">
+        <a href="../../../index.php">
             <img src="../../assets/images/logo-white.png" width="140px" alt="">
         </a>
         <ul>
             <a href="">
                 <li class="active"><i class="bi bi-clipboard-check"></i> &nbsp;Dashboard</li>
             </a>
-            <a href="./adminProducts.html">
+            <a href="./adminProducts.php">
                 <li><i class="bi bi-box2"></i> &nbsp;Produktet</li>
             </a>
-            <a href="./adminOrders.html">
+            <a href="./adminOrders.php">
                 <li><i class="bi bi-truck"></i> &nbsp;Porositë</li>
             </a>
-            <a href="./adminClients.html">
+            <a href="./adminClients.php">
                 <li><i class="bi bi-person"></i> &nbsp;Klientët</li>
             </a>
             <a href="">

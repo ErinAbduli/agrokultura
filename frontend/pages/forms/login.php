@@ -53,7 +53,7 @@ if (isset($_SERVER['HTTP_REFERER'])) {
 				</div>
 				<p class="forgot"><a href="">Keni harraru fjalëkalimin?</a></p>
 				<button type="submit" class="sign-in">Kyçu</button>
-				<p class="reg">Nuk keni llogari? <a href="./regjistrohu.html">Regjistrohu!</a></p>
+				<p class="reg">Nuk keni llogari? <a href="./regjistrohu.php">Regjistrohu!</a></p>
 			</form>
 		</div>
 
