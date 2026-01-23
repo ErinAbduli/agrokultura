@@ -6,7 +6,6 @@
 	padding: 0;
 }
 
-/* Heqja e decorimeve te number input */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
