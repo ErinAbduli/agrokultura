@@ -8,11 +8,12 @@ const addressInput = document.querySelector("#address");
 const cityInput = document.querySelector("#city");
 const zipInput = document.querySelector("#zip");
 const termsCheckbox = document.querySelector("#terms");
+
 const fullnameErrorMsg = document.querySelector("#fullnameErrorMsg");
 const emailErrorMsg = document.querySelector("#emailErrorMsg");
 const passwordErrorMsg = document.querySelector("#passwordErrorMsg");
 const confirmPasswordErrorMsg = document.querySelector(
-	"#confirmPasswordErrorMsg"
+	"#confirmPasswordErrorMsg",
 );
 const phoneErrorMsg = document.querySelector("#phoneErrorMsg");
 const addressErrorMsg = document.querySelector("#addressErrorMsg");
@@ -22,21 +23,21 @@ const termsErrorMsg = document.querySelector("#termsErrorMsg");
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
-const phonePattern = /^\d{7,12}$/;
+const phonePattern = /^\+?\d{7,12}$/;
 const zipPattern = /^\d{5}$/;
 
 let liveValidate = false;
 
-const validatePhone = () => {
-	const phone = phoneInput.value.trim();
-	if (!phonePattern.test(phone)) {
-		phoneInput.style.border = "2px solid red";
-		phoneErrorMsg.textContent =
-			"Ju lutem shkruani nje numer telefoni valid";
+const validateFullName = () => {
+	const fullname = fullNameInput.value.trim();
+	if (fullname.length < 3) {
+		fullNameInput.style.border = "2px solid red";
+		fullnameErrorMsg.textContent =
+			"Emri i plote duhet te jete te pakten 3 karaktere i gjate";
 		return false;
 	}
-	phoneInput.style.border = "";
-	phoneErrorMsg.textContent = "";
+	fullNameInput.style.border = "";
+	fullnameErrorMsg.textContent = "";
 	return true;
 };
 
@@ -66,10 +67,10 @@ const validatePassword = () => {
 };
 
 const validateConfirmPassword = () => {
-	const password = passwordInput.value.trim();
-	const confirmPassword = confirmPasswordInput.value.trim();
-
-	if (password !== confirmPassword || confirmPassword === "") {
+	if (
+		passwordInput.value.trim() !== confirmPasswordInput.value.trim() ||
+		confirmPasswordInput.value.trim() === ""
+	) {
 		confirmPasswordInput.style.border = "2px solid red";
 		confirmPasswordErrorMsg.textContent = "Fjalekalimet nuk perputhen";
 		return false;
@@ -79,22 +80,20 @@ const validateConfirmPassword = () => {
 	return true;
 };
 
-const validateFullName = () => {
-	const fullname = fullNameInput.value.trim();
-	if (fullname.length < 3) {
-		fullNameInput.style.border = "2px solid red";
-		fullnameErrorMsg.textContent =
-			"Emri i plote duhet te jete te pakten 3 karaktere i gjate";
+const validatePhone = () => {
+	if (!phonePattern.test(phoneInput.value.trim())) {
+		phoneInput.style.border = "2px solid red";
+		phoneErrorMsg.textContent =
+			"Ju lutem shkruani nje numer telefoni valid";
 		return false;
 	}
-	fullNameInput.style.border = "";
-	fullnameErrorMsg.textContent = "";
+	phoneInput.style.border = "";
+	phoneErrorMsg.textContent = "";
 	return true;
 };
 
 const validateAddress = () => {
-	const address = addressInput.value.trim();
-	if (address.length < 5) {
+	if (addressInput.value.trim().length < 5) {
 		addressInput.style.border = "2px solid red";
 		addressErrorMsg.textContent =
 			"Adresa duhet te jete te pakten 5 karaktere e gjate";
@@ -106,8 +105,7 @@ const validateAddress = () => {
 };
 
 const validateCity = () => {
-	const city = cityInput.value.trim();
-	if (city.length < 2) {
+	if (cityInput.value.trim().length < 2) {
 		cityInput.style.border = "2px solid red";
 		cityErrorMsg.textContent =
 			"Qyteti duhet te jete te pakten 2 karaktere i gjate";
@@ -119,8 +117,7 @@ const validateCity = () => {
 };
 
 const validateZip = () => {
-	const zip = zipInput.value.trim();
-	if (!zipPattern.test(zip)) {
+	if (!zipPattern.test(zipInput.value.trim())) {
 		zipInput.style.border = "2px solid red";
 		zipErrorMsg.textContent = "Ju lutem shkruani nje kod postar valid";
 		return false;
@@ -130,77 +127,67 @@ const validateZip = () => {
 	return true;
 };
 
+console.log("Signup validation script loaded");
+
 const validateTerms = () => {
 	if (!termsCheckbox.checked) {
 		termsErrorMsg.textContent = "Ju lutem pranoni kushtet dhe politikat";
 		return false;
 	}
 	termsErrorMsg.textContent = "";
-	return false;
+	return true;
 };
-
-emailInput.addEventListener("input", () => {
-	if (liveValidate) validateEmail();
-});
-
-passwordInput.addEventListener("input", () => {
-	if (liveValidate) validatePassword();
-});
 
 fullNameInput.addEventListener("input", () => {
 	if (liveValidate) validateFullName();
 });
-
+emailInput.addEventListener("input", () => {
+	if (liveValidate) validateEmail();
+});
+passwordInput.addEventListener("input", () => {
+	if (liveValidate) validatePassword();
+});
 confirmPasswordInput.addEventListener("input", () => {
 	if (liveValidate) validateConfirmPassword();
 });
-
 phoneInput.addEventListener("input", () => {
 	if (liveValidate) validatePhone();
 });
-
 addressInput.addEventListener("input", () => {
 	if (liveValidate) validateAddress();
 });
-
 cityInput.addEventListener("input", () => {
 	if (liveValidate) validateCity();
 });
-
 zipInput.addEventListener("input", () => {
 	if (liveValidate) validateZip();
 });
-
 termsCheckbox.addEventListener("change", () => {
 	if (liveValidate) validateTerms();
 });
 
+console.log("Signup validation script loaded");
+
 form.addEventListener("submit", (e) => {
 	e.preventDefault();
-
 	liveValidate = true;
 
-	const isFullNameValid = validateFullName();
-	const isEmailValid = validateEmail();
-	const isPasswordValid = validatePassword();
-	const isConfirmPasswordValid = validateConfirmPassword();
-	const isPhoneValid = validatePhone();
-	const isAddressValid = validateAddress();
-	const isCityValid = validateCity();
-	const isZipValid = validateZip();
-	const isTermsValid = validateTerms();
+	const allValid =
+		validateFullName() &&
+		validateEmail() &&
+		validatePassword() &&
+		validateConfirmPassword() &&
+		validatePhone() &&
+		validateAddress() &&
+		validateCity() &&
+		validateZip() &&
+		validateTerms();
 
-	if (
-		isFullNameValid &&
-		isEmailValid &&
-		isPasswordValid &&
-		isConfirmPasswordValid &&
-		isPhoneValid &&
-		isAddressValid &&
-		isCityValid &&
-		isZipValid &&
-		isTermsValid
-	) {
+	console.log("All valid:", allValid);
+
+	if (allValid) {
 		form.submit();
+	} else {
+		console.log("Validation failed");
 	}
 });

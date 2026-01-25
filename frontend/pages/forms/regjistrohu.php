@@ -1,8 +1,35 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 if (isset($_SERVER['HTTP_REFERER'])) {
     $prevPage = $_SERVER['HTTP_REFERER'];
 } else {
     $prevPage = '../../../index.php';
+}
+
+include_once __DIR__ . '../../../../backend/config/Database.php';
+include_once __DIR__ . '../../../../backend/models/User.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	$db = new Database();
+	$connection = $db->getConnection();
+	$user = new User($connection);
+
+	$fullname = $_POST['fullname'];
+	$email = $_POST['email'];
+	$password = $_POST['password'];
+	$phone = $_POST['phone'];
+	$address = $_POST['address'];
+	$city = $_POST['city'];
+	$zipcode = $_POST['zip'];
+
+	if ($user->register($fullname, $email, $password, $phone, $address, $city, $zipcode)) {
+		header("Location: login.php");
+		exit;
+	} else {
+		echo "Error ne regjistrimin e perdoruesit";
+	}
 }
 ?>
 
@@ -29,7 +56,7 @@ if (isset($_SERVER['HTTP_REFERER'])) {
 				<p class="subtitle">Plotëso të dhënat për t'u regjistruar</p>
 			</div>
 
-			<form class="register-form" novalidate>
+			<form class="register-form" novalidate action="regjistrohu.php" method="POST">
 				<div class="form-fields">
 					<div class="first-part">
 						<div>
