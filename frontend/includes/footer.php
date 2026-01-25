@@ -1,6 +1,3 @@
-<?php 
-session_start(); 
-?>
 <footer class="footer">
         <div class="footer-section-1">
             <div class="logo-links-containter">
