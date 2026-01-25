@@ -1,8 +1,34 @@
 <?php
+session_start();
+
 if (isset($_SERVER['HTTP_REFERER'])) {
     $prevPage = $_SERVER['HTTP_REFERER'];
 } else {
     $prevPage = '../../../index.php';
+}
+
+if (isset($_SESSION['user_id'])) {
+    header("Location: /agrokultura/index.php");
+    exit;
+}
+
+include_once __DIR__ . '../../../../backend/config/Database.php';
+include_once __DIR__ . '../../../../backend/models/User.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $db = new Database();
+    $connection = $db->getConnection();
+    $user = new User($connection);
+
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    if ($user->login($email, $password)) {
+        header("Location: /agrokultura/index.php");
+        exit;
+    } else {
+        echo "Invalid login credentials!";
+    }
 }
 ?>
 
@@ -40,7 +66,7 @@ if (isset($_SERVER['HTTP_REFERER'])) {
 
 			<div class="divider"><span>OSE</span></div>
 
-			<form class="login-form" novalidate>
+			<form class="login-form" method="POST" novalidate>
 				<div>
 					<label for="email">Email</label>
 					<input type="email" placeholder="Shkruaj email-in tënd" id="email" name="email">

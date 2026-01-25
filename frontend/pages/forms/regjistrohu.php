@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -6,6 +8,11 @@ if (isset($_SERVER['HTTP_REFERER'])) {
     $prevPage = $_SERVER['HTTP_REFERER'];
 } else {
     $prevPage = '../../../index.php';
+}
+
+if (isset($_SESSION['user_id'])) {
+    header("Location: /agrokultura/index.php");
+    exit;
 }
 
 include_once __DIR__ . '../../../../backend/config/Database.php';

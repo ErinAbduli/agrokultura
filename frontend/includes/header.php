@@ -1,3 +1,8 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <nav class="navbar">
         <div class="logo">
             <a href="/agrokultura/index.php"><img src="/agrokultura/frontend/assets/images/logo-2.png" width="120px" alt="logo" /></a>
@@ -129,7 +134,11 @@
         <div class="cart-section nav-links">
             <a href="/agrokultura/frontend/pages/cart/cart.php"><i class="bi bi-cart" style="font-size: 1.3rem;"></i></a>
             <ul class="nav-links">
-                <li><a href="/agrokultura/frontend/pages/forms/login.php">Log in</a></li>
+                <?php if (isset($_SESSION['user_id'])):?>  
+                    <a href="/agrokultura/frontend/pages/profile/profile.php"><i class="bi bi-person-circle" style="font-size: 1.3rem;"></i></a>
+                <?php else: ?>
+                    <a href="/agrokultura/frontend/pages/forms/login.php">Log in</a>
+                <?php endif; ?>
             </ul>
         </div>
 
@@ -259,7 +268,11 @@
                     <li><a href="/agrokultura/frontend/pages/cart/cart.php"><i class="bi bi-cart" style="font-size: 1.3rem;"></i> My
                             cart</a></li>
                     <li style="padding: 0px 20px; background-color: #22a561; width: 50px; border-radius: 10px;">
-                        <a style="color: white;" href="/agrokultura/frontend/pages/forms/login.php">Log in</a>
+                        <?php if (isset($_SESSION['user_id'])):?>  
+                            <a style="color: white;" href="/agrokultura/frontend/pages/profile/profile.php">View Profile</a>
+                        <?php else: ?>
+                            <a style="color: white;" href="/agrokultura/frontend/pages/forms/login.php">Log in</a>
+                        <?php endif; ?>
                     </li>
                 </ul>
             </nav>

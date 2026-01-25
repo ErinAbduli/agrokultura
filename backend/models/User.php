@@ -48,5 +48,28 @@ class User{
             return false;
         }
     }
+
+    public function login($email, $password) {
+        $query = "SELECT id, full_name, email, password FROM {$this->table_name} WHERE email = :email";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+
+        if($stmt->rowCount() > 0){
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            var_dump($row);
+            if(password_verify($password, $row['password'])){
+                session_start();
+                $_SESSION['user_id'] = $row['id'];
+                $_SESSION['email'] = $row['email'];
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }
 ?>
