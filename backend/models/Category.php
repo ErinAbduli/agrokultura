@@ -18,15 +18,12 @@ class Category {
 
         }
 
-    public function getAllFromSameCategory($categoryId) {
+    public function getAllCategories() {
         $stmt = $this->db->prepare(
-            "SELECT * FROM {$this->table} WHERE id = :category_id"
+            "SELECT * FROM {$this->table}"
         );
-        $stmt->bindParam(':category_id', $categoryId, PDO::PARAM_INT);
-        $stmt->execute();   
-
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     }
 }
 ?>

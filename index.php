@@ -17,7 +17,7 @@
             <div class="hero-text">
                 <h1 class="hero-title">Ëndërroje. Ndërtoje.</h1>
                 <p class="hero-desc">Gjithçka që të duhet për projektin tënd të radhës.</p>
-                <button onclick="window.location.href = './frontend/pages/products/productCategory.html'"
+                <button onclick="window.location.href = './frontend/pages/products/allProducts.php'"
                     class="hero-btn">Blej Tani</button>
             </div>
         </div>

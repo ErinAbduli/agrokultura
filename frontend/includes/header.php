@@ -12,7 +12,7 @@ if (session_status() == PHP_SESSION_NONE) {
             <li><a href="/agrokultura/index.php" class="active">Ballina</a></li>
 
             <li class="dropdown">
-                <a href="#" id="produktet">Produktet <i class="bi bi-chevron-down" style="font-size: 1rem;"></i></a>
+                <a href="/agrokultura/frontend/pages/products/allProducts.php" id="produktet">Produktet <i class="bi bi-chevron-down" style="font-size: 1rem;"></i></a>
                 <ul class="dropdown-menu">
 
                     <li>

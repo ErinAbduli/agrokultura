@@ -7,10 +7,22 @@ class Product {
         $this->db = $db;
     }
 
-    public function getAll() {
-        $stmt = $this->db->prepare(
-            "SELECT * FROM {$this->table}"
-        );
+    public function getAll($order) {
+        $sql = "SELECT * FROM {$this->table}";
+
+        if ($order === 'price-asc') {
+            $sql .= " ORDER BY price ASC";
+        } elseif ($order === 'price-desc') {
+            $sql .= " ORDER BY price DESC";
+        } elseif ($order === 'name-asc') {
+            $sql .= " ORDER BY name ASC";
+        } elseif ($order === 'name-desc') {
+            $sql .= " ORDER BY name DESC";
+        } else {
+            $sql .= " ORDER BY id DESC";
+        }
+
+        $stmt = $this->db->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
