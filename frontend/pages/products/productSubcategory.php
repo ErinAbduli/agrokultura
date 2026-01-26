@@ -6,7 +6,8 @@ $db = $database->getConnection();
 
 $product = new Product($db);
 $subcategoryId = isset($_GET['id']) ? intval($_GET['id']) : 0;
-$products = $product->getBySubcategory($subcategoryId);
+$order = isset($_GET['order']) ? $_GET['order'] : 'default';
+$products = $product->getBySubcategory($subcategoryId, $order);
 ?>
 
 <!DOCTYPE html>
@@ -35,47 +36,6 @@ $products = $product->getBySubcategory($subcategoryId);
             <div id="errorMsg"></div>
         </div>
         <div class="container">
-            <div class="sidebar">
-                <div>
-                    <h3>Filtro</h3>
-                    <h4>Sipas Çmimit</h4>
-                    <div class="filtro-sipas-cmimit">
-                        <div class="cmimi-range">
-                            <input type="number" id="cmimiMin" name="cmimiMin" placeholder="1">
-                        </div>
-                        <span class="sipas-cmimit-text">deri</span>
-                        <div class="cmimi-range">
-                            <input type="number" id="cmimiMax" name="cmimiMax" placeholder="1000">
-                        </div>
-                    </div>
-                    <div class="sipas-cmimit-desc">Filtrimi mund të bëhet nga
-                        1 Euro
-                        deri në
-                        11100 Euro</div>
-                    <button class="apliko-filtro">Apliko</button>
-                </div>
-                <div class="sipas-prodhuesit">
-                    <h4>Sipas Prodhuesit</h4>
-                    <div class="prodhuesit">
-                        <label>
-                            <input type="checkbox" name="producers[]" value="dewalt"> DeWalt
-                        </label>
-
-                        <label>
-                            <input type="checkbox" name="producers[]" value="makita"> Makita
-                        </label>
-
-                        <label>
-                            <input type="checkbox" name="producers[]" value="milwaukee"> Milwaukee
-                        </label>
-
-                        <label>
-                            <input type="checkbox" name="producers[]" value="stanley"> Stanley
-                        </label>
-                    </div>
-
-                </div>
-            </div>
             <div class="products">
                 <div class="order-by-section">
                     <p class="gjith-produktet">Të gjithë produktet</p>
@@ -114,58 +74,6 @@ $products = $product->getBySubcategory($subcategoryId);
                         </div>
                     </div>
                     <?php endforeach; ?>
-                    <!-- <div class="product-card">
-                        <img src="../../assets/images/bosch-saw.png" alt="Product Image" width="50px">
-                        <div class="product-card-description">
-                            <h3>Power Drill</h3>
-                            <p class="producer">IngCo</p>
-                            <p class="price">100 &euro;</p>
-                            <button onclick="window.location.href = './product.php'" class="add-to-cart-btn">Shiko
-                                Detajet</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://png.pngtree.com/png-vector/20250320/ourmid/pngtree-yellow-cordless-power-drill-isolated-on-transparent-background-png-image_15775261.png"
-                            alt="Product Image" width="50px">
-                        <div class="product-card-description">
-                            <h3>Power Drill</h3>
-                            <p class="producer">IngCo</p>
-                            <p class="price">100 &euro;</p>
-                            <button onclick="window.location.href = './product.php'" class="add-to-cart-btn">Shiko
-                                Detajet</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="../../assets/images/snow-shovel.png" alt="Product Image" width="50px">
-                        <div class="product-card-description">
-                            <h3>Power Drill</h3>
-                            <p class="producer">IngCo</p>
-                            <p class="price">100 &euro;</p>
-                            <button onclick="window.location.href = './product.php'" class="add-to-cart-btn">Shiko
-                                Detajet</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="../../assets/images/bosch-saw.png" alt="Product Image" width="50px">
-                        <div class="product-card-description">
-                            <h3>Power Drill</h3>
-                            <p class="producer">IngCo</p>
-                            <p class="price">100 &euro;</p>
-                            <button onclick="window.location.href = './product.php'" class="add-to-cart-btn">Shiko
-                                Detajet</button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <img src="https://png.pngtree.com/png-vector/20250320/ourmid/pngtree-yellow-cordless-power-drill-isolated-on-transparent-background-png-image_15775261.png"
-                            alt="Product Image" width="50px">
-                        <div class="product-card-description">
-                            <h3>Power Drill</h3>
-                            <p class="producer">IngCo</p>
-                            <p class="price">100 &euro;</p>
-                            <button onclick="window.location.href = './product.php'" class="add-to-cart-btn">Shiko
-                                Detajet</button>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>

@@ -3,6 +3,20 @@ const selected = select.querySelector(".selected");
 const selectedText = select.querySelector(".selected-text");
 const options = select.querySelector(".options");
 const input = select.querySelector("input");
+const filterBtn = document.querySelector(".filter-btn");
+
+const urlParams = new URLSearchParams(window.location.search);
+const currentOrder = urlParams.get("order") || "default";
+
+if (currentOrder !== "default") {
+	const currentOption = options.querySelector(
+		`[data-value="${currentOrder}"]`,
+	);
+	if (currentOption) {
+		selectedText.textContent = currentOption.textContent;
+		input.value = currentOrder;
+	}
+}
 
 selected.addEventListener("click", () => {
 	options.style.display =
@@ -10,15 +24,18 @@ selected.addEventListener("click", () => {
 });
 
 options.addEventListener("click", (e) => {
-	if (e.target.tagName === "LI") {
-		selectedText.textContent = e.target.textContent;
-		input.value = e.target.dataset.value;
-		options.style.display = "none";
-	}
-});
+	const li = e.target.closest("li");
+	if (!li) return;
 
-document.addEventListener("click", (e) => {
-	if (!select.contains(e.target)) {
-		options.style.display = "none";
-	}
+	selectedText.textContent = li.textContent;
+	input.value = li.dataset.value;
+	options.style.display = "none";
+
+	const order = li.dataset.value;
+	const urlParams = new URLSearchParams(window.location.search);
+	const categoryId = urlParams.get("id");
+
+	let url = `${window.location.pathname}?id=${categoryId}&order=${order}`;
+
+	window.location.href = url;
 });
