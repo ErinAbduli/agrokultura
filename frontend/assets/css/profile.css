@@ -193,6 +193,57 @@
 		flex-direction: column;
 		align-items: flex-start;
 	}
+	.profile-page {
+		margin: 20px 3% 40px 3%;
+	}
+	.profile-hero h1 {
+		font-size: 24px;
+	}
+	.profile-hero p {
+		font-size: 13px;
+	}
+	.profile-card {
+		padding: 18px;
+	}
+	.profile-card h2 {
+		font-size: 15px;
+	}
+}
+
+@media (max-width: 480px) {
+	.profile-page {
+		margin: 15px 2% 30px 2%;
+	}
+	.profile-hero {
+		padding: 18px 20px;
+	}
+	.profile-hero h1 {
+		font-size: 20px;
+	}
+	.profile-badge {
+		padding: 8px 12px;
+		gap: 8px;
+	}
+	.profile-badge i {
+		font-size: 18px;
+	}
+	.profile-badge .name {
+		font-size: 13px;
+	}
+	.profile-badge .email {
+		font-size: 11px;
+	}
+	.profile-card {
+		padding: 15px;
+	}
+	.profile-field .value {
+		font-size: 13px;
+	}
+	.profile-actions a,
+	.profile-actions button {
+		padding: 10px 12px;
+		font-size: 14px;
+	}
 }
 
 
