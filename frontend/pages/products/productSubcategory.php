@@ -1,3 +1,14 @@
+<?php
+require_once __DIR__ . "../../../../backend/config/Database.php";
+require_once __DIR__ . "../../../../backend/models/Product.php";
+$database = new Database();
+$db = $database->getConnection();
+
+$product = new Product($db);
+$subcategoryId = isset($_GET['id']) ? intval($_GET['id']) : 0;
+$products = $product->getBySubcategory($subcategoryId);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -88,17 +99,22 @@
                     </div>
                 </div>
                 <div class="products-container">
+                    <?php if (empty($products)): ?>
+                        <p style="font-weight: bold;">Nuk ka produkte në këtë nën kategori.</p>
+                    <?php endif; ?>
+                    <?php foreach ($products as $product):?>
                     <div class="product-card">
-                        <img src="../../assets/images/snow-shovel.png" alt="Product Image" width="50px">
+                        <img src="../../../backend/public/uploads/<?= $product['image'] ?>" alt="Product Image" width="50px">
                         <div class="product-card-description">
-                            <h3>Power Drill</h3>
-                            <p class="producer">IngCo</p>
-                            <p class="price">100 &euro;</p>
-                            <button onclick="window.location.href = './product.php'" class="add-to-cart-btn">Shiko
+                            <h3><?= $product['name'] ?></h3>
+                            <!-- <p class="producer">IngCo</p> -->
+                            <p class="price"><?= $product['price'] ?> &euro;</p>
+                            <button onclick="window.location.href = './product.php?id=<?= $product['id'] ?>'" class="add-to-cart-btn">Shiko
                                 Detajet</button>
                         </div>
                     </div>
-                    <div class="product-card">
+                    <?php endforeach; ?>
+                    <!-- <div class="product-card">
                         <img src="../../assets/images/bosch-saw.png" alt="Product Image" width="50px">
                         <div class="product-card-description">
                             <h3>Power Drill</h3>
@@ -149,7 +165,7 @@
                             <button onclick="window.location.href = './product.php'" class="add-to-cart-btn">Shiko
                                 Detajet</button>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

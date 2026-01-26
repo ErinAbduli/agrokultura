@@ -1,3 +1,19 @@
+<?php
+require_once __DIR__ . "../../../../backend/config/Database.php";
+require_once __DIR__ . "../../../../backend/models/Product.php";
+require_once __DIR__ . "../../../../backend/models/Category.php";
+$database = new Database();
+$db = $database->getConnection();
+
+$product = new Product($db);
+$category = new Category($db);
+$categoryId = isset($_GET['id']) ? intval($_GET['id']) : 0;
+$products = $product->getByCategory($categoryId);
+$categorySubcategories = $category->getAllSubcategories($categoryId);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,12 +83,14 @@
             </div>
             <div class="products">
                 <div class="subcategories">
-                    <a href="./productSubcategory.php">Fara Perimesh</a>
-                    <a href="./productSubcategory.php">Fara Frutash</a>
+                    <?php foreach($categorySubcategories as $subcategory): ?>
+                    <a href="./productSubcategory.php?id=<?= $subcategory['id'] ?>"><?= $subcategory['emri'] ?></a>
+                    <?php endforeach; ?>
+                    <!-- <a href="./productSubcategory.php">Fara Frutash</a>
                     <a href="./productSubcategory.php">Fara Lulesh</a>
                     <a href="./productSubcategory.php">Fara Drithërash</a>
                     <a href="./productSubcategory.php">Fidane / Bime</a>
-                    <a href="./productSubcategory.php">Fare Patatesh</a>
+                    <a href="./productSubcategory.php">Fare Patatesh</a> -->
                 </div>
                 <div class="order-by-section">
                     <p class="gjith-produktet">Të gjithë produktet</p>
@@ -96,17 +114,22 @@
                     </div>
                 </div>
                 <div class="products-container">
+                    <?php if (empty($products)): ?>
+                        <p style="font-weight: bold;">Nuk ka produkte në këtë kategori.</p>
+                    <?php endif; ?>
+                    <?php foreach($products as $prod): ?>
                     <div class="product-card">
-                        <img src="../../assets/images/snow-shovel.png" alt="Product Image" width="50px">
+                        <img src="../../../backend/public/uploads/<?= $prod['image'] ?>" alt="Product Image" width="50px">
                         <div class="product-card-description">
-                            <h3>Power Drill</h3>
-                            <p class="producer">IngCo</p>
-                            <p class="price">100 &euro;</p>
-                            <button onclick="window.location.href='./product.php'" class="add-to-cart-btn">Shiko
+                            <h3><?= $prod['name'] ?></h3>
+                            <!-- <p class="producer">IngCo</p> -->
+                            <p class="price"><?= $prod['price'] ?> &euro;</p>
+                            <button onclick="window.location.href='./product.php?id=<?= $prod['id'] ?>'" class="add-to-cart-btn">Shiko
                                 Detajet</button>
                         </div>
                     </div>
-                    <div class="product-card">
+                    <?php endforeach; ?>
+                    <!-- <div class="product-card">
                         <img src="../../assets/images/bosch-saw.png" alt="Product Image" width="50px">
                         <div class="product-card-description">
                             <h3>Power Drill</h3>
@@ -157,7 +180,7 @@
                             <button onclick="window.location.href='./product.php'" class="add-to-cart-btn">Shiko
                                 Detajet</button>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

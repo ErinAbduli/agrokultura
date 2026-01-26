@@ -1,3 +1,18 @@
+<?php
+require_once __DIR__ . "../../../../backend/config/Database.php";
+require_once __DIR__ . "../../../../backend/models/Product.php";
+require_once __DIR__ . "../../../../backend/models/Category.php";
+$database = new Database();
+$db = $database->getConnection();
+
+$product = new Product($db);
+$productId = isset($_GET['id']) ? intval($_GET['id']) : 0;
+$productDetails = $product->getById($productId);
+if($productDetails) {
+    $similarProducts = $product->getAllFromSameCategory($productDetails['subcategory_id'], $productId);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,11 +28,14 @@
 <body>
     <?php include '../../includes/header.php' ?>
     <div class="main">
+        <?php if (!$productDetails): ?>
+                <h2>Produkti nuk Ekziston.</h2>
+            <?php else: ?>
         <div class="product-container">
-            <img src="../../assets/images/bosch-saw.png" alt="">
+            <img src="../../../backend/public/uploads/<?= $productDetails['image'] ?>" alt="">
             <div class="product-desc">
-                <p class="brand">Bosch</p>
-                <h3 class="title">Bosch Saw</h3>
+                <!-- <p class="brand">Bosch</p> -->
+                <h3 class="title"><?= $productDetails['name'] ?></h3>
                 <div class="rating">
                     <div class="stars">
                         <i class="bi bi-star-fill"></i>
@@ -28,7 +46,7 @@
                     </div>
                     <span class="rating-text">4.5 · 128 reviews</span>
                 </div>
-                <h4 class="price">€120.00</h4>
+                <h4 class="price">€<?= $productDetails['price'] ?></h4>
 
                 <div class="section">
                     <label>Sasia</label>
@@ -111,16 +129,18 @@
         <div class="similar-products">
             <h3>Produktet e Ngjashme</h3>
             <div class="products-container">
+                <?php foreach ($similarProducts as $prod): ?>
                 <div class="product-card">
-                    <img src="../../assets/images/snow-shovel.png" alt="Product Image" width="50px">
+                    <img src="../../../backend/public/uploads/<?= $prod['image'] ?>" alt="Product Image" width="50px">
                     <div class="product-card-description">
-                        <h3>Power Drill</h3>
-                        <p class="producer">IngCo</p>
-                        <p class="price">100 &euro;</p>
-                        <button class="add-to-cart-btn">Shiko Detajet</button>
+                        <h3><?= htmlspecialchars($prod['name']) ?></h3>
+                        <!-- <p class="producer"><?= htmlspecialchars($prod['producer']) ?></p> -->
+                        <p class="price"><?= htmlspecialchars($prod['price']) ?> &euro;</p>
+                        <button class="add-to-cart-btn" onclick="window.location.href = './product.php?id=<?= $prod['id'] ?>'">Shiko Detajet</button>
                     </div>
                 </div>
-                <div class="product-card">
+                <?php endforeach; ?>
+                <!-- <div class="product-card">
                     <img src="../../assets/images/bosch-saw.png" alt="Product Image" width="50px">
                     <div class="product-card-description">
                         <h3>Power Drill</h3>
@@ -166,11 +186,12 @@
                         <p class="price">100 &euro;</p>
                         <button class="add-to-cart-btn">Shiko Detajet</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
     <?php include '../../includes/footer.php' ?>
+    <?php endif; ?>
 
     <div class="modal" id="reviewModal">
         <div class="modal-content">
