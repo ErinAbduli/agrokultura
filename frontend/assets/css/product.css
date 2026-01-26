@@ -868,4 +868,37 @@ button[type="submit"] {
 		width: 150px;
 		padding: 18px;
 	}
+	.product-container {
+		flex-direction: column;
+	}
+	.product-container img {
+		width: 100%;
+		height: auto;
+		max-height: 300px;
+		padding: 20px;
+	}
+	.product-desc {
+		padding: 20px;
+	}
+	.actions {
+		flex-direction: column;
+	}
+	.actions button {
+		width: 100%;
+	}
+	.reviews-card {
+		padding: 20px;
+	}
+	.reviews-header {
+		flex-direction: column;
+		gap: 15px;
+		align-items: flex-start;
+	}
+	.leave-review {
+		width: 100%;
+	}
+	.products-container {
+		padding: 10px;
+		gap: 15px;
+	}
 }

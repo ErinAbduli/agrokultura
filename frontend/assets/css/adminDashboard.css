@@ -121,3 +121,140 @@ table td {
 	border-bottom: 1px solid #ddd;
 	text-align: center;
 }
+
+@media (max-width: 992px) {
+	.sidebar {
+		width: 180px;
+		padding: 20px;
+	}
+	
+	.main {
+		padding: 15px;
+	}
+	
+	.cards {
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+		gap: 15px;
+	}
+	
+	.tables {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 768px) {
+	body {
+		flex-direction: column;
+	}
+	
+	.sidebar {
+		width: 100%;
+		height: auto;
+		padding: 15px;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+	
+	.sidebar h2 {
+		width: 100%;
+		text-align: center;
+		margin-bottom: 15px;
+	}
+	
+	.sidebar ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		justify-content: center;
+		padding-top: 0;
+	}
+	
+	.sidebar ul li {
+		padding: 8px 12px;
+		font-size: 14px;
+	}
+	
+	.main {
+		padding: 15px 10px;
+		width: 100%;
+	}
+	
+	.topbar {
+		flex-direction: column;
+		gap: 15px;
+		align-items: flex-start;
+	}
+	
+	.search-bar {
+		width: 100%;
+		flex-direction: column;
+	}
+	
+	.search-bar input {
+		width: 100%;
+	}
+	
+	.cards {
+		grid-template-columns: 1fr;
+		gap: 15px;
+	}
+	
+	.card {
+		padding: 15px;
+	}
+	
+	.chart {
+		padding: 15px;
+	}
+	
+	.tables {
+		grid-template-columns: 1fr;
+	}
+	
+	.table-box {
+		overflow-x: auto;
+	}
+	
+	table {
+		min-width: 600px;
+	}
+}
+
+@media (max-width: 480px) {
+	.sidebar {
+		padding: 10px;
+	}
+	
+	.sidebar h2 {
+		font-size: 18px;
+		margin-bottom: 10px;
+	}
+	
+	.sidebar ul li {
+		padding: 6px 10px;
+		font-size: 12px;
+	}
+	
+	.main {
+		padding: 10px 5px;
+	}
+	
+	.topbar {
+		font-size: 14px;
+	}
+	
+	.card {
+		padding: 12px;
+	}
+	
+	.chart {
+		padding: 12px;
+	}
+	
+	.table-box {
+		padding: 12px;
+	}
+}

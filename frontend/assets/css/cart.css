@@ -565,4 +565,44 @@ Responsiviteti */
 	.hamburger-menu {
 		display: contents;
 	}
+	.cart-item {
+		grid-template-columns: 80px 1fr;
+		gap: 12px;
+		padding: 12px 0;
+	}
+	.cart-item img {
+		width: 80px;
+		height: 80px;
+	}
+	.item-info h3 {
+		font-size: 14px;
+	}
+	.item-info .brand {
+		font-size: 12px;
+	}
+	.item-info .price {
+		font-size: 13px;
+	}
+	.qty-control {
+		grid-column: 1 / -1;
+		justify-self: start;
+		margin-top: 8px;
+	}
+	.item-total {
+		grid-column: 2;
+		text-align: left;
+		min-width: auto;
+		font-size: 14px;
+	}
+	.remove-item {
+		grid-column: 2;
+		justify-self: end;
+		align-self: start;
+	}
+	.cart-page {
+		padding: 0 10px;
+	}
+	.cart-page h1 {
+		font-size: 24px;
+	}
 }
