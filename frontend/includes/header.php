@@ -139,6 +139,9 @@ if (session_status() == PHP_SESSION_NONE) {
                 <?php else: ?>
                     <a href="/agrokultura/frontend/pages/forms/login.php">Log in</a>
                 <?php endif; ?>
+                <?php if ((isset($_SESSION['role'])) && $_SESSION['role'] == 1):?>
+                        <a href="/agrokultura/frontend/pages/admin/adminDashboard.php"><i class="bi bi-code-square" style="font-size: 1.3rem;"></i></a>
+                <?php endif; ?>
             </ul>
         </div>
 
@@ -269,9 +272,14 @@ if (session_status() == PHP_SESSION_NONE) {
                             cart</a></li>
                     <li style="padding: 0px 20px; background-color: #22a561; width: 50px; border-radius: 10px;">
                         <?php if (isset($_SESSION['user_id'])):?>  
-                            <a style="color: white;" href="/agrokultura/frontend/pages/profile/profile.php">View Profile</a>
+                            <a style="color: white;" href="/agrokultura/frontend/pages/profile/profile.php">Profile</a>
                         <?php else: ?>
                             <a style="color: white;" href="/agrokultura/frontend/pages/forms/login.php">Log in</a>
+                        <?php endif; ?>
+                    </li>
+                    <li style="padding: 0px 20px; background-color: #22a561; width: 40%; border-radius: 10px;">
+                        <?php if ((isset($_SESSION['user_id'])) && $_SESSION['role'] === 1):?>  
+                            <a style="color: white;" href="/agrokultura/frontend/pages/admin/adminDashboard.php">Dashboard</a>
                         <?php endif; ?>
                     </li>
                 </ul>

@@ -50,7 +50,7 @@ class User{
     }
 
     public function login($email, $password) {
-        $query = "SELECT id, full_name, email, password FROM {$this->table_name} WHERE email = :email";
+        $query = "SELECT id, full_name, email, password, role FROM {$this->table_name} WHERE email = :email";
         
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':email', $email);
@@ -63,6 +63,7 @@ class User{
                 session_start();
                 $_SESSION['user_id'] = $row['id'];
                 $_SESSION['email'] = $row['email'];
+                $_SESSION['role'] = $row['role'];
                 return true;
             } else {
                 return false;
