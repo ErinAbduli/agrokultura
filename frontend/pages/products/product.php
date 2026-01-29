@@ -1,15 +1,50 @@
 <?php
+session_start();
 require_once __DIR__ . "../../../../backend/config/Database.php";
 require_once __DIR__ . "../../../../backend/models/Product.php";
 require_once __DIR__ . "../../../../backend/models/Category.php";
+require_once __DIR__ . "../../../../backend/models/Review.php";
 $database = new Database();
 $db = $database->getConnection();
 
 $product = new Product($db);
+$review = new Review($db);
 $productId = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $productDetails = $product->getById($productId);
 if($productDetails) {
     $similarProducts = $product->getAllFromSameCategory($productDetails['subcategory_id'], $productId);
+}
+
+$reviews = $review->getReviewsByProductId($productId);
+
+if($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $rating = isset($_POST['rating']) ? intval($_POST['rating']) : 0;
+    $message = isset($_POST['review']) ? trim($_POST['review']) : '';
+    $userId = 1;
+
+    if($_SESSION && isset($_SESSION['user_id'])) {
+        $userId = $_SESSION['user_id'];
+    } else {
+        header("Location: /agrokultura/frontend/pages/forms/login.php");
+        exit();
+    }
+
+    if($rating < 1 || $rating > 5 || empty($message)) {
+        header("Location: product.php?id=" . $productId);
+        exit();
+    }
+
+
+    $stmt = $db->prepare("INSERT INTO reviews (product_id, user_id, rating, message, created_at) VALUES (:product_id, :user_id, :rating, :message, NOW())");
+
+    $stmt->bindParam(':product_id', $productId);
+    $stmt->bindParam(':user_id', $userId);
+    $stmt->bindParam(':rating', $rating);
+    $stmt->bindParam(':message', $message);
+    $stmt->execute();
+
+    header("Location: product.php?id=" . $productId);
+    exit();
 }
 ?>
 
@@ -34,7 +69,6 @@ if($productDetails) {
         <div class="product-container">
             <img src="../../../backend/public/uploads/<?= $productDetails['image'] ?>" alt="">
             <div class="product-desc">
-                <!-- <p class="brand">Bosch</p> -->
                 <h3 class="title"><?= $productDetails['name'] ?></h3>
                 <div class="rating">
                     <div class="stars">
@@ -89,42 +123,31 @@ if($productDetails) {
                 <button class="leave-review" id="leave-review">Lëre një vlerësim</button>
             </div>
 
+            <?php if (empty($reviews)): ?>
+                <p>Nuk ka vlerësime për këtë produkt ende.</p>
+            <?php else: ?>
+                <?php foreach ($reviews as $rev): ?>
             <div class="review">
                 <div class="review-header">
-                    <strong>Arben K.</strong>
+                    <strong><?= $rev['full_name'] ? $rev['full_name'] : "Anonymous" ?></strong>
                     <div class="stars">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
+                        <?php for ($i = 1; $i <= 5; $i++) {
+                            if ($i <= $rev['rating']) {
+                                echo '<i class="bi bi-star-fill"></i>';
+                            } else {
+                                echo '<i class="bi bi-star"></i>';
+                            }
+                        } ?>
                     </div>
                 </div>
-                <p class="review-date">12 Qershor 2025</p>
+                <p class="review-date"><?= date("d F Y", strtotime($rev['created_at'])) ?></p>
                 <p class="review-text">
-                    Produkt shumë cilësor. Arriti shpejt dhe funksionon perfekt.
-                    Do ta blej përsëri.
+                    <?= $rev['message'] ?>
                 </p>
             </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
 
-            <div class="review">
-                <div class="review-header">
-                    <strong>Elona M.</strong>
-                    <div class="stars">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star"></i>
-                    </div>
-                </div>
-                <p class="review-date">3 Qershor 2025</p>
-                <p class="review-text">
-                    Shumë e fuqishme për çmimin. Paketimi ishte super.
-                </p>
-            </div>
-
-            <button class="load-more">Shfaq më shumë</button>
         </div>
         <div class="similar-products">
             <h3>Produktet e Ngjashme</h3>
@@ -134,59 +157,11 @@ if($productDetails) {
                     <img src="../../../backend/public/uploads/<?= $prod['image'] ?>" alt="Product Image" width="50px">
                     <div class="product-card-description">
                         <h3><?= htmlspecialchars($prod['name']) ?></h3>
-                        <!-- <p class="producer"><?= htmlspecialchars($prod['producer']) ?></p> -->
                         <p class="price"><?= htmlspecialchars($prod['price']) ?> &euro;</p>
                         <button class="add-to-cart-btn" onclick="window.location.href = './product.php?id=<?= $prod['id'] ?>'">Shiko Detajet</button>
                     </div>
                 </div>
                 <?php endforeach; ?>
-                <!-- <div class="product-card">
-                    <img src="../../assets/images/bosch-saw.png" alt="Product Image" width="50px">
-                    <div class="product-card-description">
-                        <h3>Power Drill</h3>
-                        <p class="producer">IngCo</p>
-                        <p class="price">100 &euro;</p>
-                        <button class="add-to-cart-btn">Shiko Detajet</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="https://png.pngtree.com/png-vector/20250320/ourmid/pngtree-yellow-cordless-power-drill-isolated-on-transparent-background-png-image_15775261.png"
-                        alt="Product Image" width="50px">
-                    <div class="product-card-description">
-                        <h3>Power Drill</h3>
-                        <p class="producer">IngCo</p>
-                        <p class="price">100 &euro;</p>
-                        <button class="add-to-cart-btn">Shiko Detajet</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="../../assets/images/snow-shovel.png" alt="Product Image" width="50px">
-                    <div class="product-card-description">
-                        <h3>Power Drill</h3>
-                        <p class="producer">IngCo</p>
-                        <p class="price">100 &euro;</p>
-                        <button class="add-to-cart-btn">Shiko Detajet</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="../../assets/images/bosch-saw.png" alt="Product Image" width="50px">
-                    <div class="product-card-description">
-                        <h3>Power Drill</h3>
-                        <p class="producer">IngCo</p>
-                        <p class="price">100 &euro;</p>
-                        <button class="add-to-cart-btn">Shiko Detajet</button>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="https://png.pngtree.com/png-vector/20250320/ourmid/pngtree-yellow-cordless-power-drill-isolated-on-transparent-background-png-image_15775261.png"
-                        alt="Product Image" width="50px">
-                    <div class="product-card-description">
-                        <h3>Power Drill</h3>
-                        <p class="producer">IngCo</p>
-                        <p class="price">100 &euro;</p>
-                        <button class="add-to-cart-btn">Shiko Detajet</button>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
@@ -199,7 +174,7 @@ if($productDetails) {
 
             <h2>Lëre një vlerësim</h2>
 
-            <form id="reviewForm" novalidate>
+            <form id="reviewForm" action="product.php?id=<?= $productId ?>" method="POST" novalidate>
                 <div class="rating">
                     <input type="radio" name="rating" id="star5" value="5" />
                     <label for="star5"><i class="bi bi-star-fill"></i></label>
@@ -228,7 +203,6 @@ if($productDetails) {
     <script src="../../assets/js/controlQty.js"></script>
     <script src="../../assets/js/hamburgerMenuToggler.js"></script>
     <script src="../../assets/js/modal.js"></script>
-    <script src="../../assets/js/modalValidate.js"></script>
 </body>
 
 </html>

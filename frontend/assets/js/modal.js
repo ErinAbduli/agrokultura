@@ -18,9 +18,3 @@ function closeModal() {
 	modal.style.display = "none";
 	document.body.style.overflow = "";
 }
-
-form.addEventListener("submit", async (e) => {
-	e.preventDefault();
-	form.reset();
-	closeModal();
-});
