@@ -128,11 +128,49 @@ table td {
 }
 
 .btn-1 {
-	background-color: #ffc106;
+	background: none;
+	border: none;
+	color: white;
+	transition: all 0.3s ease;
+	padding: 5px 10px;
+}
+
+.btn-1:hover {
+	background: none;
+	border: none;
+	color: white;
+}
+
+.btn-1 i {
+	color: white;
+	font-size: 18px;
+}
+
+.btn-1:hover i {
+	color: white;
 }
 
 .btn-2 {
-	background-color: #dc3545;
+	background: none;
+	border: none;
+	color: white;
+	transition: all 0.3s ease;
+	padding: 5px 10px;
+}
+
+.btn-2:hover {
+	background: none;
+	border: none;
+	color: white;
+}
+
+.btn-2 i {
+	color: white;
+	font-size: 18px;
+}
+
+.btn-2:hover i {
+	color: white;
 }
 
 .add-product {

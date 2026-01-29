@@ -40,7 +40,8 @@ class Product {
         $sql = "
             SELECT p.*, s.id   AS subcategory_id, s.emri AS subcategory_name
             FROM products p
-            INNER JOIN subcategories s ON p.subcategory_id = s.id
+            INNER JOIN subcategories s 
+            ON p.subcategory_id = s.id
             WHERE s.category_id = :category_id
         ";
 
@@ -101,6 +102,43 @@ class Product {
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function create($name, $price, $image, $subcategoryId, $stock) {
+        try {
+            $query = "INSERT INTO {$this->table} (name, price, image, subcategory_id, stock) 
+                     VALUES (:name, :price, :image, :subcategory_id, :stock)";
+            
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':price', $price);
+            $stmt->bindParam(':image', $image);
+            $stmt->bindParam(':subcategory_id', $subcategoryId, PDO::PARAM_INT);
+            $stmt->bindParam(':stock', $stock, PDO::PARAM_INT);
+            
+            if ($stmt->execute()) {
+                return ['success' => true, 'id' => $this->db->lastInsertId()];
+            } else {
+                return ['success' => false, 'error' => 'Failed to create product'];
+            }
+        } catch (PDOException $e) {
+            return ['success' => false, 'error' => $e->getMessage()];
+        }
+    }
+
+    public function delete($id) {
+        try {
+            $query = "DELETE FROM {$this->table} WHERE id = :id";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            if ($stmt->execute()) {
+                return ['success' => true];
+            } else {
+                return ['success' => false, 'error' => 'Failed to delete product'];
+            }
+        } catch (PDOException $e) {
+            return ['success' => false, 'error' => $e->getMessage()];
+        }
     }
 }
 ?>

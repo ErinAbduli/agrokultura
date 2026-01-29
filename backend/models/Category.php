@@ -15,8 +15,16 @@ class Category {
         $stmt->execute();   
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+        public function getAllSubcategoriesNoId() {
+        $stmt = $this->db->prepare(
+        "SELECT * FROM subcategories"
+    );
+    $stmt->execute();
 
-        }
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
     public function getAllCategories() {
         $stmt = $this->db->prepare(

@@ -58,11 +58,11 @@ class User{
 
         if($stmt->rowCount() > 0){
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            var_dump($row);
             if(password_verify($password, $row['password'])){
                 session_start();
                 $_SESSION['user_id'] = $row['id'];
                 $_SESSION['email'] = $row['email'];
+                $_SESSION['full_name'] = $row['full_name'];
                 $_SESSION['role'] = $row['role'];
                 return true;
             } else {

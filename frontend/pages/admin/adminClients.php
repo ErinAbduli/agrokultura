@@ -1,3 +1,32 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role'] != 1) {
+    header("Location: /agrokultura/frontend/pages/forms/login.php");
+    exit;
+}
+
+require_once __DIR__ . '/../../../backend/config/Database.php';
+require_once __DIR__ . '/../../../backend/models/User.php';
+
+$db = new Database();
+$connection = $db->getConnection();
+
+if (!isset($_SESSION['full_name']) || empty($_SESSION['full_name'])) {
+    $userModel = new User($connection);
+    $userQuery = "SELECT full_name FROM users WHERE id = :user_id";
+    $userStmt = $connection->prepare($userQuery);
+    $userStmt->bindParam(':user_id', $_SESSION['user_id']);
+    $userStmt->execute();
+    $userData = $userStmt->fetch(PDO::FETCH_ASSOC);
+    if ($userData) {
+        $_SESSION['full_name'] = $userData['full_name'];
+    }
+}
+
+$fullName = isset($_SESSION['full_name']) && !empty($_SESSION['full_name']) ? $_SESSION['full_name'] : 'Admin';
+$userName = explode(' ', $fullName)[0];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,7 +67,7 @@
         <div class="topbar">
             <div>
                 <h1>Klientët</h1>
-                <p>Pershendetje, Erin Abduli</p>
+                <p>Përshëndetje, <?= htmlspecialchars($userName) ?></p>
             </div>
         </div>
         <div class="search-bar">
