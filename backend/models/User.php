@@ -50,7 +50,7 @@ class User{
     }
 
     public function login($email, $password) {
-        $query = "SELECT id, full_name, email, password, role FROM {$this->table_name} WHERE email = :email";
+        $query = "SELECT id, full_name, email, phone, password, role FROM {$this->table_name} WHERE email = :email";
         
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':email', $email);
@@ -60,10 +60,27 @@ class User{
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             if(password_verify($password, $row['password'])){
                 session_start();
-                $_SESSION['user_id'] = $row['id'];
-                $_SESSION['email'] = $row['email'];
+                $_SESSION['user_id']   = $row['id'];
+                $_SESSION['email']     = $row['email'];
                 $_SESSION['full_name'] = $row['full_name'];
-                $_SESSION['role'] = $row['role'];
+                $_SESSION['phone']     = $row['phone'];
+                $_SESSION['role']      = $row['role'];
+
+                // Merr adresën nga tabela adresses
+                $address_stmt = $this->conn->prepare("
+                    SELECT address, qyteti, kodi_postar 
+                    FROM adresses 
+                    WHERE user_id = :id 
+                    LIMIT 1
+                ");
+                $address_stmt->bindParam(':id', $row['id'], PDO::PARAM_INT);
+                $address_stmt->execute();
+                $addr = $address_stmt->fetch(PDO::FETCH_ASSOC);
+
+                $_SESSION['address']     = $addr['address'] ?? '';
+                $_SESSION['qyteti']      = $addr['qyteti'] ?? '';
+                $_SESSION['kodi_postar'] = $addr['kodi_postar'] ?? '';
+
                 return true;
             } else {
                 return false;

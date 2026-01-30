@@ -1,3 +1,11 @@
+    <?php session_start();
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: login.php");
+        exit;
+    }
+    ?>
+    
+
 <!DOCTYPE html>
 <html lang="sq">
 
@@ -25,8 +33,8 @@
             <div class="profile-badge">
                 <i class="bi bi-person-circle"></i>
                 <div class="badge-text">
-                    <span class="name">Emri Mbiemri</span>
-                    <span class="email">email@shembull.com</span>
+                    <span class="name"><?php echo htmlspecialchars($_SESSION['full_name']); ?></span>
+                    <span class="email"><?php echo htmlspecialchars($_SESSION['email']); ?></span>
                 </div>
             </div>
         </div>
@@ -38,32 +46,32 @@
                 <div class="profile-fields">
                     <div class="profile-field">
                         <span class="label">Emri i plotë</span>
-                        <span class="value">Emri Mbiemri</span>
+                        <span class="value"><?php echo htmlspecialchars($_SESSION['full_name']); ?></span>
                     </div>
 
                     <div class="profile-field">
                         <span class="label">Email</span>
-                        <span class="value">email@shembull.com</span>
+                        <span class="value"><?php echo htmlspecialchars($_SESSION['email']); ?></span>
                     </div>
 
                     <div class="profile-field">
                         <span class="label">Telefon</span>
-                        <span class="value">+383 44 000 000</span>
+                        <span class="value"><?php echo htmlspecialchars($_SESSION['phone']); ?></span>
                     </div>
 
                     <div class="profile-field">
                         <span class="label">Qyteti</span>
-                        <span class="value">Prishtinë</span>
+                        <span class="value"><?php echo htmlspecialchars($_SESSION['qyteti']); ?></span>
                     </div>
 
                     <div class="profile-field" style="grid-column: 1 / -1;">
                         <span class="label">Adresa</span>
-                        <span class="value">Rr. Shembull, Nr. 10, Hyrja A</span>
+                        <span class="value"><?php echo htmlspecialchars($_SESSION['address']); ?></span>
                     </div>
 
                     <div class="profile-field">
                         <span class="label">Kodi postar</span>
-                        <span class="value">10000</span>
+                        <span class="value"><?php echo htmlspecialchars($_SESSION['kodi_postar']); ?></span>
                     </div>
                 </div>
             </section>
@@ -72,7 +80,7 @@
                 <h2><i class="bi bi-lightning-charge"></i> Veprime</h2>
 
                 <div class="profile-actions">
-                    <a class="primary" href="/agrokultura/frontend/pages/products/productCategory.php">
+                    <a class="primary" href="/agrokultura/frontend/pages/products/allProducts.php">
                         <i class="bi bi-bag"></i> Shfleto Produktet
                     </a>
                     <a href="/agrokultura/frontend/pages/cart/cart.php">
@@ -81,9 +89,11 @@
                     <a href="/agrokultura/frontend/pages/contactUs/naKontaktoni.php">
                         <i class="bi bi-headset"></i> Mbështetje
                     </a>
-                    <button type="button" class="danger">
-                        <i class="bi bi-box-arrow-right"></i> Dil
-                    </button>
+                    <form action="/agrokultura/backend/controllers/logout.php" method="POST">
+                        <button type="submit" class="danger">
+                            <i class="bi bi-box-arrow-right"></i> Dil
+                        </button>
+                    </form>
                 </div>
             </aside>
         </div>
