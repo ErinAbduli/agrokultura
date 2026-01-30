@@ -46,6 +46,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: product.php?id=" . $productId);
     exit();
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -81,13 +83,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <span class="rating-text">4.5 · 128 reviews</span>
                 </div>
                 <h4 class="price">€<?= $productDetails['price'] ?></h4>
-
+                <form id="add-to-cart-form" action="../../../backend/controllers/addToCart.php" method="POST">
                 <div class="section">
                     <label>Sasia</label>
                     <div class="qty-control">
-                        <button class="qty-btn" id="decrease">-</button>
-                        <input type="number" id="qty" value="1" min="1" max="100">
-                        <button class="qty-btn" id="increase">+</button>
+                        <button type="button" class="qty-btn" id="decrease">-</button>
+                        <input type="number" name="qty" id="qty" value="1" min="1" max="100">
+                        <button type="button" class="qty-btn" id="increase">+</button>
                     </div>
                 </div>
 
@@ -112,7 +114,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="actions">
                     <button class="buy-now">Blej Tani</button>
-                    <button class="add-to-cart">Shto në Shportë</button>
+                        <input type="hidden" name="product_id" value="<?= $productDetails['id'] ?>">
+                        <!-- <input type="hidden" name="qty" id="qty-hidden"> -->
+
+                        <button type="submit" class="add-to-cart">
+                            Shto në shportë
+                        </button>
+                    </form>
                 </div>
             </div>
 
@@ -195,7 +203,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <textarea name="review" placeholder="Shkruaj vlerësimin tënd..." id="textarea-review"
                     required></textarea>
 
-                <button type="submit">Shto vlerësimin</button>
+                <button type="submit" class="addReview">Shto vlerësimin</button>
             </form>
         </div>
     </div>
@@ -203,6 +211,31 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="../../assets/js/controlQty.js"></script>
     <script src="../../assets/js/hamburgerMenuToggler.js"></script>
     <script src="../../assets/js/modal.js"></script>
+    <script>
+        // const qtyInput = document.getElementById('qty');
+        // const hiddenQty = document.getElementById('qty-hidden');
+        // const cartForm = document.querySelector('form[action*="addToCart.php"]');
+        // const increaseBtn = document.getElementById('increase');
+        // const decreaseBtn = document.getElementById('decrease');
+
+        // function syncQty() {
+        //     hiddenQty.value = qtyInput.value;
+        // }
+
+        // // Sync on all events
+        // qtyInput.addEventListener('input', syncQty);
+        // qtyInput.addEventListener('change', syncQty);
+        // increaseBtn.addEventListener("click", () => setTimeout(syncQty, 10));
+        // decreaseBtn.addEventListener("click", () => setTimeout(syncQty, 10));
+
+        // // Most important: sync on form submit
+        // cartForm.addEventListener('submit', function(e) {
+        //     hiddenQty.value = qtyInput.value;
+        // });
+
+        // // Initial sync
+        // syncQty();
+    </script>
 </body>
 
 </html>

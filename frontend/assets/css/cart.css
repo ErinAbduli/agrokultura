@@ -565,44 +565,145 @@ Responsiviteti */
 	.hamburger-menu {
 		display: contents;
 	}
+	.cart-page {
+		padding: 0 15px;
+		margin: 20px auto;
+	}
+	.cart-page h1 {
+		font-size: 24px;
+		margin-bottom: 16px;
+	}
+	.cart-items {
+		padding: 12px;
+	}
 	.cart-item {
-		grid-template-columns: 80px 1fr;
-		gap: 12px;
-		padding: 12px 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		padding: 16px 0;
+		position: relative;
 	}
 	.cart-item img {
-		width: 80px;
-		height: 80px;
+		width: 70px;
+		height: 70px;
+		flex-shrink: 0;
+	}
+	.item-info {
+		flex: 1;
+		min-width: 0;
+		padding-right: 30px;
 	}
 	.item-info h3 {
 		font-size: 14px;
+		margin-bottom: 4px;
 	}
 	.item-info .brand {
 		font-size: 12px;
 	}
 	.item-info .price {
-		font-size: 13px;
-	}
-	.qty-control {
-		grid-column: 1 / -1;
-		justify-self: start;
-		margin-top: 8px;
-	}
-	.item-total {
-		grid-column: 2;
-		text-align: left;
-		min-width: auto;
 		font-size: 14px;
+		margin-top: 4px;
 	}
 	.remove-item {
-		grid-column: 2;
-		justify-self: end;
-		align-self: start;
+		position: absolute;
+		top: 16px;
+		right: 0;
 	}
+	.qty-control {
+		margin-top: 8px;
+	}
+	.qty-control input {
+		width: 45px;
+	}
+	.qty-btn {
+		width: 32px;
+		height: 32px;
+		font-size: 18px;
+	}
+	.item-total {
+		margin-left: auto;
+		margin-top: 8px;
+		font-size: 15px;
+		font-weight: 700;
+		text-align: right;
+	}
+	.cart-summary {
+		padding: 16px;
+	}
+	.cart-summary h3 {
+		font-size: 18px;
+		margin-bottom: 16px;
+	}
+	.summary-row {
+		font-size: 14px;
+		margin-bottom: 10px;
+	}
+	.summary-row.total {
+		font-size: 16px;
+		margin-top: 12px;
+		padding-top: 12px;
+		border-top: 1px solid #e5e7eb;
+	}
+	.checkout-btn {
+		padding: 12px;
+		font-size: 15px;
+	}
+}
+
+@media (max-width: 480px) {
 	.cart-page {
 		padding: 0 10px;
+		margin: 15px auto;
 	}
 	.cart-page h1 {
-		font-size: 24px;
+		font-size: 20px;
+		margin-bottom: 12px;
 	}
+	.cart-items {
+		padding: 10px;
+		border-radius: 12px;
+	}
+	.cart-item {
+		padding: 12px 0;
+	}
+	.cart-item img {
+		width: 60px;
+		height: 60px;
+	}
+	.item-info h3 {
+		font-size: 13px;
+	}
+	.item-info .price {
+		font-size: 13px;
+	}
+	.qty-control input {
+		width: 40px;
+		font-size: 14px;
+	}
+	.qty-btn {
+		width: 28px;
+		height: 28px;
+		font-size: 16px;
+	}
+	.item-total {
+		font-size: 14px;
+	}
+	.cart-summary {
+		padding: 14px;
+		border-radius: 12px;
+	}
+	.cart-summary h3 {
+		font-size: 16px;
+	}
+	.summary-row {
+		font-size: 13px;
+	}
+	.summary-row.total {
+		font-size: 15px;
+	}
+}
+
+.cart-items,
+.cart-layout {
+	min-height: 0;
 }

@@ -1,3 +1,32 @@
+<?php 
+session_start();
+require_once __DIR__ . "../../../../backend/config/Database.php";
+require_once __DIR__ . "../../../../backend/models/Cart.php";
+$database = new Database();
+$db = $database->getConnection();
+$cart = new Cart($db);
+
+$userId = 1; 
+
+if($_SESSION && isset($_SESSION['user_id'])) {
+    $userId = $_SESSION['user_id'];
+} else {
+    header("Location: /agrokultura/frontend/pages/forms/login.php");
+    exit();
+}
+
+$cartFetch = $cart->getCartItemsByUserId($userId);
+
+$cartItems = json_decode($cartFetch, true)['items'];
+$totalAmount = json_decode($cartFetch, true)['total_amount'] ?? 0;
+$transportFee = 5.00;
+
+if($totalAmount == 0){
+    $transportFee = 0.00;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,96 +47,63 @@
 
         <div class="cart-layout">
             <section class="cart-items">
+                <?php if (empty($cartItems)): ?>
+                <p style="font-weight: bold;">Shporta juaj është bosh.</p>
+                <?php else: ?>
+                <?php foreach ($cartItems as $item): ?>
                 <div class="cart-item">
-                    <img src="../../assets/images/bosch-saw.png" alt="Product">
+                    
+                        <img src="../../../backend/public/uploads/<?= $item['product_image'] ?>" alt="Product">
 
-                    <div class="item-info">
-                        <p class="brand">Bosch</p>
-                        <h3>Bosch Saw</h3>
-                        <p class="price">€120.00</p>
-                    </div>
+                        <div class="item-info">
+                            <h3><?= $item['product_name'] ?></h3>
+                            <p class="price">€<?= number_format($item['product_price'], 2) ?></p>
+                        </div>
 
-                    <div class="qty-control">
-                        <button class="qty-btn decrease">−</button>
-                        <input class="qty" type="number" value="1" min="1" max="100">
-                        <button class="qty-btn increase">+</button>
-                    </div>
+                        <div class="qty-control">
+                            <button type="button" class="qty-btn decrease">−</button>
+                            <input class="qty" type="number" value="<?= $item['quantity'] ?>" min="1" max="100">
+                            <button type="button" class="qty-btn increase">+</button>
+                        </div>
 
-                    <p class="item-total">€120.00</p>
-
-                    <button class="remove-item">
-                        <i class="bi bi-trash"></i>
-                    </button>
+                        <p class="item-total">€<?= number_format($item['product_price'] * $item['quantity'], 2) ?></p>
+                    <form action="../../../backend/controllers/deleteCartItem.php" method="POST">
+                        <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
+                        <input type="hidden" name="user_id" value="<?= $userId ?>">
+                        <button type="submit" class="remove-item">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </form>
                 </div>
-                <div class="cart-item">
-                    <img src="../../assets/images/bosch-saw.png" alt="Product">
-
-                    <div class="item-info">
-                        <p class="brand">Bosch</p>
-                        <h3>Bosch Saw</h3>
-                        <p class="price">€120.00</p>
-                    </div>
-
-                    <div class="qty-control">
-                        <button class="qty-btn decrease">−</button>
-                        <input class="qty" type="number" value="1" min="1" max="100">
-                        <button class="qty-btn increase">+</button>
-                    </div>
-
-                    <p class="item-total">€120.00</p>
-
-                    <button class="remove-item">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                </div>
-                <div class="cart-item">
-                    <img src="../../assets/images/bosch-saw.png" alt="Product">
-
-                    <div class="item-info">
-                        <p class="brand">Bosch</p>
-                        <h3>Bosch Saw</h3>
-                        <p class="price">€120.00</p>
-                    </div>
-
-                    <div class="qty-control">
-                        <button class="qty-btn decrease">−</button>
-                        <input class="qty" type="number" value="1" min="1" max="100">
-                        <button class="qty-btn increase">+</button>
-                    </div>
-
-                    <p class="item-total">€120.00</p>
-
-                    <button class="remove-item">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                </div>
-
+                <?php endforeach; ?>
+                <?php endif; ?>
             </section>
 
-            <aside class="cart-summary">
+            <aside class="cart-summary" <?php if (empty($cartItems)) echo 'style="display:none;"'; ?>>
                 <h3>Përmbledhje</h3>
 
                 <div class="summary-row">
                     <span>Nëntotali</span>
-                    <span>€120.00</span>
+                    <span>€<?= number_format($totalAmount, 2) ?></span>
                 </div>
 
                 <div class="summary-row">
                     <span>Transport</span>
-                    <span>€5.00</span>
+                    <span>€<?= number_format($transportFee, 2) ?></span>
                 </div>
 
                 <div class="summary-row total">
                     <span>Totali</span>
-                    <span>€125.00</span>
+                    <span>€<?= number_format($totalAmount + $transportFee, 2) ?></span>
                 </div>
 
                 <button class="checkout-btn">Vazhdo në Pagesë</button>
             </aside>
         </div>
     </div>
+    <?php if(!empty($cartItems)): ?>
     <?php include '../../includes/footer.php' ?>
-
+    <?php endif; ?>
     <script src="../../assets/js/hamburgerMenuToggler.js"></script>
     <script src="../../assets/js/cartControlQty.js"></script>
 </body>
