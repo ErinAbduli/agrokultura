@@ -1,3 +1,31 @@
+<?php 
+require_once __DIR__ . '/../../../backend/config/Database.php';
+$success = false;
+if($_SERVER['REQUEST_METHOD']=='POST'){
+	$full_name=trim($_POST['full_name']??'');
+	$phone=trim($_POST['phone']??'');
+	$email=trim($_POST['email']??'');
+	$options=trim($_POST['options']??'');
+	$mesazhi=trim($_POST['mesazhi']??'');
+
+	$db=new Database();
+	$conn=$db->getConnection();
+
+	$sql="INSERT INTO contacts (full_name,phone,email,options,mesazhi)
+	VALUES (:full_name,:phone,:email,:options,:mesazhi)";
+	$stmt=$conn->prepare($sql);
+	$stmt->bindParam(':full_name',$full_name);
+	$stmt->bindParam(':phone',$phone);
+	$stmt->bindParam(':email',$email);
+	$stmt->bindParam(':options',$options);
+	$stmt->bindParam(':mesazhi',$mesazhi);
+	$stmt->execute();
+	$success = true;
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="sq">
 
@@ -45,34 +73,36 @@
 					</p>
 				</div>
 			</div>
-
-			<!-- Pjesa e Djathtë - Forma -->
+			<?php if (!empty($success)): ?>
+    			<script>alert("Mesazhi u dergua me sukses!!")</script>
+			<?php endif; ?>
+			<!-- Pjesa e Djathte - Forma -->
 			<div class="right-section">
 				<h2 class="section-title">Dërgoni një Mesazh</h2>
 
-				<form class="contact-form" novalidate>
+				<form class="contact-form" method="POST" action="" novalidate>
 					<div class="form-row">
 						<div class="form-group">
 							<label for="name">Emri dhe Mbiemri</label>
-							<input type="text" id="name" placeholder="Emri dhe Mbiemri" required />
+							<input type="text" id="name" name="full_name" placeholder="Emri dhe Mbiemri" required />
 							<div id="nameErrorMsg" class="errorMsg"></div>
 						</div>
 						<div class="form-group">
 							<label for="phone">Telefoni</label>
-							<input type="tel" id="phone" placeholder="Numri i telefonit" required />
+							<input type="tel" name = "phone" id="phone" placeholder="Numri i telefonit" required />
 							<div id="telErrorMsg" class="errorMsg"></div>
 						</div>
 					</div>
 
 					<div class="form-group full-width">
 						<label for="email">Email</label>
-						<input type="email" id="email" placeholder="Adresa email" required />
+						<input type="email" id="email" name="email" placeholder="Adresa email" required />
 						<div id="emailErrorMsg" class="errorMsg"></div>
 					</div>
 
 					<div class="form-group full-width">
 						<label for="contact-option">Opsioni i Kontaktit</label>
-						<select id="contact-option" required>
+						<select id="contact-option" name="options" required>
 							<option value="">Zgjidhni një opsion kontakti</option>
 							<option value="general">Pyetje të Përgjithshme</option>
 							<option value="support">Mbështetje Teknike</option>
@@ -85,38 +115,15 @@
 
 					<div class="form-group full-width">
 						<label for="message">Mesazhi</label>
-						<textarea id="message" placeholder="Shkruani mesazhin tuaj këtu..." required></textarea>
+						<textarea id="message" name="mesazhi" placeholder="Shkruani mesazhin tuaj këtu..." required></textarea>
 						<div id="messageErrorMsg" class="errorMsg"></div>
 					</div>
-
-					<!-- <div class="form-group full-width">
-            <label>Bashkëngjit Skedarë (opsionale)</label>
-            <div class="file-upload">
-              <div class="upload-icon">📤</div>
-              <p>
-                Tërhiqni dhe lëshoni ose <strong>Zgjidhni skedarë</strong>
-              </p>
-              <p style="font-size: 0.85rem; color: #999">
-                JPG ose PDF (max. 10 MB)
-              </p>
-            </div>
-          </div> -->
-
-					<!-- <div class="checkbox-group">
-            <input type="checkbox" id="privacy" required />
-            <label for="privacy">
-              Jam i njohur dhe pajtohem me
-              <a href="#">Politikën e Privatësisë</a>. Shikoni më shumë detaje
-              në <a href="#">faqen e Politikës së Privatësisë</a>.
-            </label>
-          </div> -->
-
 					<button type="submit" class="submit-btn">Dërgo Mesazhin</button>
 				</form>
 			</div>
 		</div>
 
-		<!-- Harta -->
+		<!-- I-Frame -->
 		<div class="map-section">
 			<h2>Vendndodhja Jonë</h2>
 			<iframe
