@@ -58,16 +58,16 @@
                     <div class="category-card">
                         <div class="categories-img-wrapper">
                             <img src="./frontend/assets/images/electrical.jpg" alt="Elektrike">
-                            <button onclick="window.location.href = './frontend/pages/products/productCategory.html'"
+                            <button onclick="window.location.href = './frontend/pages/products/productCategory.php?id=1'"
                                 class="hover-btn">Shiko më Shumë <i class="bi bi-chevron-right"></i></button>
                         </div>
-                        <p>Elektrike</p>
+                        <p>Fara & Bimë</p>
                     </div>
                     <div class="category-card">
                         <div class="categories-img-wrapper">
                             <img src="./frontend/assets/images/power-tools.jpg" alt="Mjete Pune">
                             <button class="hover-btn"
-                                onclick="window.location.href = './frontend/pages/products/productCategory.html'">Shiko
+                                onclick="window.location.href = './frontend/pages/products/productCategory.php?id=5'">Shiko
                                 më Shumë
                                 <i class="bi bi-chevron-right"></i></button>
                         </div>
@@ -76,31 +76,31 @@
                     <div class="category-card">
                         <div class="categories-img-wrapper">
                             <img src="./frontend/assets/images/color.png" alt="Ngjyra">
-                            <button onclick="window.location.href = './frontend/pages/products/productCategory.html'"
+                            <button onclick="window.location.href = './frontend/pages/products/productCategory.php?id=7'"
                                 class="hover-btn">Shiko më Shumë <i class="bi bi-chevron-right"></i></button>
                         </div>
-                        <p>Ngjyra</p>
+                        <p>Vajra & Lubrifikantë</p>
                     </div>
                     <div class="category-card">
                         <div class="categories-img-wrapper">
                             <img src="./frontend/assets/images/gypa.png" alt="">
-                            <button onclick="window.location.href = './frontend/pages/products/productCategory.html'"
+                            <button onclick="window.location.href = './frontend/pages/products/productCategory.php?id=6'"
                                 class="hover-btn">Shiko më Shumë <i class="bi bi-chevron-right"></i></button>
                         </div>
-                        <p>Tuba</p>
+                        <p>Furnizime Bujqësore & Ndërtim</p>
                     </div>
                     <div class="category-card">
                         <div class="categories-img-wrapper">
                             <img src="./frontend/assets/images/hidraulik.jpg" alt="">
-                            <button onclick="window.location.href = './frontend/pages/products/productCategory.html'"
+                            <button onclick="window.location.href = './frontend/pages/products/productCategory.php?id=3'"
                                 class="hover-btn">Shiko më Shumë <i class="bi bi-chevron-right"></i></button>
                         </div>
-                        <p>Hidraulike</p>
+                        <p>Ujitje</p>
                     </div>
                     <div class="category-card">
                         <div class="categories-img-wrapper">
                             <img src="./frontend/assets/images/kopesht.png" alt="">
-                            <button onclick="window.location.href = './frontend/pages/products/productCategory.html'"
+                            <button onclick="window.location.href = './frontend/pages/products/productCategory.php?id=4'"
                                 class="hover-btn">Shiko më Shumë <i class="bi bi-chevron-right"></i></button>
                         </div>
                         <p>Mjete & Pajisje Kopshti</p>
