@@ -61,5 +61,14 @@ class Cart {
         $stmt->bindParam(':productId', $productId, PDO::PARAM_INT);
         return $stmt->execute();
     }
+
+    public function clearCartByUserId($userId) {
+        $stmt = $this->db->prepare(
+            "DELETE FROM {$this->table} 
+            WHERE user_id = :userId"
+        );
+        $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
 }
 ?>

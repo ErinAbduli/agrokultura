@@ -66,7 +66,6 @@ class User{
                 $_SESSION['phone']     = $row['phone'];
                 $_SESSION['role']      = $row['role'];
 
-                // Merr adresën nga tabela adresses
                 $address_stmt = $this->conn->prepare("
                     SELECT address, qyteti, kodi_postar 
                     FROM adresses 

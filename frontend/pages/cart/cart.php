@@ -17,9 +17,18 @@ if($_SESSION && isset($_SESSION['user_id'])) {
 
 $cartFetch = $cart->getCartItemsByUserId($userId);
 
+if(!$cartFetch) {
+    die("Error fetching cart items.");
+}
+
 $cartItems = json_decode($cartFetch, true)['items'];
 $totalAmount = json_decode($cartFetch, true)['total_amount'] ?? 0;
 $transportFee = 5.00;
+
+
+if(!$cartItems){
+    $cartItems = [];
+}
 
 if($totalAmount == 0){
     $transportFee = 0.00;
@@ -66,7 +75,7 @@ if($totalAmount == 0){
                             <button type="button" class="qty-btn increase">+</button>
                         </div>
 
-                        <p class="item-total">€<?= number_format($item['product_price'] * $item['quantity'], 2) ?></p>
+                        <p class="item-total">€<?= number_format($item['product_price'], 2) ?></p>
                     <form action="../../../backend/controllers/deleteCartItem.php" method="POST">
                         <input type="hidden" name="product_id" value="<?= $item['product_id'] ?>">
                         <input type="hidden" name="user_id" value="<?= $userId ?>">
@@ -96,8 +105,13 @@ if($totalAmount == 0){
                     <span>Totali</span>
                     <span>€<?= number_format($totalAmount + $transportFee, 2) ?></span>
                 </div>
-
-                <button class="checkout-btn">Vazhdo në Pagesë</button>
+                
+                <form action="../../../backend/controllers/checkout.php" method="POST">
+                    <input type="hidden" name="user_id" value="<?= $userId ?>">
+                    <input type="hidden" name="total_amount" value="<?= $totalAmount + $transportFee ?>">
+                    <input type="hidden" name="cartItems" value='<?= json_encode($cartItems) ?>'>
+                    <button type="submit" class="checkout-btn">Vazhdo në Pagesë</button>
+                </form>
             </aside>
         </div>
     </div>
