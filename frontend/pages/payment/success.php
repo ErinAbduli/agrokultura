@@ -49,14 +49,14 @@ if($orderStatus !== 'paid') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Success - Agrokultura</title>
+    <title>Pagesa e suksesshme - Agrokultura</title>
     <link rel="stylesheet" href="../../../frontend/assets/css/success.css">
 </head>
 <body>
     <div class="success">
-        <h1>Payment Successful!</h1>
-        <p>Thank you for your purchase. Your order ID is: <?= htmlspecialchars($orderId) ?></p>
-        <a href="/agrokultura/index.php" class="btn-home">Return to Home</a>
+        <h1>Pagesa u krye me sukses!</h1>
+        <p>Faleminderit për blerjen tuaj. ID e porosisë suaj është: <?= htmlspecialchars($orderId) ?></p>
+        <a href="/agrokultura/index.php" class="btn-home">Kthehu në faqen kryesore</a>
     </div>
 </body>
 </html>

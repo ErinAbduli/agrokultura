@@ -56,38 +56,38 @@ if($order['user_id'] != $_SESSION['user_id']) {
 <body>
     <?php include '../../includes/header.php' ?>
     <div class="checkout-page">
-        <h1>Checkout</h1>
+        <h1>Pagesa</h1>
         <div class="container">
             <div class="billing-info">
                 <form id="bill-form" class="billing-form" method="POST"
                 action="../../../backend/controllers/payment.php">
                     <div class="billing">
-                        <h3>Billing Information</h3>
-                        <label for="full-name">Full Name</label>
+                        <h3>Informacioni i faturimit</h3>
+                        <label for="full-name">Emri i plotë</label>
                         <input type="text" id="full-name" name="full-name" value="<?= $_SESSION['full_name'] ?? '' ?>" required>
                         <small class="error"></small>
 
-                        <label for="address">Address</label>
+                        <label for="address">Adresa</label>
                         <input type="text" id="address" name="address" value="<?= $_SESSION['address'] ?? '' ?>" required>
                         <small class="error"></small>
 
-                        <label for="city">City</label>
+                        <label for="city">Qyteti</label>
                         <input type="text" id="city" name="city" value="<?= $_SESSION['qyteti'] ?? '' ?>" required>
                         <small class="error"></small>
 
-                        <label for="postal-code">Postal Code</label>
+                        <label for="postal-code">Kodi postar</label>
                         <input type="text" id="postal-code" name="postal-code" value="<?= $_SESSION['kodi_postar'] ?? '' ?>" required>
                         <small class="error"></small>
                     </div>
                     
                     <div class="billing">
-                        <h3>Payment Details</h3>
+                        <h3>Detajet e pagesës</h3>
 
-                        <label for="card-number">Card Number</label>
+                        <label for="card-number">Numri i kartës</label>
                         <input type="text" id="card-number" name="card-number" required>
                         <small class="error"></small>
 
-                        <label for="expiry-date">Expiry Date</label>
+                        <label for="expiry-date">Data e skadencës</label>
                         <input type="text" id="expiry-date" name="expiry-date" required>
                         <small class="error"></small>
 
@@ -100,30 +100,30 @@ if($order['user_id'] != $_SESSION['user_id']) {
             </div>
             <div class="summary-info">
                 <div>
-                    <h3>Order Details</h3>
+                    <h3>Detajet e porosisë</h3>
                         <?php foreach($orderDetails as $item): ?>
                             <div class="order-card">
                                 <img height="100px" src="/agrokultura/backend/public/uploads/<?= $item['product_image'] ?>">
                                 <div class="order-info">
                                     <h4><?= htmlspecialchars($item['product_name']) ?></h4>
-                                    <p>Quantity: <?= $item['quantity'] ?></p>
-                                    <p>Price: €<?= number_format($item['price'] * $item['quantity'], 2) ?></p>
+                                    <p>Sasia: <?= $item['quantity'] ?></p>
+                                    <p>Cmimi: €<?= number_format($item['price'] * $item['quantity'], 2) ?></p>
                                 </div>
                             </div>
                         <?php endforeach; ?>
                 </div>
                 <div class="order-summary">
-                    <h3>Order Summary</h3>
+                    <h3>Përmbledhja e porosisë</h3>
                     <div class="summary-item">
-                        <span>Subtotal:</span>
+                        <span>Nëntotali:</span>
                         <span>€<?= number_format($order['total'] - 5, 2) ?></span>
                     </div>
                     <div class="summary-item">
-                        <span>Shipping:</span>
+                        <span>Transporti:</span>
                         <span>€5.00</span>
                     </div>
                     <div class="summary-item total">
-                        <span>Total:</span>
+                        <span>Totali:</span>
                         <span>€<?= number_format($order['total'], 2) ?></span>
                     </div>
                     <button type="submit" form="bill-form" class="place-order-btn">Place Order</button>
@@ -133,62 +133,5 @@ if($order['user_id'] != $_SESSION['user_id']) {
     </div>
     <?php include '../../includes/footer.php' ?>
     <script src="../../assets/js/hamburgerMenuToggler.js"></script>
-    <!-- <script>
-        const form = document.querySelector(".billing-form");
-
-        form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        let valid = true;
-
-        const fields = form.querySelectorAll("input");
-
-        fields.forEach(input => {
-            clearError(input);
-
-            // Required
-            if (!input.value.trim()) {
-            showError(input, "This field is required");
-            valid = false;
-            return;
-            }
-
-            // Card number (16 digits)
-            if (input.id === "card-number" && !/^\d{16}$/.test(input.value)) {
-            showError(input, "Card number must be 16 digits");
-            valid = false;
-            }
-
-            // Expiry date (MM/YY)
-            if (input.id === "expiry-date" && !/^(0[1-9]|1[0-2])\/\d{2}$/.test(input.value)) {
-            showError(input, "Format must be MM/YY");
-            valid = false;
-            }
-
-            // CVV (3 digits)
-            if (input.id === "cvv" && !/^\d{3}$/.test(input.value)) {
-            showError(input, "CVV must be 3 digits");
-            valid = false;
-            }
-        });
-
-        if (valid) {
-            form.submit(); // or AJAX / fetch
-        }
-        });
-
-        function showError(input, message) {
-        input.classList.add("invalid");
-        const error = input.nextElementSibling;
-        error.textContent = message;
-        error.style.display = "block";
-        }
-
-        function clearError(input) {
-        input.classList.remove("invalid");
-        const error = input.nextElementSibling;
-        error.style.display = "none";
-        }
-
-    </script> -->
 </body>
 </html>
