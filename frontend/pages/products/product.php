@@ -88,7 +88,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label>Sasia</label>
                     <div class="qty-control">
                         <button type="button" class="qty-btn" id="decrease">-</button>
-                        <input type="number" name="qty" id="qty" value="1" min="1" max="100">
+                            <input type="number" name="qty" id="qty" value="1" min="1" max="100">
                         <button type="button" class="qty-btn" id="increase">+</button>
                     </div>
                 </div>
@@ -113,17 +113,18 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <div class="actions">
-                    <button class="buy-now">Blej Tani</button>
+                    <button class="buy-now" form="buyNow">Blej Tani</button>
                         <input type="hidden" name="product_id" value="<?= $productDetails['id'] ?>">
-                        <!-- <input type="hidden" name="qty" id="qty-hidden"> -->
-
                         <button type="submit" class="add-to-cart">
                             Shto në shportë
                         </button>
                     </form>
                 </div>
             </div>
-
+            <form id="buyNow" action="../../../backend/controllers/buyNow.php" method="POST">
+                            <input type="hidden" name="product_id" value="<?= $productDetails['id'] ?>">
+                            <input type="hidden" name="qty" id="qty_buy_now" value="1" min="1" max="100">
+            </form>
         </div>
         <div class="reviews-card">
             <div class="reviews-header">
@@ -212,29 +213,23 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="../../assets/js/hamburgerMenuToggler.js"></script>
     <script src="../../assets/js/modal.js"></script>
     <script>
-        // const qtyInput = document.getElementById('qty');
-        // const hiddenQty = document.getElementById('qty-hidden');
-        // const cartForm = document.querySelector('form[action*="addToCart.php"]');
-        // const increaseBtn = document.getElementById('increase');
-        // const decreaseBtn = document.getElementById('decrease');
+        // Sync qty inputs in both directions
+        const qtyInput = document.getElementById("qty");
+        const qtyBuyNow = document.getElementById("qty_buy_now");
 
-        // function syncQty() {
-        //     hiddenQty.value = qtyInput.value;
-        // }
+        // Sync on manual input
+        qtyInput.addEventListener("input", e => {
+            qtyBuyNow.value = e.target.value;
+        });
 
-        // // Sync on all events
-        // qtyInput.addEventListener('input', syncQty);
-        // qtyInput.addEventListener('change', syncQty);
-        // increaseBtn.addEventListener("click", () => setTimeout(syncQty, 10));
-        // decreaseBtn.addEventListener("click", () => setTimeout(syncQty, 10));
+        // Sync when buttons change the value
+        document.getElementById("increase").addEventListener("click", () => {
+            qtyBuyNow.value = qtyInput.value;
+        });
 
-        // // Most important: sync on form submit
-        // cartForm.addEventListener('submit', function(e) {
-        //     hiddenQty.value = qtyInput.value;
-        // });
-
-        // // Initial sync
-        // syncQty();
+        document.getElementById("decrease").addEventListener("click", () => {
+            qtyBuyNow.value = qtyInput.value;
+        });
     </script>
 </body>
 
