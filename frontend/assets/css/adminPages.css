@@ -12,7 +12,7 @@ body {
 	background: #22a561;
 	color: white;
 	padding: 25px;
-	height: screen;
+	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
 	align-items: start;
@@ -189,25 +189,35 @@ table td {
 	width: 100%;
 }
 
+a {
+	text-decoration: none;
+	color: white;
+	transition: all 0.3s ease;
+}
+
+a:hover {
+	color: #e7e7e7;
+}
+
 @media (max-width: 992px) {
 	.sidebar {
 		width: 180px;
 		padding: 20px;
 	}
-	
+
 	.main {
 		padding: 15px;
 	}
-	
+
 	.product-table {
 		grid-template-columns: 1fr;
 	}
-	
+
 	.search-bar {
 		flex-direction: column;
 		gap: 10px;
 	}
-	
+
 	.search-bar input {
 		width: 100%;
 	}
@@ -217,7 +227,7 @@ table td {
 	body {
 		flex-direction: column;
 	}
-	
+
 	.sidebar {
 		width: 100%;
 		height: auto;
@@ -228,13 +238,13 @@ table td {
 		align-items: center;
 		flex-wrap: wrap;
 	}
-	
+
 	.sidebar h2 {
 		width: 100%;
 		text-align: center;
 		margin-bottom: 15px;
 	}
-	
+
 	.sidebar ul {
 		display: flex;
 		flex-wrap: wrap;
@@ -242,60 +252,60 @@ table td {
 		justify-content: center;
 		padding-top: 0;
 	}
-	
+
 	.sidebar ul li {
 		padding: 8px 12px;
 		font-size: 14px;
 	}
-	
+
 	.main {
 		padding: 15px 10px;
 		width: 100%;
 	}
-	
+
 	.topbar {
 		flex-direction: column;
 		gap: 15px;
 		align-items: flex-start;
 	}
-	
+
 	.search-bar {
 		width: 100%;
 		flex-direction: column;
 	}
-	
+
 	.search-bar input {
 		width: 100%;
 	}
-	
+
 	.product-table {
 		grid-template-columns: 1fr;
 		gap: 15px;
 	}
-	
+
 	.product-table-box {
 		padding: 15px;
 		overflow-x: auto;
 	}
-	
+
 	table {
 		min-width: 600px;
 	}
-	
+
 	.action-btns {
 		flex-direction: column;
 		gap: 8px;
 	}
-	
+
 	.action-btns button {
 		width: 100%;
 		padding: 8px;
 	}
-	
+
 	.add-product {
 		width: 100%;
 	}
-	
+
 	.bar {
 		flex-direction: column;
 		gap: 10px;
@@ -306,29 +316,29 @@ table td {
 	.sidebar {
 		padding: 10px;
 	}
-	
+
 	.sidebar h2 {
 		font-size: 18px;
 		margin-bottom: 10px;
 	}
-	
+
 	.sidebar ul li {
 		padding: 6px 10px;
 		font-size: 12px;
 	}
-	
+
 	.main {
 		padding: 10px 5px;
 	}
-	
+
 	.topbar {
 		font-size: 14px;
 	}
-	
+
 	.product-table-box {
 		padding: 12px;
 	}
-	
+
 	table th,
 	table td {
 		padding: 8px 5px;

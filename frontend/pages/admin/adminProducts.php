@@ -68,8 +68,8 @@ $userName = explode(' ', $fullName)[0];
             <a href="./adminClients.php">
                 <li><i class="bi bi-person"></i> &nbsp;Klientët</li>
             </a>
-            <a href="">
-                <li><i class="bi bi-graph-up"></i> &nbsp;Analitikat</li>
+            <a href="./adminContacts.php">
+                <li><i class="bi bi-chat-left-text"></i> &nbsp;Mesazhet e Kontaktit</li>
             </a>
         </ul>
     </div>
@@ -77,13 +77,13 @@ $userName = explode(' ', $fullName)[0];
     <div class="main">
         <div class="topbar">
             <div>
-                <h1>Produktet</h1>
+                <h1>Mesazhet e Kontaktit</h1>
                 <p>Përshëndetje, <?= htmlspecialchars($userName) ?></p>
             </div>
         </div>
         <div class="search-bar">
             <div class="bar">
-                <input type="text" id="search" class="search" name="search" placeholder="Kerko Produkte...">
+                <input type="text" id="search" class="search" name="search" placeholder="Kerko Mesazhe...">
                 <button><i class="bi bi-search" style="color: white;"></i></button>
             </div>
             <div class="add-product">
@@ -159,9 +159,12 @@ $userName = explode(' ', $fullName)[0];
                                 <td><?= htmlspecialchars($product['stock']) ?></td>
                                 <td><?= htmlspecialchars($product['subcategory_id'] ?? 'N/A') ?></td>
                                 <td class="action-btns">
-                                    <button class="btn-1" onclick="editProduct(<?= $product['id'] ?>)">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </button>
+                                    <form action="./editProducts.php" method="POST">
+                                        <input type="hidden" name="product_id" value="<?= $product['id'] ?>" />
+                                        <button class="btn-1">
+                                            <i class="bi bi-pencil-square" style="color: white;"></i>
+                                        </button>
+                                    </form>
                                     <button class="btn-2" onclick="deleteProduct(<?= $product['id'] ?>, '<?= htmlspecialchars(addslashes($product['name'])) ?>')">
                                         <i class="bi bi-trash-fill"></i>
                                     </button>

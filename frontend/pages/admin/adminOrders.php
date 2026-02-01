@@ -66,8 +66,8 @@ $orders = $ordersStmt->fetchAll(PDO::FETCH_ASSOC);
             <a href="./adminClients.php">
                 <li><i class="bi bi-person"></i> &nbsp;Klientët</li>
             </a>
-            <a href="">
-                <li><i class="bi bi-graph-up"></i> &nbsp;Analitikat</li>
+            <a href="./adminOrders.php">
+                <li><i class="bi bi-chat-left-text"></i> &nbsp;Mesazhet e Kontaktit</li>
             </a>
         </ul>
     </div>
@@ -94,7 +94,7 @@ $orders = $ordersStmt->fetchAll(PDO::FETCH_ASSOC);
                         <th>Statusi</th>
                         <th>Data</th>
                         <th>Totali</th>
-                        <th>Ndrysho</th>
+                        <th>Ndrysho Statusin</th>
                     </tr>
                 </thead>
                 <tbody id="ordersTableBody">
@@ -107,9 +107,10 @@ $orders = $ordersStmt->fetchAll(PDO::FETCH_ASSOC);
                                 <td><?= date('d/m/Y', strtotime($order['created_at'])) ?></td>
                                 <td>€<?= number_format($order['total'], 2) ?></td>
                                 <td class="action-btns">
-                                    <button class="btn-1" onclick="editOrder(<?= $order['id'] ?>)">
-                                        <i class="bi bi-pencil-square" style="color: white;"></i>
-                                    </button>
+                                    <form action="./editOrders.php" method="POST">
+                                        <input type="hidden" name="order_id" value="<?= $order['id'] ?>" />
+                                        <button type="submit" class="btn-1"><i class="bi bi-pencil-square" style="color: white;"></i></button>
+                                    </form>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

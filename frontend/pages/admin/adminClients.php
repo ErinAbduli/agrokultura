@@ -27,11 +27,10 @@ if (!isset($_SESSION['full_name']) || empty($_SESSION['full_name'])) {
 $fullName = isset($_SESSION['full_name']) && !empty($_SESSION['full_name']) ? $_SESSION['full_name'] : 'Admin';
 $userName = explode(' ', $fullName)[0];
 
-$usersQuery = "SELECT u.id, u.full_name, u.email, u.phone, o.created_at,
+$usersQuery = "SELECT u.id, u.full_name, u.email, u.phone, u.role,
                 COUNT(o.id) as total_orders
                 FROM users u
                 LEFT JOIN orders o ON u.id = o.user_id
-                WHERE u.role != 1
                 GROUP BY u.id
                 ORDER BY o.created_at DESC";
 $usersStmt = $connection->prepare($usersQuery);
@@ -65,11 +64,11 @@ $users = $usersStmt->fetchAll(PDO::FETCH_ASSOC);
             <a href="./adminOrders.php">
                 <li><i class="bi bi-truck"></i> &nbsp;Porositë</li>
             </a>
-            <a href="">
+            <a href="./adminClients.php">
                 <li class="active"><i class="bi bi-person"></i> &nbsp;Klientët</li>
             </a>
-            <a href="">
-                <li><i class="bi bi-graph-up"></i> &nbsp;Analitikat</li>
+            <a href="./adminContacts.php">
+                <li><i class="bi bi-chat-left-text"></i> &nbsp;Mesazhet e Kontaktit</li>
             </a>
         </ul>
     </div>
@@ -107,7 +106,9 @@ $users = $usersStmt->fetchAll(PDO::FETCH_ASSOC);
                     echo 'Përdoruesi nuk u gjet!';
                 } elseif ($_GET['error'] === 'cannot_delete_admin') {
                     echo 'Nuk mund të fshini administratorin!';
-                }
+                } elseif ($_GET['error'] === 'cannot_edit_admin') {
+                    echo 'Nuk mund të ndryshoni të dhënat e një administratori tjetër!';
+                }   
                 ?>
             </div>
         <?php endif; ?>
@@ -119,7 +120,7 @@ $users = $usersStmt->fetchAll(PDO::FETCH_ASSOC);
                         <th>Emri</th>
                         <th>Email</th>
                         <th>Numri</th>
-                        <th>Data e Regjistrimit</th>
+                        <th>Roli</th>
                         <th>Total Porosi</th>
                         <th>Ndrysho</th>
                     </tr>
@@ -132,12 +133,16 @@ $users = $usersStmt->fetchAll(PDO::FETCH_ASSOC);
                                 <td><?= htmlspecialchars($user['full_name']) ?></td>
                                 <td><?= htmlspecialchars($user['email']) ?></td>
                                 <td><?= htmlspecialchars($user['phone'] ?? 'N/A') ?></td>
-                                <td><?= date('d/m/Y', strtotime($user['created_at'])) ?></td>
+                                <td><?= ($user['role'] == 1) ? 'Administrator' : 'Klient' ?></td>
                                 <td><?= htmlspecialchars($user['total_orders']) ?></td>
                                 <td class="action-btns">
-                                    <button class="btn-1" onclick="editUser(<?= $user['id'] ?>)">
-                                        <i class="bi bi-pencil-square" style="color:white;"></i>
-                                    </button>
+                                    <form action="./editClients.php" method="POST" >
+                                        <input type="hidden" name="user_id" value="<?= $user['id'] ?>" />
+                                        <input type="hidden" name="role" value="<?= $user['role'] ?>" />
+                                        <button class="btn-1">
+                                            <i class="bi bi-pencil-square" style="color:white;"></i>
+                                        </button>
+                                    </form>
                                     <button class="btn-2" onclick="deleteUser(<?= $user['id'] ?>, '<?= htmlspecialchars(addslashes($user['full_name'])) ?>')">
                                         <i class="bi bi-trash-fill" style="color:white;"></i>
                                     </button>

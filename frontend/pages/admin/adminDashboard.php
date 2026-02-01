@@ -44,7 +44,7 @@ $totalClientsStmt = $connection->prepare($totalClientsQuery);
 $totalClientsStmt->execute();
 $totalClients = $totalClientsStmt->fetch(PDO::FETCH_ASSOC)['total_clients'];
 
-$shippingOrdersQuery = "SELECT COUNT(*) as shipping_orders FROM orders WHERE status IN ('shipped', 'in_process', 'pending')";
+$shippingOrdersQuery = "SELECT COUNT(*) as shipping_orders FROM orders WHERE status IN ('shipped')";
 $shippingOrdersStmt = $connection->prepare($shippingOrdersQuery);
 $shippingOrdersStmt->execute();
 $shippingOrders = $shippingOrdersStmt->fetch(PDO::FETCH_ASSOC)['shipping_orders'];
@@ -99,8 +99,8 @@ $bestSelling = $bestSellingStmt->fetchAll(PDO::FETCH_ASSOC);
             <a href="./adminClients.php">
                 <li><i class="bi bi-person"></i> &nbsp;Klientët</li>
             </a>
-            <a href="">
-                <li><i class="bi bi-graph-up"></i> &nbsp;Analitikat</li>
+            <a href="./adminContacts.php">
+                <li><i class="bi bi-chat-left-text"></i> &nbsp;Mesazhet e Kontaktit</li>
             </a>
         </ul>
     </div>
@@ -130,11 +130,6 @@ $bestSelling = $bestSellingStmt->fetchAll(PDO::FETCH_ASSOC);
                 <h3>Porositë në Dërgesë</h3>
                 <p><?= $shippingOrders ?></p>
             </div>
-        </div>
-
-        <div class="chart">
-            <h2>Shitjet Mujore</h2>
-            <div class="chart-box">CHART</div>
         </div>
 
         <div class="tables">

@@ -88,5 +88,19 @@ class User{
             return false;
         }
     }
+
+    public function getById($userId) {
+        $query = "SELECT id, full_name, email, phone, role FROM {$this->table_name} WHERE id = :id LIMIT 1";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        if($stmt->rowCount() > 0){
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } else {
+            return null;
+        }
+    }
 }
 ?>
