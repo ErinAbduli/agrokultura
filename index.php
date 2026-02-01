@@ -6,7 +6,9 @@ $database = new Database();
 $db = $database->getConnection();
 $productModel = new Product($db);
 
-$faraMolle = $productModel->getById(3);
+$bidon = $productModel->getById(12);
+$vida = $productModel->getById(10);
+$bari = $productModel->getById(9);
 
 ?>
 
@@ -69,7 +71,7 @@ $faraMolle = $productModel->getById(3);
                 <div class="categories-cards">
                     <div class="category-card">
                         <div class="categories-img-wrapper">
-                            <img src="./frontend/assets/images/electrical.jpg" alt="Elektrike">
+                            <img src="./frontend/assets/images/seeds.avif" alt="Elektrike">
                             <button onclick="window.location.href = './frontend/pages/products/productCategory.php?id=1'"
                                 class="hover-btn">Shiko më Shumë <i class="bi bi-chevron-right"></i></button>
                         </div>
@@ -129,7 +131,7 @@ $faraMolle = $productModel->getById(3);
                 <img src="./frontend/assets/images/milwaukee.png" alt="Milwaukee" />
                 <img src="./frontend/assets/images/wurth.svg" alt="Wurth" />
                 <img src="./frontend/assets/images/makita.png" alt="Makita" />
-                <img src="./frontend/assets/images/hilti.svg" alt="Node.js" />
+                <img src="./frontend/assets/images/hilti.svg" alt="Hilti" />
                 <img src="./frontend/assets/images/parkside.png" alt="Parkside" />
             </div>
         </div>
@@ -138,35 +140,34 @@ $faraMolle = $productModel->getById(3);
             <div class="deals-container">
                 <div class="deals-card">
                     <div class="deals-img-box">
-                        <img src="./backend/public/uploads/<?= $faraMolle['image'] ?>"
+                        <img src="./backend/public/uploads/<?= $bidon['image'] ?>"
                             alt="IngCo Drill" class="mouse" width="50px">
                     </div>
                     <div class="deals-info">
-                        <h3><?= $faraMolle['name'] ?></h3>
-                        <h2 class="deals-price"><small class="discount-price"> <?= $faraMolle['price'] * 1.2 ?> </small><?= $faraMolle['price'] ?> €</h2>
-                        <a href="./frontend/pages/products/product.html" class="deals-buy">Blej Tani</a>
+                        <h3><?= $bidon['name'] ?></h3>
+                        <h2 class="deals-price"><small class="discount-price"> <?= $bidon['price'] * 1.2 ?> </small><?= $bidon['price'] ?> €</h2>
+                        <a href="./frontend/pages/products/product.php?id=12" class="deals-buy">Blej Tani</a>
                     </div>
                 </div>
                 <div class="deals-card">
                     <div class="deals-img-box">
-                        <img src="./frontend/assets/images/snow-shovel.png" alt="Snow Shovel" class="mouse"
+                        <img src="./backend/public/uploads/<?= $vida['image'] ?>" alt="Snow Shovel" class="mouse"
                             width="100px">
                     </div>
                     <div class="deals-info">
-                        <h3>Lopatë Bore</h3>
-                        <h2 class="deals-price"><small class="discount-price">15.99</small> 9.<small>99</small> €</h2>
-                        <a href="./frontend/pages/products/product.html" class="deals-buy">Blej Tani</a>
+                        <h3><?= $vida['name'] ?></h3>
+                        <h2 class="deals-price"><small class="discount-price"> <?= $vida['price'] * 1.2 ?> </small><?= $vida['price'] ?> €</h2>
+                        <a href="./frontend/pages/products/product.php?id=10" class="deals-buy">Blej Tani</a>
                     </div>
                 </div>
                 <div class="deals-card">
                     <div class="deals-img-box">
-                        <img src="https://www.bosch-professional.com/za/en/ocsmedia/304054-54/application-image/1434x828/hand-held-circular-saw-gks-140-06016b30k1.png"
-                            alt="mouse corsair" class="bosch-saw" width="100px">
+                        <img src="./backend/public/uploads/<?= $bari['image'] ?>" class="bosch-saw" width="100px">
                     </div>
                     <div class="deals-info">
-                        <h3>Bosch GKS-140 Turbo</h3>
-                        <h2 class="deals-price"><small class="discount-price">155.99</small> 99.<small>98</small> €</h2>
-                        <a href="./frontend/pages/products/product.html" class="deals-buy">Blej Tani</a>
+                        <h3><?= $bari['name'] ?></h3>
+                        <h2 class="deals-price"><small class="discount-price"> <?= $bari['price'] * 1.2 ?> </small><?= $bari['price'] ?> €</h2>
+                        <a href="./frontend/pages/products/product.php?id=9" class="deals-buy">Blej Tani</a>
                     </div>
                 </div>
             </div>
@@ -225,6 +226,9 @@ $faraMolle = $productModel->getById(3);
     <script src="./frontend/assets/js/slider.js"></script>
     <script src="./frontend/assets/js/faq.js"></script>
     <script src="./frontend/assets/js/hamburgerMenuToggler.js"></script>
+    <script>
+
+    </script>
 </body>
 
 </html>

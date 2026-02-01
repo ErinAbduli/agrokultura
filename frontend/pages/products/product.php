@@ -76,7 +76,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="product-desc">
                 <h3 class="title"><?= $productDetails['name'] ?></h3>
                 <?php if ($ratings['total_reviews'] == 0): ?>
-                    <p class="no-reviews">Nuk ka vlerësime për këtë produkt ende.</p>
+                    <p class="no-reviews" style="font-size: 11px;">Nuk ka vlerësime për këtë produkt ende.</p>
                 <?php else: ?>
                 <div class="rating">
                     <div class="stars">
