@@ -1,3 +1,15 @@
+<?php
+require_once __DIR__ . '/backend/config/database.php';
+require_once __DIR__ . '/backend/models/Product.php';
+
+$database = new Database();
+$db = $database->getConnection();
+$productModel = new Product($db);
+
+$faraMolle = $productModel->getById(3);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -126,12 +138,12 @@
             <div class="deals-container">
                 <div class="deals-card">
                     <div class="deals-img-box">
-                        <img src="https://png.pngtree.com/png-vector/20250320/ourmid/pngtree-yellow-cordless-power-drill-isolated-on-transparent-background-png-image_15775261.png"
-                            alt="IngCo Drill" class="mouse" width="100px">
+                        <img src="./backend/public/uploads/<?= $faraMolle['image'] ?>"
+                            alt="IngCo Drill" class="mouse" width="50px">
                     </div>
                     <div class="deals-info">
-                        <h3>IngCo Drill CDLI20012</h3>
-                        <h2 class="deals-price"><small class="discount-price">89.98</small> 61.<small>98</small> €</h2>
+                        <h3><?= $faraMolle['name'] ?></h3>
+                        <h2 class="deals-price"><small class="discount-price"> <?= $faraMolle['price'] * 1.2 ?> </small><?= $faraMolle['price'] ?> €</h2>
                         <a href="./frontend/pages/products/product.html" class="deals-buy">Blej Tani</a>
                     </div>
                 </div>

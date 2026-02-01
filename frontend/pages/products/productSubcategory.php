@@ -66,8 +66,7 @@ $products = $product->getBySubcategory($subcategoryId, $order);
                     <div class="product-card">
                         <img src="../../../backend/public/uploads/<?= $product['image'] ?>" alt="Product Image" width="50px">
                         <div class="product-card-description">
-                            <h3><?= $product['name'] ?></h3>
-                            <!-- <p class="producer">IngCo</p> -->
+                            <h3 id="prodName"><?= $product['name'] ?></h3>
                             <p class="price"><?= $product['price'] ?> &euro;</p>
                             <button onclick="window.location.href = './product.php?id=<?= $product['id'] ?>'" class="add-to-cart-btn">Shiko
                                 Detajet</button>
@@ -82,6 +81,21 @@ $products = $product->getBySubcategory($subcategoryId, $order);
     <script src="../../assets/js/hamburgerMenuToggler.js"></script>
     <script src="../../assets/js/customOrderByDropdown.js"></script>
     <script src="../../assets/js/productSearchValidation.js"></script>
+    <script>
+        document.getElementById('search-bar').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const productCards = document.querySelectorAll('.product-card');
+
+            productCards.forEach(card => {
+                const productName = card.querySelector('#prodName').textContent.toLowerCase();
+                if (productName.includes(searchTerm)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
