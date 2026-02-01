@@ -19,7 +19,6 @@ if(!$orderId) {
     exit();
 }
 
-$orderStatus = $order->checkOrderStatus($orderId);
 $orderDetails = $order->getOrderById($orderId);
 
 if(!$orderDetails) {
@@ -31,17 +30,14 @@ if($orderDetails['user_id'] != $_SESSION['user_id']) {
     die("Access denied.");
     exit();
 }
-
-if(!$orderId) {
-    die("Invalid order ID.");
-    exit();
-}
+//qekjo u shtue
+$orderStatus = $order->checkOrderStatus($orderId);
 
 if($orderStatus !== 'paid') {
-    die("Order not paid. Access denied.");
+    header("Location: /agrokultura/frontend/pages/payment/checkout.php?order_id=" . $orderId . "&error=payment_required");
     exit();
 }
-
+//deri qetu
 ?>
 
 <!DOCTYPE html>

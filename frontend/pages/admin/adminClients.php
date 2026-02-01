@@ -26,6 +26,17 @@ if (!isset($_SESSION['full_name']) || empty($_SESSION['full_name'])) {
 
 $fullName = isset($_SESSION['full_name']) && !empty($_SESSION['full_name']) ? $_SESSION['full_name'] : 'Admin';
 $userName = explode(' ', $fullName)[0];
+
+$usersQuery = "SELECT u.id, u.full_name, u.email, u.phone, o.created_at,
+                COUNT(o.id) as total_orders
+                FROM users u
+                LEFT JOIN orders o ON u.id = o.user_id
+                WHERE u.role != 1
+                GROUP BY u.id
+                ORDER BY o.created_at DESC";
+$usersStmt = $connection->prepare($usersQuery);
+$usersStmt->execute();
+$users = $usersStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,136 +83,104 @@ $userName = explode(' ', $fullName)[0];
         </div>
         <div class="search-bar">
             <div class="bar">
-                <input type="text" id="search" class="search" name="search" placeholder="Kerko Produkte...">
+                <input type="text" id="search" class="search" name="search" placeholder="Kërko Klientë...">
                 <button><i class="bi bi-search" style="color: white;"></i></button>
             </div>
-            <div class="add-product">
-                <button>Shto <i class="bi bi-plus-lg"></i></button>
-            </div>
         </div>
+        
+        <?php if (isset($_GET['success'])): ?>
+            <div class="message success" style="background-color: #22a561; color: white; padding: 15px; border-radius: 5px; margin: 20px 0;">
+                <?php
+                if ($_GET['success'] === 'user_deleted') {
+                    echo 'Përdoruesi u fshi me sukses!';
+                }
+                ?>
+            </div>
+        <?php endif; ?>
+        
+        <?php if (isset($_GET['error'])): ?>
+            <div class="message error" style="background-color: #dc3545; color: white; padding: 15px; border-radius: 5px; margin: 20px 0;">
+                <?php
+                if ($_GET['error'] === 'delete_failed') {
+                    echo 'Gabim: Përdoruesi nuk u fshi!';
+                } elseif ($_GET['error'] === 'user_not_found') {
+                    echo 'Përdoruesi nuk u gjet!';
+                } elseif ($_GET['error'] === 'cannot_delete_admin') {
+                    echo 'Nuk mund të fshini administratorin!';
+                }
+                ?>
+            </div>
+        <?php endif; ?>
         <div class="product-table">
             <table class="product-table-box">
-                <tr>
-                    <th>ID Klientit</th>
-                    <th>Emri</th>
-                    <th>Email</th>
-                    <th>Numri</th>
-                    <th>Data e Regjistrimit</th>
-                    <th>Total Porosi</th>
-                    <th>Ndrysho</th>
-                </tr>
-                <tr>
-                    <td>#3011</td>
-                    <td>Ardit Kola</td>
-                    <td>ardit.kola@example.com</td>
-                    <td>+355 68 456 7890</td>
-                    <td>12/05/2024</td>
-                    <td>14</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color:white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color:white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#3012</td>
-                    <td>Sara Dervishi</td>
-                    <td>sara.dervishi@example.com</td>
-                    <td>+355 69 222 3344</td>
-                    <td>03/06/2024</td>
-                    <td>9</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color:white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color:white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#3013</td>
-                    <td>Erion Metaj</td>
-                    <td>erion.metaj@example.com</td>
-                    <td>+355 67 111 7788</td>
-                    <td>22/06/2024</td>
-                    <td>3</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color:white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color:white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#3014</td>
-                    <td>Lira Gjoni</td>
-                    <td>lira.gjoni@example.com</td>
-                    <td>+355 69 889 4412</td>
-                    <td>10/07/2024</td>
-                    <td>18</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color:white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color:white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#3015</td>
-                    <td>Agon Selimi</td>
-                    <td>agon.selimi@example.com</td>
-                    <td>+355 68 778 9900</td>
-                    <td>25/07/2024</td>
-                    <td>6</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color:white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color:white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#3016</td>
-                    <td>Mira Basha</td>
-                    <td>mira.basha@example.com</td>
-                    <td>+355 67 555 1122</td>
-                    <td>01/08/2024</td>
-                    <td>2</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color:white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color:white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#3011</td>
-                    <td>Ardit Kola</td>
-                    <td>ardit.kola@example.com</td>
-                    <td>+355 68 456 7890</td>
-                    <td>12/05/2024</td>
-                    <td>14</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color:white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color:white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#3012</td>
-                    <td>Sara Dervishi</td>
-                    <td>sara.dervishi@example.com</td>
-                    <td>+355 69 222 3344</td>
-                    <td>03/06/2024</td>
-                    <td>9</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color:white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color:white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#3013</td>
-                    <td>Erion Metaj</td>
-                    <td>erion.metaj@example.com</td>
-                    <td>+355 67 111 7788</td>
-                    <td>22/06/2024</td>
-                    <td>3</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color:white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color:white;"></i></button>
-                    </td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>ID Klientit</th>
+                        <th>Emri</th>
+                        <th>Email</th>
+                        <th>Numri</th>
+                        <th>Data e Regjistrimit</th>
+                        <th>Total Porosi</th>
+                        <th>Ndrysho</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTableBody">
+                    <?php if (!empty($users)): ?>
+                        <?php foreach ($users as $user): ?>
+                            <tr>
+                                <td>#<?= htmlspecialchars($user['id']) ?></td>
+                                <td><?= htmlspecialchars($user['full_name']) ?></td>
+                                <td><?= htmlspecialchars($user['email']) ?></td>
+                                <td><?= htmlspecialchars($user['phone'] ?? 'N/A') ?></td>
+                                <td><?= date('d/m/Y', strtotime($user['created_at'])) ?></td>
+                                <td><?= htmlspecialchars($user['total_orders']) ?></td>
+                                <td class="action-btns">
+                                    <button class="btn-1" onclick="editUser(<?= $user['id'] ?>)">
+                                        <i class="bi bi-pencil-square" style="color:white;"></i>
+                                    </button>
+                                    <button class="btn-2" onclick="deleteUser(<?= $user['id'] ?>, '<?= htmlspecialchars(addslashes($user['full_name'])) ?>')">
+                                        <i class="bi bi-trash-fill" style="color:white;"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="7" style="text-align: center; padding: 20px;">
+                                Nuk ka klientë të regjistruar.
+                            </td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
             </table>
-
         </div>
     </div>
+
+    <script>
+        document.getElementById('search').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#usersTableBody tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        function editUser(id) {
+            alert('Funksioni i editimit do të implementohet së shpejti!');
+        }
+
+        function deleteUser(userId, userName) {
+            if (confirm('A jeni të sigurt që dëshironi të fshini përdoruesin "' + userName + '"?\n\nKjo veprim nuk mund të zhbëhet!')) {
+                window.location.href = 'deleteUser.php?id=' + userId;
+            }
+        }
+    </script>
 </body>
 
 </html>

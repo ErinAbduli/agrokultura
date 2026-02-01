@@ -56,7 +56,24 @@ if($order['user_id'] != $_SESSION['user_id']) {
 <body>
     <?php include '../../includes/header.php' ?>
     <div class="checkout-page">
+
         <h1>Pagesa</h1>
+        <?php if (isset($_GET['error'])): ?>
+            <div style="background-color: #dc3545; color: white; padding: 15px; border-radius: 5px; margin: 20px auto; max-width: 800px;">
+                <?php
+                if ($_GET['error'] === 'invalid_card') {
+                    echo 'Detajet e kartës janë të pavlefshme. Ju lutem provoni përsëri.';
+                } elseif ($_GET['error'] === 'payment_failed') {
+                    echo 'Pagesa dështoi. Ju lutem provoni përsëri.';
+                } elseif ($_GET['error'] === 'invalid_order') {
+                    echo 'Porosia nuk u gjet ose nuk ju takon.';
+                } elseif ($_GET['error'] === 'missing_fields') {
+                    echo 'Ju lutem plotësoni të gjitha fushat.';
+                }
+                ?>
+            </div>
+        <?php endif; ?>
+        
         <div class="container">
             <div class="billing-info">
                 <form id="bill-form" class="billing-form" method="POST"

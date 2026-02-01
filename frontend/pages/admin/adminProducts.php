@@ -116,8 +116,22 @@ $userName = explode(' ', $fullName)[0];
                     echo 'Metoda e kërkesës nuk është e vlefshme!';
                 } elseif ($_GET['error'] === 'access_denied') {
                     echo 'Nuk keni akses!';
+                } elseif ($_GET['error'] === 'product_not_found') {
+                    echo 'Produkti nuk u gjet!';
+                } elseif ($_GET['error'] === 'delete_failed') {
+                    echo 'Gabim: Produkti nuk u fshi!';
                 } else {
                     echo 'Ndodhi një gabim!';
+                }
+                ?>
+            </div>
+        <?php endif; ?>
+        
+        <?php if (isset($_GET['success'])): ?>
+            <div class="message success">
+                <?php
+                if ($_GET['success'] === 'product_deleted') {
+                    echo 'Produkti u fshi me sukses!';
                 }
                 ?>
             </div>
@@ -125,39 +139,43 @@ $userName = explode(' ', $fullName)[0];
 
         <div class="product-table">
             <table class="product-table-box">
-                <tr>
-                    <th>ID</th>
-                    <th>Produkti</th>
-                    <th>Cmimi</th>
-                    <th>Sasia</th>
-                    <th>Subkategoria</th>
-                    <th>Ndrysho</th>
-                </tr>
-                <?php if (!empty($products)): ?>
-                    <?php foreach ($products as $product): ?>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Produkti</th>
+                        <th>Cmimi</th>
+                        <th>Sasia</th>
+                        <th>Subkategoria</th>
+                        <th>Ndrysho</th>
+                    </tr>
+                </thead>
+                <tbody id="productsTableBody">
+                    <?php if (!empty($products)): ?>
+                        <?php foreach ($products as $product): ?>
+                            <tr>
+                                <td>#<?= htmlspecialchars($product['id']) ?></td>
+                                <td><?= htmlspecialchars($product['name']) ?></td>
+                                <td>€<?= number_format($product['price'], 2) ?></td>
+                                <td><?= htmlspecialchars($product['stock']) ?></td>
+                                <td><?= htmlspecialchars($product['subcategory_id'] ?? 'N/A') ?></td>
+                                <td class="action-btns">
+                                    <button class="btn-1" onclick="editProduct(<?= $product['id'] ?>)">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                    <button class="btn-2" onclick="deleteProduct(<?= $product['id'] ?>, '<?= htmlspecialchars(addslashes($product['name'])) ?>')">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
                         <tr>
-                            <td>#<?= htmlspecialchars($product['id']) ?></td>
-                            <td><?= htmlspecialchars($product['name']) ?></td>
-                            <td>€<?= number_format($product['price'], 2) ?></td>
-                            <td><?= htmlspecialchars($product['stock']) ?></td>
-                            <td><?= htmlspecialchars($product['subcategory_id'] ?? 'N/A') ?></td>
-                            <td class="action-btns">
-                                <button class="btn-1" onclick="editProduct(<?= $product['id'] ?>)">
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
-                                <button class="btn-2">
-                                    <i class="bi bi-trash-fill"></i>
-                                </button>
+                            <td colspan="6" style="text-align: center; padding: 20px;">
+                                Nuk ka produkte të regjistruara.
                             </td>
                         </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <tr>
-                        <td colspan="6" style="text-align: center; padding: 20px;">
-                            Nuk ka produkte të regjistruara.
-                        </td>
-                    </tr>
-                <?php endif; ?>
+                    <?php endif; ?>
+                </tbody>
             </table>
         </div>
     </div>
@@ -221,10 +239,29 @@ $userName = explode(' ', $fullName)[0];
             document.getElementById('productForm').reset();
         }
 
+        document.getElementById('search').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#productsTableBody tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
         function editProduct(id) {
             alert('Funksioni i editimit do të implementohet së shpejti!');
         }
 
+        function deleteProduct(productId, productName) {
+            if (confirm('A jeni të sigurt që dëshironi të fshini produktin "' + productName + '"?\n\nKjo veprim nuk mund të zhbëhet!')) {
+                window.location.href = 'deleteProduct.php?id=' + productId;
+            }
+        }
 
         window.onclick = function(event) {
             const modal = document.getElementById('productModal');

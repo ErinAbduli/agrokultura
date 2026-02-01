@@ -8,6 +8,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role
 
 require_once __DIR__ . '/../../../backend/config/Database.php';
 require_once __DIR__ . '/../../../backend/models/User.php';
+require_once __DIR__ . '/../../../backend/models/Order.php';
 
 $db = new Database();
 $connection = $db->getConnection();
@@ -26,6 +27,14 @@ if (!isset($_SESSION['full_name']) || empty($_SESSION['full_name'])) {
 
 $fullName = isset($_SESSION['full_name']) && !empty($_SESSION['full_name']) ? $_SESSION['full_name'] : 'Admin';
 $userName = explode(' ', $fullName)[0];
+
+$ordersQuery = "SELECT o.id, o.total, o.status, o.created_at, u.full_name 
+                FROM orders o 
+                LEFT JOIN users u ON o.user_id = u.id 
+                ORDER BY o.created_at DESC";
+$ordersStmt = $connection->prepare($ordersQuery);
+$ordersStmt->execute();
+$orders = $ordersStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,200 +81,70 @@ $userName = explode(' ', $fullName)[0];
         </div>
         <div class="search-bar">
             <div class="bar">
-                <input type="text" id="search" class="search" name="search" placeholder="Kerko Pororsi...">
+                <input type="text" id="search" class="search" name="search" placeholder="Kërko Porosi...">
                 <button><i class="bi bi-search" style="color: white;"></i></button>
             </div>
         </div>
         <div class="product-table">
             <table class="product-table-box">
-                <tr>
-                    <th>ID Porosisë</th>
-                    <th>Porositur Nga</th>
-                    <th>Statusi</th>
-                    <th>Data</th>
-                    <th>Totali</th>
-                    <th>Ndrysho</th>
-                </tr>
-                <tr>
-                    <td>#1023</td>
-                    <td>Ardit Kola</td>
-                    <td>Ne Proces</td>
-                    <td>03/12/2025</td>
-                    <td>120€</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color: white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color: white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#1024</td>
-                    <td>Sara Dervishi</td>
-                    <td>Dërguar</td>
-                    <td>02/12/2025</td>
-                    <td>90€</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color: white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color: white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#1025</td>
-                    <td>Erind Hysaj</td>
-                    <td>Përfunduar</td>
-                    <td>01/12/2025</td>
-                    <td>45€</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color: white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color: white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#1026</td>
-                    <td>Mira Basha</td>
-                    <td>Anuluar</td>
-                    <td>28/11/2025</td>
-                    <td>38€</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color: white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color: white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#1027</td>
-                    <td>Agon Selimi</td>
-                    <td>Ne Proces</td>
-                    <td>26/11/2025</td>
-                    <td>78€</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color: white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color: white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#1028</td>
-                    <td>Lira Gjoni</td>
-                    <td>Dërguar</td>
-                    <td>24/11/2025</td>
-                    <td>150€</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color: white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color: white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#1023</td>
-                    <td>Ardit Kola</td>
-                    <td>Ne Proces</td>
-                    <td>03/12/2025</td>
-                    <td>120€</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color: white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color: white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#1024</td>
-                    <td>Sara Dervishi</td>
-                    <td>Dërguar</td>
-                    <td>02/12/2025</td>
-                    <td>90€</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color: white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color: white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#1025</td>
-                    <td>Erind Hysaj</td>
-                    <td>Përfunduar</td>
-                    <td>01/12/2025</td>
-                    <td>45€</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color: white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color: white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#1026</td>
-                    <td>Mira Basha</td>
-                    <td>Anuluar</td>
-                    <td>28/11/2025</td>
-                    <td>38€</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color: white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color: white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#1027</td>
-                    <td>Agon Selimi</td>
-                    <td>Ne Proces</td>
-                    <td>26/11/2025</td>
-                    <td>78€</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color: white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color: white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#1023</td>
-                    <td>Ardit Kola</td>
-                    <td>Ne Proces</td>
-                    <td>03/12/2025</td>
-                    <td>120€</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color: white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color: white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#1024</td>
-                    <td>Sara Dervishi</td>
-                    <td>Dërguar</td>
-                    <td>02/12/2025</td>
-                    <td>90€</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color: white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color: white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#1025</td>
-                    <td>Erind Hysaj</td>
-                    <td>Përfunduar</td>
-                    <td>01/12/2025</td>
-                    <td>45€</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color: white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color: white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#1026</td>
-                    <td>Mira Basha</td>
-                    <td>Anuluar</td>
-                    <td>28/11/2025</td>
-                    <td>38€</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color: white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color: white;"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>#1027</td>
-                    <td>Agon Selimi</td>
-                    <td>Ne Proces</td>
-                    <td>26/11/2025</td>
-                    <td>78€</td>
-                    <td class="action-btns">
-                        <button class="btn-1"><i class="bi bi-pencil-square" style="color: white;"></i></button>
-                        <button class="btn-2"><i class="bi bi-trash-fill" style="color: white;"></i></button>
-                    </td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>ID Porosisë</th>
+                        <th>Porositur Nga</th>
+                        <th>Statusi</th>
+                        <th>Data</th>
+                        <th>Totali</th>
+                        <th>Ndrysho</th>
+                    </tr>
+                </thead>
+                <tbody id="ordersTableBody">
+                    <?php if (!empty($orders)): ?>
+                        <?php foreach ($orders as $order): ?>
+                            <tr>
+                                <td>#<?= htmlspecialchars($order['id']) ?></td>
+                                <td><?= htmlspecialchars($order['full_name'] ?? 'N/A') ?></td>
+                                <td><?= htmlspecialchars($order['status']) ?></td>
+                                <td><?= date('d/m/Y', strtotime($order['created_at'])) ?></td>
+                                <td>€<?= number_format($order['total'], 2) ?></td>
+                                <td class="action-btns">
+                                    <button class="btn-1" onclick="editOrder(<?= $order['id'] ?>)">
+                                        <i class="bi bi-pencil-square" style="color: white;"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 20px;">
+                                Nuk ka porosi të regjistruara.
+                            </td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
             </table>
 
         </div>
     </div>
+
+    <script>
+        document.getElementById('search').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#ordersTableBody tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        function editOrder(id) {
+            alert('Funksioni i editimit do të implementohet së shpejti!');
+        }
+    </script>
 </body>
 
 </html>

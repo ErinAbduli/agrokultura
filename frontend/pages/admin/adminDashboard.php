@@ -8,6 +8,8 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role
 
 require_once __DIR__ . '/../../../backend/config/Database.php';
 require_once __DIR__ . '/../../../backend/models/User.php';
+require_once __DIR__ . '/../../../backend/models/Order.php';
+require_once __DIR__ . '/../../../backend/models/Product.php';
 
 $db = new Database();
 $connection = $db->getConnection();
@@ -26,6 +28,46 @@ if (!isset($_SESSION['full_name']) || empty($_SESSION['full_name'])) {
 
 $fullName = isset($_SESSION['full_name']) && !empty($_SESSION['full_name']) ? $_SESSION['full_name'] : 'Admin';
 $userName = explode(' ', $fullName)[0];
+
+$totalSalesQuery = "SELECT COALESCE(SUM(total), 0) as total_sales FROM orders WHERE status != 'cancelled'";
+$totalSalesStmt = $connection->prepare($totalSalesQuery);
+$totalSalesStmt->execute();
+$totalSales = $totalSalesStmt->fetch(PDO::FETCH_ASSOC)['total_sales'];
+
+$totalOrdersQuery = "SELECT COUNT(*) as total_orders FROM orders";
+$totalOrdersStmt = $connection->prepare($totalOrdersQuery);
+$totalOrdersStmt->execute();
+$totalOrders = $totalOrdersStmt->fetch(PDO::FETCH_ASSOC)['total_orders'];
+
+$totalClientsQuery = "SELECT COUNT(*) as total_clients FROM users WHERE role != 1";
+$totalClientsStmt = $connection->prepare($totalClientsQuery);
+$totalClientsStmt->execute();
+$totalClients = $totalClientsStmt->fetch(PDO::FETCH_ASSOC)['total_clients'];
+
+$shippingOrdersQuery = "SELECT COUNT(*) as shipping_orders FROM orders WHERE status IN ('shipped', 'in_process', 'pending')";
+$shippingOrdersStmt = $connection->prepare($shippingOrdersQuery);
+$shippingOrdersStmt->execute();
+$shippingOrders = $shippingOrdersStmt->fetch(PDO::FETCH_ASSOC)['shipping_orders'];
+
+$recentOrdersQuery = "SELECT o.id, o.total, o.status, o.created_at, u.full_name 
+                       FROM orders o 
+                       LEFT JOIN users u ON o.user_id = u.id 
+                       ORDER BY o.created_at DESC 
+                       LIMIT 5";
+$recentOrdersStmt = $connection->prepare($recentOrdersQuery);
+$recentOrdersStmt->execute();
+$recentOrders = $recentOrdersStmt->fetchAll(PDO::FETCH_ASSOC);
+
+$bestSellingQuery = "SELECT oi.product_name, SUM(oi.quantity) as total_sold 
+                     FROM order_items oi 
+                     INNER JOIN orders o ON oi.order_id = o.id 
+                     WHERE o.status != 'cancelled' 
+                     GROUP BY oi.product_name 
+                     ORDER BY total_sold DESC 
+                     LIMIT 5";
+$bestSellingStmt = $connection->prepare($bestSellingQuery);
+$bestSellingStmt->execute();
+$bestSelling = $bestSellingStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,19 +116,19 @@ $userName = explode(' ', $fullName)[0];
         <div class="cards">
             <div class="card">
                 <h3>Shitjet Totale</h3>
-                <p>$12,400</p>
+                <p>€<?= number_format($totalSales, 2) ?></p>
             </div>
             <div class="card">
                 <h3>Nr. i Porosive</h3>
-                <p>320</p>
+                <p><?= $totalOrders ?></p>
             </div>
             <div class="card">
                 <h3>Nr. i klientëve</h3>
-                <p>148</p>
+                <p><?= $totalClients ?></p>
             </div>
             <div class="card">
                 <h3>Porositë në Dërgesë</h3>
-                <p>27</p>
+                <p><?= $shippingOrders ?></p>
             </div>
         </div>
 
@@ -101,28 +143,28 @@ $userName = explode(' ', $fullName)[0];
                 <table>
                     <tr>
                         <th>ID</th>
-                        <th>Produkti</th>
+                        <th>Klienti</th>
                         <th>Shuma</th>
                         <th>Statusi</th>
+                        <th>Data</th>
                     </tr>
-                    <tr>
-                        <td>#1023</td>
-                        <td>Fertilizues NPK</td>
-                        <td>$120</td>
-                        <td>Completed</td>
-                    </tr>
-                    <tr>
-                        <td>#1024</td>
-                        <td>Plehra Organike</td>
-                        <td>$90</td>
-                        <td>Pending</td>
-                    </tr>
-                    <tr>
-                        <td>#1025</td>
-                        <td>Farë Misri</td>
-                        <td>$45</td>
-                        <td>Shipped</td>
-                    </tr>
+                    <?php if (!empty($recentOrders)): ?>
+                        <?php foreach ($recentOrders as $order): ?>
+                            <tr>
+                                <td>#<?= htmlspecialchars($order['id']) ?></td>
+                                <td><?= htmlspecialchars($order['full_name'] ?? 'N/A') ?></td>
+                                <td>€<?= number_format($order['total'], 2) ?></td>
+                                <td><?= htmlspecialchars($order['status']) ?></td>
+                                <td><?= date('d/m/Y', strtotime($order['created_at'])) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="5" style="text-align: center; padding: 20px;">
+                                Nuk ka porosi të regjistruara.
+                            </td>
+                        </tr>
+                    <?php endif; ?>
                 </table>
             </div>
 
@@ -133,18 +175,20 @@ $userName = explode(' ', $fullName)[0];
                         <th>Produkti</th>
                         <th>Shitjet</th>
                     </tr>
-                    <tr>
-                        <td>Fertilizues NPK</td>
-                        <td>530</td>
-                    </tr>
-                    <tr>
-                        <td>Farë Gruri</td>
-                        <td>410</td>
-                    </tr>
-                    <tr>
-                        <td>Plehra Organike</td>
-                        <td>385</td>
-                    </tr>
+                    <?php if (!empty($bestSelling)): ?>
+                        <?php foreach ($bestSelling as $product): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($product['product_name']) ?></td>
+                                <td><?= htmlspecialchars($product['total_sold']) ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="2" style="text-align: center; padding: 20px;">
+                                Nuk ka të dhëna për produktet më të shitura.
+                            </td>
+                        </tr>
+                    <?php endif; ?>
                 </table>
             </div>
         </div>

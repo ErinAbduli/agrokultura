@@ -213,16 +213,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="../../assets/js/hamburgerMenuToggler.js"></script>
     <script src="../../assets/js/modal.js"></script>
     <script>
-        // Sync qty inputs in both directions
         const qtyInput = document.getElementById("qty");
         const qtyBuyNow = document.getElementById("qty_buy_now");
 
-        // Sync on manual input
         qtyInput.addEventListener("input", e => {
             qtyBuyNow.value = e.target.value;
         });
 
-        // Sync when buttons change the value
         document.getElementById("increase").addEventListener("click", () => {
             qtyBuyNow.value = qtyInput.value;
         });
