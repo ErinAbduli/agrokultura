@@ -17,6 +17,9 @@ if($productDetails) {
 
 $reviews = $review->getReviewsByProductId($productId);
 
+$ratings = $review->getRatingStats($productId);
+
+
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $rating = isset($_POST['rating']) ? intval($_POST['rating']) : 0;
     $message = isset($_POST['review']) ? trim($_POST['review']) : '';
@@ -72,16 +75,28 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             <img src="../../../backend/public/uploads/<?= $productDetails['image'] ?>" alt="">
             <div class="product-desc">
                 <h3 class="title"><?= $productDetails['name'] ?></h3>
+                <?php if ($ratings['total_reviews'] == 0): ?>
+                    <p class="no-reviews">Nuk ka vlerësime për këtë produkt ende.</p>
+                <?php else: ?>
                 <div class="rating">
                     <div class="stars">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-half"></i>
+                        <?php
+                            $average = $ratings['average_rating']; // e.g. 3.7
+
+                            for ($i = 1; $i <= 5; $i++) {
+                                if ($average >= $i) {
+                                    echo '<i class="bi bi-star-fill"></i>';
+                                } elseif ($average >= ($i - 0.5)) {
+                                    echo '<i class="bi bi-star-half"></i>';
+                                } else {
+                                    echo '<i class="bi bi-star"></i>';
+                                }
+                            }
+                        ?>
                     </div>
-                    <span class="rating-text">4.5 · 128 reviews</span>
+                    <span class="rating-text"><?= number_format($ratings['average_rating'], 1) ?> · <?= $ratings['total_reviews'] ?> reviews</span>
                 </div>
+                <?php endif; ?>
                 <h4 class="price">€<?= $productDetails['price'] ?></h4>
                 <form id="add-to-cart-form" action="../../../backend/controllers/addToCart.php" method="POST">
                 <div class="section">
